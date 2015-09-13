@@ -1,9 +1,49 @@
 * {
   margin: 0px;
+  text-align: center;
 }
 
 body {
   background-image: url('../images/background.jpg');
-  color: white;
+  color: black;
 }
+
+#header {
+  
+}
+
+#courseWork {
+ height: 200px;
+}
+
+.oval {
+  width: 75%;
+  background-color : #F0E1DA; /* Light Tan */
+  margin: 0 auto;
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 5px;
+  padding-left:  5px;
+  border-radius: 25px; 
+  border: 7px solid #8cb8d1; /* Light Blue */
+}
+
+.assignment {
+  float: left;
+  width: 250px;
+  text-align:left;
+}
+
+.description {
+  text-align:left;
+}
+
+.assignment h3 {
+  text-align:left;
+}
+
+.
+
+
 
