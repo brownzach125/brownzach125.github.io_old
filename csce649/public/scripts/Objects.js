@@ -28,42 +28,82 @@ BouncingBall.prototype.simulate = function(delta , h) {
   for (var i =0; i<delta; i+=h) {
     var step = h;
       while (step > 0) {
-        accleration = Gravity; // Set accelerations
-        var newState = this.integrate(step , accleration);
+        acceleration = Gravity; // Set accelerations
+        var newState = this.integrate(step , acceleration);
         var collision = this.detectCollision(newState);
         if ( collision ){
-          // f = fraction
-          // this.integrate(f)
-          // compute response
-          // step = step - ( 1 -f )
-          step =0;
+          f = collision['fraction'];
+          console.log("F" + f);
+          newState = this.integrate(f*step , acceleration);
+          newState = this.computeResponse(collision , newState);
+          this.updateState(newState);
+          step = step - ( 1 - f ) * step;
+          console.log("Step" + step);
         }
         else {
-          // 
-          this.velocity = newState['velocity'];
-          this.position = newState['position'];
+          // Make the new state the old state
+          this.updateState(newState);
+          // The step has been simulated
           step = 0;
         }
       }
   }
+  this.updateObject();
+};
+
+BouncingBall.prototype.updateObject = function() {
   this.object.position.x = this.position.e(1);
   this.object.position.y = this.position.e(2);
   this.object.position.z = this.position.e(3);
 };
 
-BouncingBall.prototype.integrate = function(h , accleration) {
+BouncingBall.prototype.updateState = function(newState) {
+  this.velocity = newState['velocity'];
+  this.position = newState['position'];
+};
+
+BouncingBall.prototype.integrate = function(h , acceleration) {
   result = {};
-  result['velocity'] = this.velocity.add( accleration.multiply(h));
+  result['velocity'] = this.velocity.add( acceleration.multiply(h));
   result['position'] = this.position.add(this.velocity.multiply(h));
   return result;
 };
 
+/* Detects Collisions 
+   @params
+      newState: Hash of proposed position and velocity of ball
+   return
+      null - No collision
+      hash - will contain details of collision 
+*/
+// TODO I want a much more general and useful collision detection
 BouncingBall.prototype.detectCollision = function(newState) {
   // TODO DONT HARD CODE CUBES POSITION
+  var collisionInfo = {};
   var xbl = -22.5;
   var xbr =  22.5;
-  if ( newState['position'].e(2) <= -22.5 || newState['position'].e(2) >= 22.5 ) {
-    return true;
+  var newPosition = newState['position'];
+  var oldPosition = this.position;
+  if ( newPosition.e(2) <= -22.5) {
+    collisionInfo['wall'] = 'bottom';
+    collisionInfo['fraction'] = (oldPosition.e(2) - -22.5) / (oldPosition.e(2) - newPosition.e(2)); 
+    return collisionInfo;
   }
-  return false;
+  if ( newPosition.e(2) >= 22.5 ) {
+    collisionInfo['wall'] = 'top';
+    collisionInfo['fraction'] = (oldPosition.e(2) - 22.5) / (oldPosition.e(2) - newPosition.e(2)); 
+    return collisionInfo;
+  }
+  return null;
+};
+
+//TODO current assumes elasticity to be 1
+//TODO no friction
+//TODO understand my vector library better
+BouncingBall.prototype.computeResponse = function(collision , newState) {
+  var elasticity = 1;
+  var velocity = newState['velocity'];
+  velocity = velocity.multiply(-1);
+  newState['velocity'] = velocity;
+  return newState;
 };

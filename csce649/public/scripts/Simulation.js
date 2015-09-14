@@ -25,7 +25,7 @@ Simulation.prototype.initilize = function(container) {
   this.scene = new THREE.Scene();
   // Put in a camera
   this.camera = new THREE.PerspectiveCamera( 45, container.offsetWidth / container.offsetHeight, 1, 4000 );
-  this.camera.position.set( 0, 0, 50 );
+  this.camera.position.set( 0, 0, 200 );
   // Create a directional light to show off the object
   var light = new THREE.DirectionalLight( 0xffffff, 1.5);
   light.position.set(0, 0, 1);
