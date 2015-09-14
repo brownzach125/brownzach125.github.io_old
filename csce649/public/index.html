@@ -3,68 +3,21 @@
 <head>
 <title>Welcome to WebGL</title>
 
-  <link rel="stylesheet" href="../css/webglbook.css" /> 
-  <script src="../libs/Three.js"></script>
-  <script src="../libs/RequestAnimationFrame.js"></script>
-  <script src="../libs/examples/js/controls/TrackballControls.js"></script>
+  <link rel="stylesheet" href="css/webglbook.css" /> 
+  <script src="libs/three.js"></script>
+  <script src="libs/RequestAnimationFrame.js"></script>
+  <script src="libs/examples/js/controls/TrackballControls.js"></script>
+  <script src="libs/sylvester.js"></script>
+  <script src='scripts/Simulation.js'></script>
+  <script src='scripts/Objects.js'></script>
   <script>
   
-  var renderer = null, 
-      scene = null, 
-      camera = null,
-      ball = null,
-      containingCube = null,
-      cameraControls = null,
-      clock = null,
-      animating = false;
-      
-  
-  function ContainingCube() {
-    var group = new THREE.Object3D();
-    var material = new THREE.MeshBasicMaterial({ transparent:true , opacity:.2});
-    var geometry = new THREE.BoxGeometry(50,50,50);
-    var cube = new THREE.Mesh( geometry , material);
-    group.add( cube );
-    
-    var wireFrame = new THREE.EdgesHelper( cube , 0xFFFFFF);
-    group.add(wireFrame);
-    
-    return group; 
-  };
- 
-  function BouncingBall() {
-    var mapUrl = "../images/badHeart.jpg";
-    var map = THREE.ImageUtils.loadTexture(mapUrl);
-    var geometry = new THREE.SphereGeometry(5,32,32);
-    var ball = new THREE.Mesh( geometry , new THREE.MeshPhongMaterial({map:map}));
-    return ball;
-  }
-  
+  var simulation = null; // The simulation
+        
   function onLoad() {
-    clock = new THREE.Clock();
-    // Grab our container div
     var container = document.getElementById("container");
-    // Create the Three.js renderer, add it to our div
-    renderer = new THREE.WebGLRenderer( { antialias: true } );
-    renderer.setSize(container.offsetWidth, container.offsetHeight);
-    container.appendChild( renderer.domElement );
-    // Create a new Three.js scene
-    scene = new THREE.Scene();
-    // Put in a camera
-    camera = new THREE.PerspectiveCamera( 45, container.offsetWidth / container.offsetHeight, 1, 4000 );
-    camera.position.set( 0, 0, 50 );
-    // Create a directional light to show off the object
-    var light = new THREE.DirectionalLight( 0xffffff, 1.5);
-    light.position.set(0, 0, 1);
-    scene.add( light );
-    
-    ball = BouncingBall();
-    scene.add(ball);
-    containingCube = ContainingCube();
-    scene.add(containingCube);
-    
-    cameraControls = new THREE.TrackballControls( this.camera, renderer.domElement );
-    
+    simulation = new Simulation();
+    simulation.initilize(container);
     
     // Add a mouse up handler to toggle the animation
     addMouseHandler();
@@ -72,22 +25,12 @@
     run();
   };
   function run() {
-    var delta = clock.getDelta(); // Time since last call in seconds
-    requestAnimationFrame(run);
-    cameraControls.update(delta);
-    renderer.render( scene, camera );
-    
-    
-    // Spin the cube for next frame
-    if (animating) {
-      ball.rotation.y -= 0.01;
-    }
-
-     
+    simulation.simulate();
+    requestAnimationFrame(run);     
   }
   function addMouseHandler() {
-    var dom = renderer.domElement;
-    dom.addEventListener( 'mouseup', onMouseUp, false);
+    //var dom = renderer.domElement;
+    //dom.addEventListener( 'mouseup', onMouseUp, false);
   }
   
   function onMouseUp  (event) {
