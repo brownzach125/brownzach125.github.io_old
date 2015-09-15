@@ -10,7 +10,7 @@ ContainingCube = function() {
 };
 
 BouncingBall = function() {
-  var mapUrl = "public/images/badHeart.jpg";
+  var mapUrl = "./images/badHeart.jpg";
   var map = THREE.ImageUtils.loadTexture(mapUrl);
   var geometry = new THREE.SphereGeometry(5,32,32);
   var ball = new THREE.Mesh( geometry , new THREE.MeshPhongMaterial({map:map}));
