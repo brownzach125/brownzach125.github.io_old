@@ -55,7 +55,7 @@
     // Get Timestep
     var timestep = parseFloat(document.getElementById('timestep').value);
     if ( timestep ) {
-    	simulation.timestep = timestep;
+    	simulation.ball.elasticity = elasticity;
     }
     
     // Get wall friction
