@@ -1,14 +1,12 @@
-function ContainingCube() {
-  var group = new THREE.Object3D();
-  var material = new THREE.MeshBasicMaterial({ transparent:true , opacity:.2});
-  var geometry = new THREE.BoxGeometry(50,50,50);
-  var cube = new THREE.Mesh( geometry , material);
-  group.add( cube );
+ContainingCube = function() {
+  this.object = new THREE.Object3D();
+  this.material = new THREE.MeshBasicMaterial({ transparent:true , opacity:.2});
+  this.geometry = new THREE.BoxGeometry(50,50,50);
+  this.cube = new THREE.Mesh( this.geometry , this.material);
+  this.object.add( this.cube );
   
-  var wireFrame = new THREE.EdgesHelper( cube , 0xFFFFFF);
-  group.add(wireFrame);
-  
-  return group; 
+  this.wireFrame = new THREE.EdgesHelper( this.cube , 0xFFFFFF);
+  this.object.add(this.wireFrame);
 };
 
 BouncingBall = function() {
@@ -18,7 +16,7 @@ BouncingBall = function() {
   var ball = new THREE.Mesh( geometry , new THREE.MeshPhongMaterial({map:map}));
   this.object = ball;
   this.position = Vector.create([0,0,0]);  // meters
-  this.velocity = Vector.create([5,0,10]); // meters / sec
+  this.velocity = Vector.create([0,0,0]); // meters / sec
   this.mass = 1;
   this.radius = 5;
   this.elasticity = .95;
@@ -101,9 +99,11 @@ BouncingBall.prototype.detectCollision = function(newState) {
     var newDistance  = ( newState['position'].subtract( plane.anchor) ).dot( plane.normal );
     if ( oldDistance * newDistance  < 0 ) {
       var collisionInfo = {};	
-      collisionInfo['fraction'] = oldDistance / ( oldDistance - newDistance );
+      collisionInfo['fraction'] = oldDistance / ( oldDistance - newDistance ) - .1;
+      
       collisionInfo['plane']    = plane;
       collisions.push(collisionInfo); 
+      console.log("Collision Detected");
     }
   }
   

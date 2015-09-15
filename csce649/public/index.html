@@ -22,6 +22,7 @@
     
     // Add a mouse up handler to toggle the animation
     addMouseHandler();
+    addKeyBoardHandler();
     // Run our render loop
     run();
   };
@@ -32,6 +33,16 @@
   function addMouseHandler() {
     //var dom = renderer.domElement;
     //dom.addEventListener( 'mouseup', onMouseUp, false);
+  }
+  
+  function addKeyBoardHandler() {
+      document.addEventListener('keydown', function(event) {
+      simulation.keyPress(event.keyCode);
+    });
+  }
+  
+  function onKeyPress() {
+    alert("hi");
   }
   
   function onMouseUp  (event) {
