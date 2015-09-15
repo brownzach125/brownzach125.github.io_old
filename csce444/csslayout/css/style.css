@@ -1,3 +1,22 @@
+/*
+ * Author: Zach Brown
+ * CSCE 444
+ * Assignment: CSS Layout
+ * 
+ * 
+ * Report on differences
+ *  I was unable to perfectly match the text
+ *  I'm not sure what style the original page has,
+ *  I was able to get pretty close.
+ * 
+ *  In the bottom right panel,
+ *  I was unable to get the text to wrap around at the right time. I'm not sure
+ *  why I can't pull that off. 
+ * 
+ *  The color of the background isn't perfect, since many some of them are dithered in the orignal,
+ *  but I made it pretty close. 
+ */
+
 * {
   color : white;
   margin : 0px;
