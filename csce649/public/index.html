@@ -3,7 +3,8 @@
 <head>
 <title>Welcome to WebGL</title>
 
-  <link rel="stylesheet" href="css/webglbook.css" /> 
+  <link rel="stylesheet" href="css/webglbook.css" />
+  <link rel="stylesheet" href="css/style.css" />  
   <script src="libs/three.js"></script>
   <script src="libs/RequestAnimationFrame.js"></script>
   <script src="libs/examples/js/controls/TrackballControls.js"></script>
@@ -38,11 +39,76 @@
     animating = !animating;
   } 
   
+  function restartSimulation() {
+  	// Get the new values
+  	getValues();
+  	// Tell simulation to update
+  	simulation.update();
+  }
+  function getValues() {
+    // Get Elasticity
+    var elasticity = parseFloat(document.getElementById('elasticity').value);
+    if ( elasticity ) {
+    	simulation.ball.elasticity = elasticity;
+    }
+    
+    // Get wall friction
+    var frictionCoeff = parseFloat(document.getElementById('frictionCoeff').value);
+    if ( frictionCoeff ) {
+    	simulation.ball.frictionCoeff = frictionCoeff;
+    }
+    
+    // Get Air friction
+    var windCoeff = parseFloat(document.getElementById('airFrictionCoeff').value);
+    if ( windCoeff ){
+    	simulation.ball.windCoeff = windCoeff;
+    }
+    
+    // Get position
+    var xpos = parseFloat(document.getElementById('positionX').value);
+    var ypos = parseFloat(document.getElementById('positionY').value);
+    var zpos = parseFloat(document.getElementById('positionZ').value);
+    if ( (xpos == 0 || xpos ) && (ypos == 0 || ypos) && (zpos == 0 || zpos) ) {
+    	simulation.ball.position = Vector.create([xpos, ypos , zpos]);
+    }
+    
+    // Get velocity
+    var xpos = parseFloat(document.getElementById('velocityX').value);
+    var ypos = parseFloat(document.getElementById('velocityY').value);
+    var zpos = parseFloat(document.getElementById('velocityZ').value);
+    if ( (xpos == 0 || xpos ) && (ypos == 0 || ypos) && (zpos == 0 || zpos) ) {
+    	simulation.ball.velocity = Vector.create([xpos, ypos , zpos]);
+    }
+    
+    
+    
+  }
+  
   </script>
-
+  
 </head>
-<body onLoad="onLoad();" style="">
-  <center><h1>Welcome to WebGL!</h1></center>
-    <div id="container" style="width:95%; height:80%; position:absolute;"></div>    
+<body onLoad="onLoad();">
+	<div id='header'><h1>CSCE 649: Assignment1 -Zach Brown</h1></div>
+    <div id="container"></div>
+    <div id='bottomPanel'>
+       <div id='controls'>
+	    	Elasticity :
+	    	<input  id='elasticity' type='number'><br>
+	    	Coefficient Fricition:
+	    	<input  id='frictionCoeff' type='number'><br>
+	    	Wind Resistance Friction:
+	    	<input  id='airFrictionCoeff' type='number'><br>
+	    	Position   : 
+	    	<input  id='positionX' class='vectorComponent' type='number'>
+	    	<input  id='positionY' class='vectorComponent' type='number'>
+	    	<input  id='positionZ' class='vectorComponent' type='number'> <br>
+	    	Velocity   :
+	    	<input  id='velocityX' class='vectorComponent' type='number'>
+	    	<input  id='velocityY' class='vectorComponent' type='number'>
+	    	<input  id='velocityZ' class='vectorComponent' type='number'> <br>
+	    	
+	    	<button id='restartButton' onclick="restartSimulation()">Restart Simulation</button>    	
+    	</div>   
+    </div> 
 </body>
 </html>

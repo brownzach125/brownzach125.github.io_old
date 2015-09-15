@@ -17,8 +17,8 @@ BouncingBall = function() {
   var geometry = new THREE.SphereGeometry(5,32,32);
   var ball = new THREE.Mesh( geometry , new THREE.MeshPhongMaterial({map:map}));
   this.object = ball;
-  this.position = Vector.create([0,-18,0]);  // meters
-  this.velocity = Vector.create([0,0,0]); // meters / sec
+  this.position = Vector.create([0,0,0]);  // meters
+  this.velocity = Vector.create([5,0,10]); // meters / sec
   this.mass = 1;
   this.radius = 5;
   this.elasticity = .95;
@@ -31,7 +31,7 @@ BouncingBall = function() {
 var count  = 0;
 // Simulates object behavior over time delta with timestep h
 BouncingBall.prototype.simulate = function(delta , h) {
-  if (!this.atRest)
+  if(!this.atRest)
   for (var i =0; i<delta; i+=h) {
     var step = h;
       while (step > 0) {
@@ -75,13 +75,12 @@ BouncingBall.prototype.integrate = function(h , newState) {
 };
 
 
-var planes = [ Plane.XY.translate(Vector.create([0,0,20])),
+var planes = [ Plane.create(Vector.create([0,0 , 20]) , Vector.create([0,0,-1])),
                Plane.XY.translate(Vector.create([0,0,-20])),
                Plane.ZX.translate(Vector.create([0,-20,0])),
-               //Plane.ZX.translate(Vector.create([0,20,0])),
                Plane.create(Vector.create([0,20 , 0]) , Vector.create([0,-1,0])),
                Plane.ZY.translate(Vector.create([-20,0,0])),
-               Plane.ZY.translate(Vector.create([20,0,0])) ];           
+               Plane.create(Vector.create([20,0 , 0]) , Vector.create([-1,0,0])) ];           
 
 /* Detects Collisions 
    @params
@@ -90,22 +89,38 @@ var planes = [ Plane.XY.translate(Vector.create([0,0,20])),
       null - No collision
       hash - will contain details of collision 
 */
-// TODO I want a much more general and useful collision detection
+
+var count = 0;
 BouncingBall.prototype.detectCollision = function(newState) {
   // TODO Hanlde multiple collisions correctly
-  var collisionInfo = {};
-  
+  var collisions = [];
   for (var i =0; i < planes.length; i++) {
     plane = planes[i];
     var oldDistance  = ( this.position.subtract( plane.anchor ) ).dot( plane.normal );
     var newDistance  = ( newState['position'].subtract( plane.anchor) ).dot( plane.normal );
     if ( oldDistance * newDistance  < 0 ) {
+      var collisionInfo = {};	
       collisionInfo['fraction'] = oldDistance / ( oldDistance - newDistance );
       collisionInfo['plane']    = plane;
-      return collisionInfo; 
+      collisions.push(collisionInfo); 
     }
   }
-  return null;
+  
+  // No collisions
+  if ( collisions.length == 0) {
+  	return null;
+  }
+  
+  // Pick collision with smallest fraction
+  var collisionInfo = collisions[0];
+  var min = collisionInfo['fraction'];
+  for( var i =0; i < collisions.length; i++){
+  	if ( collisions[i]['fraction'] < min) {
+  		collisionInfo = collisions[i];
+  		min = collisionInfo['fraction'];	
+  	}
+  }
+  return collisionInfo;
 };
 
 
@@ -152,9 +167,9 @@ BouncingBall.prototype.calcFrictionLoss = function(normal , tangent){
   if ( tangent.eql(Vector.create([0,0,0]))) {
     return Vector.create([0,0,0]);
   }
-  var loss = Math.min( this.frictionCoeff * normal.dot(normal) , tangent.dot(tangent));
-  var unitNorm = tangent.multiply( 1/ Math.sqrt(tangent.dot(tangent)));
-  var loss = unitNorm.multiply(loss);
+  var loss = Math.min( this.frictionCoeff * Math.sqrt(normal.dot(normal)) , Math.sqrt(tangent.dot(tangent)));
+  var unitTangentNorm = tangent.multiply( 1/ Math.sqrt(tangent.dot(tangent)));
+  var loss = unitTangentNorm.multiply(loss);
   return loss;  
 };
 
@@ -164,4 +179,9 @@ BouncingBall.prototype.calcForces = function() {
   var windForce    = this.velocity.multiply( -1 * this.windCoeff);
   var force = windForce.add(gravityForce);
   return force;
+};
+
+// Something has changed
+BouncingBall.prototype.update = function() {
+	this.atRest = false;
 };

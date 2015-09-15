@@ -8,7 +8,7 @@ Simulation = function() {
   this.cameraControls = null;
   
   // 
-  this.timestep = .005; // Seconds
+  this.timestep = .0005; // Seconds
   
   // Simulation Items
   this.ball = null;
@@ -45,3 +45,9 @@ Simulation.prototype.simulate = function() {
   this.ball.simulate(delta , this.timestep);
   this.renderer.render( this.scene, this.camera );
 };
+
+// Something has changed let shit know
+Simulation.prototype.update = function() {
+  this.ball.update();
+};
+
