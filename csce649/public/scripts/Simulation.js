@@ -112,4 +112,5 @@ Simulation.prototype.keyPress = function(keycode) {
     var plane = planes[i];
     planes[i] = plane.rotate(angle , line);
   }
+  simulation.update();
 };
