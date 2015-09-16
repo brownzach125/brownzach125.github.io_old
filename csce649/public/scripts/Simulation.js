@@ -31,9 +31,9 @@ Simulation.prototype.initilize = function(container) {
   light.position.set(0, 0, 1);
   this.scene.add( light );
   
-  this.ball = new BouncingBall();
+  this.ball = new BouncingBall(simulation);
   this.scene.add(this.ball.object);
-  this.containingCube = new ContainingCube();
+  this.containingCube = new ContainingCube(simulation);
   this.scene.add(this.containingCube.object);
   
   this.cameraControls = new THREE.TrackballControls( this.camera, this.renderer.domElement );
@@ -50,67 +50,38 @@ Simulation.prototype.simulate = function() {
 Simulation.prototype.update = function() {
   this.ball.update();
 };
-var planes = [ Plane.create(Vector.create([0,0 , 20]) , Vector.create([0,0,-1])),
-               Plane.XY.translate(Vector.create([0,0,-20])),
-               Plane.ZX.translate(Vector.create([0,-20,0])),
-               Plane.create(Vector.create([0,20 , 0]) , Vector.create([0,-1,0])),
-               Plane.ZY.translate(Vector.create([-20,0,0])),
-               Plane.create(Vector.create([20,0 , 0]) , Vector.create([-1,0,0])) ];
                   
 Simulation.prototype.keyPress = function(keycode) {
-  // q 81
-  // e 69
-  // w 87
-  // s 83
-  // a 65
-  // d 68
   var line  = null;
-  var angle = 1 * Math.PI / 180; // 1 degree
-  // q
-  if ( keycode == 81 ) {
-    line = Line.Z;
-    angle *= -1;
-    this.containingCube.cube.rotation.z += angle;
-    this.containingCube.wireFrame.rotation.z += angle;
-  }
+  var angle = 1 * Math.PI / 180; // 1 degree in radians
+  var axis = 'z';
+  switch(keycode) {
+    // q
+    case 81:
+        angle *= -1;
     // e
-  if ( keycode == 69 ) {
-    line = Line.Z;
-    //angle *= -1;
-    this.containingCube.cube.rotation.z += angle;
-    this.containingCube.wireFrame.rotation.z += angle;
-  }
-  // w
-  if ( keycode == 87 ) {
-    line = Line.X;
-    //angle *= -1;
-    this.containingCube.cube.rotation.x += angle;
-    this.containingCube.wireFrame.rotation.x += angle;
-  }
+    case 69:
+        line = Line.Z;
+        axis = 'z';
+        break;
     // s
-  if ( keycode == 83 ) {
-    line = Line.X;
-    angle *= -1;
-    this.containingCube.cube.rotation.x += angle;
-    this.containingCube.wireFrame.rotation.x += angle;
-  }
-    // a
-  if ( keycode == 65 ) {
-    line = Line.Y;
-    angle *= -1;
-    this.containingCube.cube.rotation.y += angle;
-    this.containingCube.wireFrame.rotation.y += angle;
-  }
+    case 83:
+        angle *= -1;
+    // w
+    case 87:
+        line = Line.X;
+        axis = 'x';
+        break;
+    //a 
+    case 65:
+        angle *=-1;
     // d
-  if ( keycode == 68 ) {
-    line = Line.Y;
-    //angle *= -1;
-    this.containingCube.cube.rotation.y += angle;
-    this.containingCube.wireFrame.rotation.y += angle;
+    case 68:
+        line = Line.Y;
+        axis = 'y';
+        break;
+    default:
   }
-  for ( var i =0; i < planes.length; i++) {
-    var plane = planes[i];
-    planes[i] = plane.rotate(angle , line);
-  }
+  this.containingCube.rotate( line , angle , axis );
   simulation.update();
 };

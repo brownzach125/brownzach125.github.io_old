@@ -1,15 +1,5 @@
-ContainingCube = function() {
-  this.object = new THREE.Object3D();
-  this.material = new THREE.MeshBasicMaterial({ transparent:true , opacity:.2});
-  this.geometry = new THREE.BoxGeometry(50,50,50);
-  this.cube = new THREE.Mesh( this.geometry , this.material);
-  this.object.add( this.cube );
-  
-  this.wireFrame = new THREE.EdgesHelper( this.cube , 0xFFFFFF);
-  this.object.add(this.wireFrame);
-};
-
-BouncingBall = function() {
+BouncingBall = function(simulation) {
+  this.simulation = simulation;
   var mapUrl = "./images/badHeart.jpg";
   var map = THREE.ImageUtils.loadTexture(mapUrl);
   var geometry = new THREE.SphereGeometry(5,32,32);
@@ -73,14 +63,6 @@ BouncingBall.prototype.integrate = function(h , newState) {
   return newState;
 };
 
-
-var planes = [ Plane.create(Vector.create([0,0 , 20]) , Vector.create([0,0,-1])),
-               Plane.XY.translate(Vector.create([0,0,-20])),
-               Plane.ZX.translate(Vector.create([0,-20,0])),
-               Plane.create(Vector.create([0,20 , 0]) , Vector.create([0,-1,0])),
-               Plane.ZY.translate(Vector.create([-20,0,0])),
-               Plane.create(Vector.create([20,0 , 0]) , Vector.create([-1,0,0])) ];           
-
 /* Detects Collisions 
    @params
       newState: Hash of proposed position and velocity of ball
@@ -93,8 +75,8 @@ var count = 0;
 BouncingBall.prototype.detectCollision = function(newState) {
   // TODO Hanlde multiple collisions correctly
   var collisions = [];
-  for (var i =0; i < planes.length; i++) {
-    plane = planes[i];
+  for (var i =0; i < this.simulation.containingCube.planes.length; i++) {
+    plane = this.simulation.containingCube.planes[i];
     var oldDistance  = ( this.position.subtract( plane.anchor ) ).dot( plane.normal );
     var newDistance  = ( newState['position'].subtract( plane.anchor) ).dot( plane.normal );
     if ( oldDistance * newDistance  < 0 ) {
