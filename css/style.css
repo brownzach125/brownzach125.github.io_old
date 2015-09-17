@@ -43,7 +43,9 @@ body {
   text-align:left;
 }
 
-.
+.class {
+  display: block;
+}
 
 
 
