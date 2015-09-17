@@ -3,6 +3,11 @@
   text-align: center;
 }
 
+html , body {
+  width :100%;
+  height :100%;
+}
+
 body {
   background-image: url('../images/background.jpg');
   color: #000080;
@@ -13,7 +18,7 @@ body {
 }
 
 #courseWork {
- height: 200px;
+ height: 400px;
 }
 
 .oval {
@@ -44,7 +49,8 @@ body {
 }
 
 .class {
-  display: block;
+  display: inline-block;
+  width: 100%;
 }
 
 
