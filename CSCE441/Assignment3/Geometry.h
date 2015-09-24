@@ -96,20 +96,29 @@ public:
     }
 };
 class Polygon {
-    int lastX;
-    int lastY;
-    int firstX;
-    int firstY;
 public:
     list<Edge> edges;
+    list<Point> points;
+    list<Point> pointsSafe;
+    list<Edge>  edgesSafe;
     Polygon() {
-        lastX = -1;
-        lastY = -1;
-        firstX = -1;
-        firstY = -1;
+    }
+    void savePoints() {
+        // copy points into pointsSafe
+        pointsSafe = points;
+        edgesSafe  = edges;
+    }
+
+    void reset() {
+        points = pointsSafe;
+        edges = edgesSafe;
     }
     void addEdge( int x1 , int y1 , int x2 , int y2) {
         edges.push_back( Edge(x1 , y1,  x2 , y2) );
+    }
+    void clear() {
+        edges.clear();
+        points.clear();
     }
     int lowPoint() {
         int max = -1;
@@ -130,18 +139,28 @@ public:
         return min;
     }
     void addPoint(int x, int y) {
-        if ( lastX >= 0 ){
-            addEdge( lastX , lastY , x , y);
-        } else {
-            firstX = x;
-            firstY = y;
+        if ( points.begin() != points.end() ) {
+            Point p = *--points.end();
+            addEdge( p.xpos , p.ypos , x , y);
         }
-        lastX = x;
-        lastY = y;
+        points.push_back( Point( x , y));
     }
+    void addPoint(const Point& p) {
+        addPoint( p.xpos , p.ypos);
+    }
+
     void addLastPoint(int x , int y) {
-        addEdge( lastX , lastY , x , y);
-        addEdge( x, y , firstX , firstY);
+        Point last = *--points.end();
+        Point first = *points.begin();
+        addEdge( last.xpos , last.ypos , x , y);
+        addEdge( x, y , first.xpos , first.ypos);
+        points.push_back( Point( x , y) );
+        savePoints();
+    }
+    void finish() {
+        Point last = *--points.end();
+        Point first = *points.begin();
+        addEdge( first.xpos , first.ypos, last.xpos , last.ypos );
     }
     friend ostream& operator<<(ostream& os , const Polygon& poly) {
         for(list<Edge>::const_iterator it = poly.edges.begin(); it!= poly.edges.end(); it++) {

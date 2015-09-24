@@ -87,9 +87,17 @@ void setFramebuffer(int x, int y, float R, float G, float B)  {
         framebuffer[y][x][2]=1.0;
 }
 
+Point firstRectPoint;
+Point secondRectPoint;
+bool drawingClipping = 0;
 list<Polygon> polygons;
 Polygon activePolygon;
 void display(void) {
+    clearFramebuffer();
+    drawPolygonEdge(activePolygon);
+    if (drawingClipping) {
+        drawClippingRectangle(firstRectPoint, secondRectPoint);
+    }
     for( list<Polygon>::iterator it = polygons.begin(); it!= polygons.end(); it++) {
         drawPolygon(*it);
     }
@@ -105,12 +113,10 @@ void mouseDrawPolygon(int button, int state, int x, int y) {
         switch (button) {
             case GLUT_LEFT_BUTTON:
                 activePolygon.addPoint(x , y);
-                drawPolygonEdge(activePolygon);
                 //glutIdleFunc(spinDisplay);
                 break;
             case GLUT_RIGHT_BUTTON:
                 activePolygon.addLastPoint( x, y);
-                //cout << activePolygon << endl;
                 polygons.push_back(activePolygon);
                 activePolygon = Polygon();
                 break;
@@ -126,15 +132,15 @@ void mouseDrawPolygon(int button, int state, int x, int y) {
     glutPostRedisplay();
 }
 
-Point firstRectPoint;
-Point secondRectPoint;
-bool drawingClipping = 0;
 void mouseClipping(int button, int state, int x, int y) {
     //glutIdleFunc(NULL);
     if (state == GLUT_DOWN) {
         switch (button) {
             case GLUT_LEFT_BUTTON:
                 firstRectPoint = Point(x , y);
+                for ( list<Polygon>::iterator it = polygons.begin(); it!= polygons.end(); it++) {
+                    it->reset();
+                }
                 drawingClipping = true;
                 break;
             case GLUT_RIGHT_BUTTON:
@@ -160,8 +166,6 @@ void keyboard(unsigned char key , int x, int y) {
 void mouseMove(int x , int y) {
     if ( drawingClipping ) {
         secondRectPoint = Point(x, y);
-        clearFramebuffer();
-        drawClippingRectangle(firstRectPoint, secondRectPoint);
     }
     glutPostRedisplay();
 }
