@@ -101,7 +101,13 @@ public:
     list<Point> points;
     list<Point> pointsSafe;
     list<Edge>  edgesSafe;
+    float red;
+    float green;
+    float blue;
     Polygon() {
+        red = ((double) rand() / (RAND_MAX));
+        green = ((double) rand() / (RAND_MAX));
+        blue  = ((double) rand() / (RAND_MAX));
     }
     void savePoints() {
         // copy points into pointsSafe

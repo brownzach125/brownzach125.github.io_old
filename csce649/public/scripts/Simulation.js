@@ -85,3 +85,7 @@ Simulation.prototype.keyPress = function(keycode) {
   this.containingCube.rotate( line , angle , axis );
   simulation.update();
 };
+
+Simulation.prototype.addObject = function(thing) {
+    this.scene.add(thing);
+};

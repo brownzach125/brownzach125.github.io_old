@@ -61,7 +61,6 @@ ContainingCube.prototype.detectCollision = function(oldPlanes) {
     var oldDistance = oldPlanes[i].normal.dot(ballPosition.subtract( oldPlanes[i].anchor ));
     var newDistance = this.planes[i].normal.dot(ballPosition.subtract( this.planes[i].anchor));
     if ( oldDistance * newDistance < 0 ) {
-      console.log("Collision with ball during plane move");
       var collisionInfo = {};
       collisionInfo['fraction'] = oldDistance / ( oldDistance - newDistance);
       collisionInfo['plane'] = this.planes[i];

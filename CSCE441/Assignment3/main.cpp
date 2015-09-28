@@ -94,12 +94,12 @@ list<Polygon> polygons;
 Polygon activePolygon;
 void display(void) {
     clearFramebuffer();
+    for( list<Polygon>::iterator it = polygons.begin(); it!= polygons.end(); it++) {
+        drawPolygon(*it);
+    }
     drawPolygonEdge(activePolygon);
     if (drawingClipping) {
         drawClippingRectangle(firstRectPoint, secondRectPoint);
-    }
-    for( list<Polygon>::iterator it = polygons.begin(); it!= polygons.end(); it++) {
-        drawPolygon(*it);
     }
     drawit();
 }

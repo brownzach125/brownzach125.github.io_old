@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to WebGL</title>
+
+    <link rel="stylesheet" href="css/webglbook.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="libs/three.js"></script>
+    <script src="libs/RequestAnimationFrame.js"></script>
+    <script src="libs/examples/js/controls/TrackballControls.js"></script>
+    <script src="libs/sylvester.js"></script>
+    <script src='scripts/Simulation.js'></script>
+    <script src='scripts/Objects.js'></script>
+    <script src='scripts/ContainingCube.js'></script>
+    <script>
+
+        var simulation = null; // The simulation
+
+        function onLoad() {
+            var container = document.getElementById("container");
+            simulation = new Simulation();
+            simulation.initilize(container);
+
+            // Add a mouse up handler to toggle the animation
+            addMouseHandler();
+            addKeyBoardHandler();
+
+
+
+            particleCount = 180000;
+            particles = new THREE.Geometry();
+
+            // now create the individual particles
+            for (var p = 0; p < particleCount; p++) {
+                // create a particle with random
+                // position values, -250 -> 250
+                var pX = Math.random() * 500 - 250,
+                        pY = Math.random() * 500 - 250,
+                        pZ = Math.random() * 500 - 250,
+                        particle = new THREE.Vector3(pX, pY, pZ);
+
+                // add it to the geometry
+                particles.vertices.push(particle);
+            }
+
+            // vertex colors
+            var colors = [];
+            for( var i = 0; i < particles.vertices.length; i++ ) {
+                // random color
+                colors[i] = new THREE.Color();
+                colors[i].setHSL( Math.random(), 1.0, 0.5 );
+
+            }
+            particles.colors = colors;
+
+            // material
+            var material = new THREE.PointCloudMaterial( {
+                size: 10,
+                transparent: true,
+                opacity: 0.7,
+                vertexColors: THREE.VertexColors
+            } );
+
+            // point cloud
+            pointCloud = new THREE.PointCloud( particles, material );
+
+            // create the particle system
+            //var particleSystem = new THREE.( particles,  pMaterial);
+            // add it to the scene
+            simulation.addObject(pointCloud);
+            // Run our render loop
+            run();
+        };
+        function run() {
+            simulation.simulate();
+            // now create the individual particles
+            for (var p = 0; p < particleCount; p++) {
+                //pointCloud.geometry.vertices[p] = pointCloud.geometry.vertices[p].add( new THREE.Vector3( 0 , 0 , 1) );
+                pointCloud.geometry.colors[p] = new THREE.Color().setHSL( Math.random() , 1.0 ,.5);
+                pointCloud.geometry.verticesNeedUpdate = true;
+                pointCloud.geometry.colorsNeedUpdate  = true;
+            }
+            requestAnimationFrame(run);
+        }
+        function addMouseHandler() {
+            //var dom = renderer.domElement;
+            //dom.addEventListener( 'mouseup', onMouseUp, false);
+        }
+
+        function addKeyBoardHandler() {
+            document.addEventListener('keydown', function(event) {
+                simulation.keyPress(event.keyCode);
+            });
+        }
+        function onMouseUp  (event) {
+            event.preventDefault();
+            animating = !animating;
+        }
+
+        function restartSimulation() {
+            // Get the new values
+            getValues();
+            // Tell simulation to update
+            simulation.update();
+        }
+        function getValues() {
+            // Get Elasticity
+            var elasticity = parseFloat(document.getElementById('elasticity').value);
+            if ( elasticity ) {
+                simulation.ball.elasticity = elasticity;
+            }
+
+            // Get Timestep
+            var timestep = parseFloat(document.getElementById('timestep').value);
+            if ( timestep ) {
+                simulation.timestep = timestep;
+            }
+
+            // Get wall friction
+            var frictionCoeff = parseFloat(document.getElementById('frictionCoeff').value);
+            if ( frictionCoeff ) {
+                simulation.ball.frictionCoeff = frictionCoeff;
+            }
+
+            // Get Air friction
+            var windCoeff = parseFloat(document.getElementById('airFrictionCoeff').value);
+            if ( windCoeff ){
+                simulation.ball.windCoeff = windCoeff;
+            }
+
+            // Get position
+            var xpos = parseFloat(document.getElementById('positionX').value);
+            var ypos = parseFloat(document.getElementById('positionY').value);
+            var zpos = parseFloat(document.getElementById('positionZ').value);
+            if ( (xpos == 0 || xpos ) && (ypos == 0 || ypos) && (zpos == 0 || zpos) ) {
+                simulation.ball.position = Vector.create([xpos, ypos , zpos]);
+            }
+
+            // Get velocity
+            var xpos = parseFloat(document.getElementById('velocityX').value);
+            var ypos = parseFloat(document.getElementById('velocityY').value);
+            var zpos = parseFloat(document.getElementById('velocityZ').value);
+            if ( (xpos == 0 || xpos ) && (ypos == 0 || ypos) && (zpos == 0 || zpos) ) {
+                simulation.ball.velocity = Vector.create([xpos, ypos , zpos]);
+            }
+        }
+
+    </script>
+
+</head>
+<body onLoad="onLoad();">
+<div id='header'><h1>CSCE 649: Assignment2 -Zach Brown</h1></div>
+<div id="container"></div>
+<div id='bottomPanel'>
+    <div id='controls'>
+        TimeStep:
+        <input id ='timestep' type='number'><br>
+        Elasticity :
+        <input  id='elasticity' type='number'><br>
+        Coefficient Fricition:
+        <input  id='frictionCoeff' type='number'><br>
+        Wind Resistance Friction:
+        <input  id='airFrictionCoeff' type='number'><br>
+        Position   :
+        <input  id='positionX' class='vectorComponent' type='number'>
+        <input  id='positionY' class='vectorComponent' type='number'>
+        <input  id='positionZ' class='vectorComponent' type='number'> <br>
+        Velocity   :
+        <input  id='velocityX' class='vectorComponent' type='number'>
+        <input  id='velocityY' class='vectorComponent' type='number'>
+        <input  id='velocityZ' class='vectorComponent' type='number'> <br>
+
+
+        <button id='restartButton' onclick="restartSimulation()">Restart Simulation</button>
+    </div>
+</div>
+</body>
+</html>

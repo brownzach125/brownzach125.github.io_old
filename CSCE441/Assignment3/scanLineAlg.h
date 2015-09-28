@@ -50,7 +50,7 @@ void updateActiveList(map<int , list<Edge>>& edgeMap, list<Edge>& activeList,  i
     activeList.sort();
 }
 
-void drawScanline( list<Edge>& l , int scanline) {
+void drawScanline( list<Edge>& l , int scanline , float r,  float g, float b) {
     edgeListIt left   = l.begin();
     edgeListIt right  = ++l.begin();
 
@@ -58,7 +58,7 @@ void drawScanline( list<Edge>& l , int scanline) {
     while ( right != l.end() ) {
         if (interval % 2 == 1) {
             for (int i = left->getXPOS(); i < right->getXPOS(); i++) {
-                setFramebuffer(i, scanline, 1.0, 1.0, 1.0);
+                setFramebuffer(i, scanline, r, g, b);
             }
         }
         interval = (interval + 1) % 2;
@@ -80,7 +80,7 @@ void drawPolygon(Polygon& polygon) {
     int lowerScanline = polygon.lowPoint();
     for( int i = lowerScanline; i >= upperScanline; i--){
         updateActiveList(edgeListMap , activeEdgeList , i);
-        drawScanline( activeEdgeList , i);
+        drawScanline( activeEdgeList , i , polygon.red , polygon.green , polygon.blue);
     }
 }
 
@@ -105,7 +105,7 @@ void drawPolygonEdge(Polygon& polygon) {
                 y = B.ypos;
             }
             for (int i = x; i < x + (diff); i++) {
-                setFramebuffer(i, y, 1.0, 1.0, 1.0);
+                setFramebuffer(i, y, polygon.red, polygon.green, polygon.blue);
                 y += slope;
             }
         }else {
@@ -124,7 +124,7 @@ void drawPolygonEdge(Polygon& polygon) {
                 y = B.ypos;
             }
             for (int i = y; i < y + (diff); i++) {
-                setFramebuffer(x, i, 1.0, 1.0, 1.0);
+                setFramebuffer(x, i, polygon.red, polygon.green, polygon.blue);
                 x += slope;
             }
         }

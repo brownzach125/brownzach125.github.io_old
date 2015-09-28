@@ -84,8 +84,7 @@ BouncingBall.prototype.detectCollision = function(newState) {
       collisionInfo['fraction'] = oldDistance / ( oldDistance - newDistance ) - .1;
       
       collisionInfo['plane']    = plane;
-      collisions.push(collisionInfo); 
-      console.log("Collision Detected");
+      collisions.push(collisionInfo);
     }
   }
   

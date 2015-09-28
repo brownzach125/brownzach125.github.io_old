@@ -9,6 +9,7 @@
 #include <list>
 
 void setFramebuffer(int x, int y, float R, float G, float B);
+
 // TODO fix what happens when you go out of range
 void drawClippingRectangle(Point& a, Point& b) {
     int incrX;
@@ -100,7 +101,6 @@ Point intersect( Point& A , Point& B , Boundary& boundary , Point& wMin , Point&
     return intersectPoint;
 }
 
-
 void clipPolygons( list<Polygon>& polygons , Point A, Point B) {
     // determine bottom left and top right point
     Point wMin;
@@ -122,7 +122,6 @@ void clipPolygons( list<Polygon>& polygons , Point A, Point B) {
         wMin.ypos = B.ypos;
         wMax.ypos = A.ypos;
     }
-    cout << "wMin :" << wMin << " wMax  " << wMax << endl;
     for ( list<Polygon>::iterator it = polygons.begin(); it != polygons.end(); it++) {
         for ( int b = Left; b<=Top; b++) {
             list<Point> points = it->points;
@@ -157,9 +156,5 @@ void clipPolygons( list<Polygon>& polygons , Point A, Point B) {
         it->finish();
     }
 }
-
-
-
-
 
 #endif //ASSIGNMENT3_CLIPPINGALG_H_H
