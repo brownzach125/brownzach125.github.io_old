@@ -2,17 +2,635 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c933f3c6-2200-4a38-8763-923f12bb2052" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/assignment2.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/index.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/scripts/ContainingCube.js" afterPath="$PROJECT_DIR$/csce649/public/scripts/ContainingCube.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CSCE441/Assignment3/Geometry.h" afterPath="$PROJECT_DIR$/CSCE441/Assignment3/Geometry.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/scripts/Objects.js" afterPath="$PROJECT_DIR$/csce649/public/scripts/Objects.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ogro/skins/arboshak.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ogro/skins/ctf_b.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/skins/ctf_b.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ogro/skins/ctf_r.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/skins/ctf_r.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ogro/skins/darkam.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/skins/dead.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/sea3d/flag.sea" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/sea3d/flag.tjs.sea" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ogro/skins/freedom.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/skins/gearwhore.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ogro/skins/gib.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ogro/skins/gordogh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ogro/skins/grok.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ogro/skins/igdosh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/sea3d/keyframe.sea" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/sea3d/keyframe.tjs.sea" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ogro/skins/khorne.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/sea3d/mascot.sea" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/sea3d/mascot.tjs.sea" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/sea3d/morph.sea" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/sea3d/morph.tjs.sea" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ogro/skins/nabogro.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ogro/ogro.md2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ogro/skins/ogrobase.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/textures/particle2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/textures/perlin-512.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/ratamahatta.md2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/skins/ratamahatta.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/sea3d/robot.sea" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/sea3d/robot.tjs.sea" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ogro/skins/sharokh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/sea3d/skin.sea" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/sea3d/skin.tjs.sea" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/sea3d/sound.sea" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/sea3d/sound.tjs.sea" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/w_bfg.md2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/skins/w_bfg.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/w_blaster.md2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/skins/w_blaster.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/w_chaingun.MD2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/skins/w_chaingun.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/w_glauncher.md2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/skins/w_glauncher.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/w_hyperblaster.md2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/skins/w_hyperblaster.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/w_machinegun.md2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/skins/w_machinegun.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/w_railgun.md2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/skins/w_railgun.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/w_rlauncher.md2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/skins/w_rlauncher.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/w_shotgun.md2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/skins/w_shotgun.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/w_sshotgun.md2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/skins/w_sshotgun.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ogro/skins/weapon.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ogro/weapon.md2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/weapon.md2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ratamahatta/skins/weapon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/scripts/Application.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/BufferGeometryUtils.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/DragControls.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/GPUParticleSystem.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/GammaCorrectionShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/Gyroscope.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/MD2Loader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/scripts/Object2.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/md2/ogro/Ogro.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/fonts/README" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/sea3d/SEA3D.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/sea3d/SEA3DDeflate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/sea3d/SEA3DLZMA.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/sea3d/SEA3DLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/scripts/Simulation2.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/geometries/TeapotBufferGeometry.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/Three.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/software_lines_colors.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/software_lines_cubes.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/software_lines_sphere.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/software_lines_splines.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/json/teapot-claraio.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/typescript-compiler.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_constructed_from_geometry.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_instancing.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_instancing_billboards.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_instancing_dynamic.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_instancing_interleaved_dynamic.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_points.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_custom_attributes_points.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_custom_attributes_points2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_custom_attributes_points3.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_exporter_obj.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_spline_editor.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_teapot.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_gpu_particle_system.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_interactive_points.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_interactive_raycasting_points.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_json_claraio.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_md2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_md2_control.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_sea3d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_sea3d_hierarchy.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_sea3d_keyframe.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_sea3d_morph.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_sea3d_skinning.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_sea3d_sound.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_displacementmap.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_multiple_elements.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_multiple_renderers.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_points_billboards.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_points_billboards_colors.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_points_dynamic.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_points_random.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_points_sprites.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_postprocessing_ssao.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_raycast_texture.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/.bin/tsc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/.bin/tsserver" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/.editorconfig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/.gitattributes" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/.npmignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/AUTHORS.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/CONTRIBUTING.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/CopyrightNotice.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/Jakefile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/LICENSE.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/ThirdPartyNoticeText.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/bin/tsc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/bin/tsserver" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/lib/lib.core.d.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/lib/lib.core.es6.d.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/lib/lib.d.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/lib/lib.dom.d.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/lib/lib.es6.d.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/lib/lib.scriptHost.d.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/lib/lib.webworker.d.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/lib/tsc.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/lib/tsserver.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/lib/typescript.d.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/lib/typescript.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/lib/typescriptServices.d.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/lib/typescriptServices.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/test.config" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/node_modules/typescript/tslint.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_particles_shapes.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/AudioObject.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/ShaderDeferred.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/Sparks.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/exporters/SceneExporter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/WebGLDeferredRenderer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/plugins/DepthPassPlugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/NormalDisplacementShader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/CircleTypedGeometry.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/GeometryEditor.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/IndexedTypedGeometry.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/PlaneTypedGeometry.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/ProxyGeometry.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/TypedGeometry.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/BoxGeometry2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/Geometry2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/Geometry2Loader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/Geometry3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/Geometry4.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/Geometry5.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/Geometry5b.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/IndexedGeometry3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/IndexedGeometry5.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/IndexedPlaneGeometry5.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/PlaneGeometry.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/PlaneGeometry2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/PlaneGeometry2b.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/PlaneGeometry3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/PlaneGeometry5.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/PlaneGeometry6.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/PlaneGeometry99.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/benchmark/TypedGeometry.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/proxies/MultiColor.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/proxies/MultiVector3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/proxies/ProxyColor.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/proxies/ProxyFace3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/proxies/ProxyVector2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/proxies/ProxyVector3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/wip/proxies/ProxyVector4.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/elderlyWalk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ogro/Ogro.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ogro/ogro-light.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ogro/skins/arboshak.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ogro/skins/ctf_b.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ogro/skins/ctf_r.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ogro/skins/darkam.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ogro/skins/freedom.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ogro/skins/gib.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ogro/skins/gordogh.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ogro/skins/grok.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ogro/skins/igdosh.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ogro/skins/khorne.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ogro/skins/nabogro.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ogro/skins/ogrobase.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ogro/skins/sharokh.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ogro/skins/weapon.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ogro/weapon-light.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/ratamahatta.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/ratamahatta.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/readme.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/skins/ctf_b.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/skins/ctf_r.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/skins/dead.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/skins/gearwhore.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/skins/ratamahatta.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/skins/w_bfg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/skins/w_blaster.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/skins/w_chaingun.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/skins/w_glauncher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/skins/w_hyperblaster.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/skins/w_machinegun.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/skins/w_railgun.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/skins/w_rlauncher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/skins/w_shotgun.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/skins/w_sshotgun.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/skins/weapon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/src/ratamahatta.md2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/src/w_bfg.md2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/src/w_blaster.md2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/src/w_chaingun.MD2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/src/w_glauncher.md2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/src/w_hyperblaster.md2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/src/w_machinegun.md2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/src/w_railgun.md2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/src/w_rlauncher.md2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/src/w_shotgun.md2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/src/w_sshotgun.md2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/src/weapon.md2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/w_bfg.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/w_blaster.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/w_chaingun.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/w_glauncher.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/w_hyperblaster.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/w_machinegun.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/w_railgun.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/w_rlauncher.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/w_shotgun.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/w_sshotgun.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/ratamahatta/weapon.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/skinned/human_walk_0_female.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/box/box.bin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/box/box.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/ninja/.htaccess" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_particles.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_custom_attributes_particles.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_custom_attributes_particles2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_custom_attributes_particles3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_interactive_particles.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_interactive_raycasting_pointcloud.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_cars_camaro.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_normaldisplacementmap.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_morphtargets_md2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_morphtargets_md2_control.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_particles_billboards.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_particles_billboards_colors.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_particles_dynamic.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_particles_random.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_particles_shapes.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_particles_sprites.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgldeferred_animation.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgldeferred_arealights.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgldeferred_pointlights.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/submission1.tar.gz" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/textures/sprites/circle.png" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/textures/sprites/circle.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/gltf/duck/duck.bin" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/gltf/duck/duck.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/gltf/duck/duckCM.png" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/gltf/duck/duckCM.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/platform/platform.jpg" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/platform/platform.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/collada/pump/pump_body.jpg" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/collada/pump/pump_body.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/collada/pump/pump_gears.jpg" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/collada/pump/pump_gears.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/collada/pump/pump_metalreflect.jpg" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/collada/pump/pump_metalreflect.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/camaro/.htaccess" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/camaro/.htaccess" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/f50/.htaccess" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/f50/.htaccess" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/gallardo/.htaccess" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/gallardo/.htaccess" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/leeperrysmith/.htaccess" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/leeperrysmith/.htaccess" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/lucy/.htaccess" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/lucy/.htaccess" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/veyron/.htaccess" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/veyron/.htaccess" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/walt/.htaccess" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/walt/.htaccess" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/AWDLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/AWDLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/AdaptiveToneMappingPass.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/AdaptiveToneMappingPass.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/effects/AnaglyphEffect.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/effects/AnaglyphEffect.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/effects/AsciiEffect.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/effects/AsciiEffect.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/AssimpJSONLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/AssimpJSONLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/BabylonLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/BabylonLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/BasicShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/BasicShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/BinaryLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/BinaryLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/BleachBypassShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/BleachBypassShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/BlendCharacter.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/BlendCharacter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/BlendCharacterGui.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/BlendCharacterGui.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/BlendShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/BlendShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/BloomPass.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/BloomPass.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/BokehPass.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/BokehPass.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/BokehShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/BokehShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/BokehShader2.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/BokehShader2.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/BrightnessContrastShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/BrightnessContrastShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/CSS2DRenderer.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/CSS2DRenderer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/CSS3DRenderer.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/CSS3DRenderer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/CSS3DStereoRenderer.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/CSS3DStereoRenderer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/ctm/CTMLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/ctm/CTMLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/ctm/CTMWorker.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/ctm/CTMWorker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/camaro/CamaroNoUv_bin.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/camaro/CamaroNoUv_bin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/CanvasRenderer.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/CanvasRenderer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/Car.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/Car.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/Cloth.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/Cloth.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/ColladaLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/ColladaLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/math/ColorConverter.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/math/ColorConverter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/ColorCorrectionShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/ColorCorrectionShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/ColorifyShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/ColorifyShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/cameras/CombinedCamera.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/cameras/CombinedCamera.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/geometries/ConvexGeometry.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/geometries/ConvexGeometry.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/ConvolutionShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/ConvolutionShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/CopyShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/CopyShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/CurveExtras.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/CurveExtras.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/DDSLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/DDSLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/DOFMipMapShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/DOFMipMapShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/geometries/DecalGeometry.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/geometries/DecalGeometry.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/Detector.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/Detector.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/DeviceOrientationControls.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/DeviceOrientationControls.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/DigitalGlitch.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/DigitalGlitch.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/DotScreenPass.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/DotScreenPass.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/DotScreenShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/DotScreenShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/EdgeShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/EdgeShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/EdgeShader2.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/EdgeShader2.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/EditorControls.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/EditorControls.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/EffectComposer.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/EffectComposer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/modifiers/ExplodeModifier.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/modifiers/ExplodeModifier.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/f50/F50NoUv_bin.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/f50/F50NoUv_bin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/FXAAShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/FXAAShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/female02/Female02_bin.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/female02/Female02_bin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/female02/Female02_slim.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/female02/Female02_slim.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/FilmPass.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/FilmPass.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/FilmShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/FilmShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/FirstPersonControls.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/FirstPersonControls.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/FlyControls.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/FlyControls.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/FocusShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/FocusShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/FresnelShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/FresnelShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/gallardo/GallardoNoUv_bin.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/gallardo/GallardoNoUv_bin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/utils/GeometryUtils.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/utils/GeometryUtils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/GlitchPass.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/GlitchPass.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/HorizontalBlurShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/HorizontalBlurShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/HorizontalTiltShiftShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/HorizontalTiltShiftShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/HueSaturationShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/HueSaturationShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/ImprovedNoise.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/ImprovedNoise.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/KaleidoShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/KaleidoShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/leeperrysmith/LeePerrySmith_License.txt" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/leeperrysmith/LeePerrySmith_License.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/lucy/Lucy100k_bin.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/lucy/Lucy100k_bin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/lucy/Lucy100k_slim.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/lucy/Lucy100k_slim.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/LuminosityShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/LuminosityShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/math/Lut.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/math/Lut.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/MD2Character.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/MD2Character.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/MD2CharacterComplex.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/MD2CharacterComplex.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/MTLLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/MTLLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/male02/Male02_bin.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/male02/Male02_bin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/male02/Male02_slim.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/male02/Male02_slim.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/MarchingCubes.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/MarchingCubes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/Mirror.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/Mirror.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/MirrorShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/MirrorShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/MouseControls.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/MouseControls.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/curves/NURBSCurve.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/curves/NURBSCurve.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/curves/NURBSSurface.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/curves/NURBSSurface.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/curves/NURBSUtils.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/curves/NURBSUtils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/ninja/NinjaLo_bin.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/ninja/NinjaLo_bin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/NormalMapShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/NormalMapShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/exporters/OBJExporter.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/exporters/OBJExporter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/OBJLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/OBJLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/OBJMTLLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/OBJMTLLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/Ocean.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/Ocean.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/OceanShaders.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/OceanShaders.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/Octree.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/Octree.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/OrbitControls.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/OrbitControls.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/OrthographicTrackballControls.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/OrthographicTrackballControls.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/PDBLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/PDBLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/PLYLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/PLYLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/PRNG.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/PRNG.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/PVRLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/PVRLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/effects/ParallaxBarrierEffect.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/effects/ParallaxBarrierEffect.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/ParallaxShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/ParallaxShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/ParametricGeometries.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/ParametricGeometries.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/PointerLockControls.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/PointerLockControls.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/Projector.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/Projector.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/RGBELoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/RGBELoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/RGBShiftShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/RGBShiftShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/RaytracingRenderer.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/RaytracingRenderer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/SSAOShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/SSAOShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/exporters/STLBinaryExporter.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/exporters/STLBinaryExporter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/exporters/STLExporter.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/exporters/STLExporter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/STLLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/STLLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/SVGLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/SVGLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/SVGRenderer.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/SVGRenderer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/SavePass.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/SavePass.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/deprecated/SceneLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/deprecated/SceneLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/SepiaShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/SepiaShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/ShaderGodRays.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/ShaderGodRays.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/ShaderPass.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/ShaderPass.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/ShaderSkin.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/ShaderSkin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/ShaderTerrain.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/ShaderTerrain.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/ShaderToon.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/ShaderToon.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/utils/ShadowMapViewer.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/utils/ShadowMapViewer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/objects/ShadowMesh.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/objects/ShadowMesh.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/SimplexNoise.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/SimplexNoise.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/scripts/Simulation.js" afterPath="$PROJECT_DIR$/csce649/public/scripts/Simulation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CSCE441/Assignment3/clippingAlg.h" afterPath="$PROJECT_DIR$/CSCE441/Assignment3/clippingAlg.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CSCE441/Assignment3/main.cpp" afterPath="$PROJECT_DIR$/CSCE441/Assignment3/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CSCE441/Assignment3/scanLineAlg.h" afterPath="$PROJECT_DIR$/CSCE441/Assignment3/scanLineAlg.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/SimulationRenderer.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/SimulationRenderer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/SkyShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/SkyShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/SoftwareRenderer.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/renderers/SoftwareRenderer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/effects/StereoEffect.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/effects/StereoEffect.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/modifiers/SubdivisionModifier.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/modifiers/SubdivisionModifier.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/TGALoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/TGALoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/TechnicolorShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/TechnicolorShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/TexturePass.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/postprocessing/TexturePass.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/ToneMapShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/ToneMapShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/TrackballControls.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/TrackballControls.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/TransformControls.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/TransformControls.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/TriangleBlurShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/TriangleBlurShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/TypedArrayUtils.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/TypedArrayUtils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/UCSCharacter.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/UCSCharacter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/UTF8Loader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/UTF8Loader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/utils/UVsDebug.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/utils/UVsDebug.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/UnpackDepthRGBAShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/UnpackDepthRGBAShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/VRControls.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/controls/VRControls.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/effects/VREffect.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/effects/VREffect.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/VRMLLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/VRMLLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/VTKLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/VTKLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/VerticalBlurShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/VerticalBlurShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/VerticalTiltShiftShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/VerticalTiltShiftShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/veyron/VeyronNoUv_bin.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/veyron/VeyronNoUv_bin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/VignetteShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/shaders/VignetteShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/walt/WaltHead.mtl" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/walt/WaltHead.mtl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/walt/WaltHead.obj" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/walt/WaltHead.obj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/walt/WaltHead_bin.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/walt/WaltHead_bin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/walt/WaltHead_slim.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/walt/WaltHead_slim.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/WaterShader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/WaterShader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/assignment2.html" afterPath="$PROJECT_DIR$/csce649/public/assignment2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/vtk/bunny.vtk" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/vtk/bunny.vtk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_camera_orthographic.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_camera_orthographic.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_camera_orthographic2.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_camera_orthographic2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_geometry_birds.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_geometry_birds.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_geometry_cube.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_geometry_cube.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_geometry_earth.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_geometry_earth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_geometry_terrain.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_geometry_terrain.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_interactive_particles.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_interactive_particles.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_interactive_voxelpainter.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_interactive_voxelpainter.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_lights_pointlights.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_lights_pointlights.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_lines_dashed.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_lines_dashed.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_materials.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_materials.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_materials_video.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_materials_video.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_morphtargets_horse.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_morphtargets_horse.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_particles_random.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_particles_random.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_particles_sprites.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_particles_sprites.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_performance.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_performance.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_sandbox.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/canvas_sandbox.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/css3d_molecules.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/css3d_molecules.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/css3d_sprites.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/css3d_sprites.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/css3d_youtube.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/css3d_youtube.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/ctm/ctm.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/ctm/ctm.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/textures/normal/ninja/displacement.txt" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/textures/normal/ninja/displacement.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/gltf/duck/duck.dae" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/gltf/duck/duck.dae" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/gltf/duck/duck.json" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/gltf/duck/duck.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/gltf/glTF-parser.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/gltf/glTF-parser.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/gltf/glTFAnimation.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/gltf/glTFAnimation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/gltf/glTFLoader.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/gltf/glTFLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/gltf/glTFLoaderUtils.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/loaders/gltf/glTFLoaderUtils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/crossfade/gui.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/crossfade/gui.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/geometries/hilbert2D.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/geometries/hilbert2D.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/geometries/hilbert3D.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/geometries/hilbert3D.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/horse.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/animated/horse.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/vrml/house.wrl" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/vrml/house.wrl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/index.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/obj/lightmap/lightmap.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/obj/lightmap/lightmap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/skinned/marine/m4.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/skinned/marine/m4.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/skinned/marine/marine.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/skinned/marine/marine.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/skinned/marine/marine_anims.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/skinned/marine/marine_anims.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/skinned/marine/marine_ikrig.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/skinned/marine/marine_ikrig.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/misc_animation_keys.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/misc_animation_keys.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/misc_controls_deviceorientation.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/misc_controls_deviceorientation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/misc_controls_fly.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/misc_controls_fly.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/misc_controls_orbit.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/misc_controls_orbit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/misc_controls_pointerlock.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/misc_controls_pointerlock.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/misc_controls_trackball.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/misc_controls_trackball.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/misc_controls_transform.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/misc_controls_transform.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/misc_fps.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/misc_fps.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/misc_lookat.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/misc_lookat.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/misc_sound.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/misc_sound.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/misc_ubiquity_test.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/misc_ubiquity_test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/misc_uv_tests.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/misc_uv_tests.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/libs/msgpack-js.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/libs/msgpack-js.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/json/pressure.json" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/json/pressure.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/collada/pump/pump.dae" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/collada/pump/pump.dae" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/raytracing_sandbox.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/raytracing_sandbox.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/textures/cube/Bridge2/readme.txt" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/textures/cube/Bridge2/readme.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/textures/cube/Park2/readme.txt" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/textures/cube/Park2/readme.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/textures/cube/Park3Med/readme.txt" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/textures/cube/Park3Med/readme.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/textures/cube/SwedishRoyalCastle/readme.txt" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/textures/cube/SwedishRoyalCastle/readme.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/crossfade/scenes.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/crossfade/scenes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/babylon/skull.babylon" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/babylon/skull.babylon" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/models/stl/ascii/slotted_disk.stl" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/models/stl/ascii/slotted_disk.stl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/software_geometry_earth.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/software_geometry_earth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/libs/stats.min.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/libs/stats.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/scenes/test_scene.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/scenes/test_scene.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/three.js" afterPath="$PROJECT_DIR$/csce649/public/libs/three.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/js/crossfade/transition.js" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/js/crossfade/transition.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/vr_cubes.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/vr_cubes.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/vr_video.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/vr_video.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_animation_cloth.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_animation_cloth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_animation_skinning_blending.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_animation_skinning_blending.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_animation_skinning_morph.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_animation_skinning_morph.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_custom_attributes_particles.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_custom_attributes_particles.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_drawcalls.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_drawcalls.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_lines.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_lines.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_lines_indexed.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_lines_indexed.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_rawshader.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_rawshader.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_uint.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_buffergeometry_uint.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_camera.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_camera.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_camera_logarithmicdepthbuffer.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_camera_logarithmicdepthbuffer.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_custom_attributes.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_custom_attributes.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_custom_attributes_lines.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_custom_attributes_lines.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_decals.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_decals.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_effects_anaglyph.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_effects_anaglyph.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_effects_parallaxbarrier.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_effects_parallaxbarrier.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_effects_stereo.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_effects_stereo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_colors.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_colors.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_colors_lookuptable.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_colors_lookuptable.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_cube.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_cube.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_dynamic.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_dynamic.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_extrude_shapes.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_extrude_shapes.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_extrude_shapes2.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_extrude_shapes2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_extrude_splines.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_extrude_splines.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_large_mesh.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_large_mesh.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_minecraft.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_minecraft.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_minecraft_ao.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_minecraft_ao.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_normals.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_normals.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_shapes.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_shapes.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_terrain.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_terrain.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_terrain_fog.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_terrain_fog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_terrain_raycast.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_terrain_raycast.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_text.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_text.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_text2.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_geometry_text2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_gpgpu_birds.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_gpgpu_birds.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_hdr.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_hdr.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_helpers.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_helpers.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_interactive_buffergeometry.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_interactive_buffergeometry.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_interactive_draggablecubes.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_interactive_draggablecubes.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_interactive_lines.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_interactive_lines.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_interactive_voxelpainter.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_interactive_voxelpainter.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_kinect.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_kinect.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_lensflares.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_lensflares.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_lights_hemisphere.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_lights_hemisphere.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_lights_pointlights.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_lights_pointlights.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_lines_dashed.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_lines_dashed.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_lines_sphere.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_lines_sphere.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_awd.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_awd.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_babylon.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_babylon.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_collada.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_collada.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_collada_keyframe.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_collada_keyframe.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_collada_kinematics.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_collada_kinematics.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_ctm.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_ctm.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_ctm_materials.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_ctm_materials.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_gltf.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_gltf.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_json_objconverter.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_json_objconverter.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_pdb.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_pdb.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_ply.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_ply.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_scene.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_scene.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_stl.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_stl.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_utf8.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_utf8.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_vrml.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_loader_vrml.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_marchingcubes.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_marchingcubes.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials2.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_blending_custom.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_blending_custom.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_bumpmap.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_bumpmap.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_bumpmap_skin.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_bumpmap_skin.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_cars.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_cars.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_cubemap.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_cubemap.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_cubemap_balls_reflection.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_cubemap_balls_reflection.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_cubemap_balls_refraction.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_cubemap_balls_refraction.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_cubemap_dynamic.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_cubemap_dynamic.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_cubemap_escher.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_cubemap_escher.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_cubemap_refraction.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_cubemap_refraction.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_grass.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_grass.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_lightmap.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_lightmap.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_normalmap.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_normalmap.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_skin.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_skin.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_texture_compressed.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_texture_compressed.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_texture_filters.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_texture_filters.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_texture_hdr.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_texture_hdr.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_texture_manualmipmap.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_texture_manualmipmap.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_texture_pvrtc.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_texture_pvrtc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_wireframe.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_materials_wireframe.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_mirror.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_mirror.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_modifier_subdivision.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_modifier_subdivision.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_modifier_tessellation.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_modifier_tessellation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_morphnormals.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_morphnormals.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_morphtargets.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_morphtargets.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_morphtargets_horse.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_morphtargets_horse.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_morphtargets_human.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_morphtargets_human.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_multiple_canvases_circle.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_multiple_canvases_circle.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_multiple_canvases_complex.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_multiple_canvases_complex.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_multiple_canvases_grid.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_multiple_canvases_grid.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_multiple_views.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_multiple_views.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_nearestneighbour.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_nearestneighbour.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_objects_update.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_objects_update.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_octree_raycasting.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_octree_raycasting.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_panorama_equirectangular.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_panorama_equirectangular.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_performance_doublesided.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_performance_doublesided.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_postprocessing_advanced.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_postprocessing_advanced.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_postprocessing_dof2.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_postprocessing_dof2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_sandbox.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_sandbox.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shaders_ocean.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shaders_ocean.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shaders_ocean2.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shaders_ocean2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shaders_sky.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shaders_sky.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shaders_tonemapping.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shaders_tonemapping.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shaders_vector.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shaders_vector.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shading_physical.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shading_physical.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shadowmap.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shadowmap.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shadowmap_performance.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shadowmap_performance.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shadowmap_viewer.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_shadowmap_viewer.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_sprites.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_sprites.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_terrain_dynamic.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_terrain_dynamic.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_test_memory.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_test_memory.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_test_memory2.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_test_memory2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_trails.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_trails.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_video_panorama_equirectangular.html" afterPath="$PROJECT_DIR$/csce649/public/libs/examples/webgl_video_panorama_equirectangular.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CSCE441/Assignment3/.idea/workspace.xml" afterPath="$PROJECT_DIR$/CSCE441/Assignment3/.idea/workspace.xml" />
     </list>
     <ignored path="brownzach125.github.io.iws" />
@@ -34,42 +652,58 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.458334">
-              <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="assignment2.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="assignment2.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/csce649/public/assignment2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.89554316">
-              <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
+            <state vertical-scroll-proportion="-9.125">
+              <caret line="46" column="23" selection-start-line="46" selection-start-column="23" selection-end-line="46" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assignment1.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/csce649/public/assignment1.html">
+      <file leaf-file-name="Object2.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Object2.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.32407406">
+              <caret line="63" column="34" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Simulation2.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Simulation2.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="26" column="42" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Application.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Application.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="40" column="27" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="three.d.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/csce649/typings/threejs/three.d.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -84,10 +718,16 @@
       <list>
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/csce649/public/scripts/Simulation.js" />
         <option value="$PROJECT_DIR$/csce649/public/scripts/ContainingCube.js" />
         <option value="$PROJECT_DIR$/csce649/public/scripts/Objects.js" />
+        <option value="$PROJECT_DIR$/csce649/public/scripts/Simulation.js" />
+        <option value="$PROJECT_DIR$/csce649/public/scripts/Simulation2.js" />
+        <option value="$PROJECT_DIR$/csce649/typings/threejs/three.d.ts" />
+        <option value="$PROJECT_DIR$/csce649/public/scripts/Simulation2.ts" />
+        <option value="$PROJECT_DIR$/csce649/public/scripts/Application.ts" />
         <option value="$PROJECT_DIR$/csce649/public/assignment2.html" />
+        <option value="$PROJECT_DIR$/csce649/public/scripts/Object2.js" />
+        <option value="$PROJECT_DIR$/csce649/public/scripts/Object2.ts" />
       </list>
     </option>
   </component>
@@ -100,7 +740,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="924" />
+    <option name="y" value="24" />
     <option name="width" value="1535" />
     <option name="height" value="876" />
   </component>
@@ -127,6 +767,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -155,7 +796,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
+              <option name="myItemId" value="csce649" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -170,6 +811,14 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="csce649" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="typings" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="threejs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -213,16 +862,63 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="brownzach125.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="brownzach125.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="csce649" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Object2.ts" />
+              <option name="myItemType" value="com.intellij.lang.typescript.compiler.ui.projectView.TypeScriptNestingTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="brownzach125.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="brownzach125.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="csce649" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="node_modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="recentsLimit" value="5" />
+    <property name="FullScreen" value="false" />
+    <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Code/Tools/TypeScript-1.6.2/lib" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RunManager" selected="JavaScript Debug.assignment2.html">
     <configuration default="false" name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/brownzach125.github.io/index.html">
@@ -261,6 +957,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
       <method />
     </configuration>
     <list size="2">
@@ -275,6 +977,9 @@
     </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="c933f3c6-2200-4a38-8763-923f12bb2052" name="Default" comment="" />
@@ -285,19 +990,20 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="924" width="1535" height="876" extended-state="6" />
+    <frame x="65" y="24" width="1535" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2495114" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TypeScript Compiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15566625" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20260586" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -307,6 +1013,14 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -315,31 +1029,17 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.458334">
-          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
+    <entry file="file://$PROJECT_DIR$/csce649/typings/threejs/three.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
+          <caret line="5885" column="29" selection-start-line="5885" selection-start-column="29" selection-end-line="5885" selection-end-column="29" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/csce649/public/assignment1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/BouncingBall.js">
+    <entry file="file://$PROJECT_DIR$/csce649/public/assignment2.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -347,34 +1047,402 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Objects.js">
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Object2.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6563342">
-          <caret line="88" column="3" selection-start-line="88" selection-start-column="3" selection-end-line="88" selection-end-column="3" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="73" column="9" selection-start-line="73" selection-start-column="9" selection-end-line="73" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/ContainingCube.js">
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Simulation2.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53504044">
-          <caret line="62" column="42" selection-start-line="62" selection-start-column="42" selection-end-line="62" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="9" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Application.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="44" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/typings/threejs/three.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5885" column="29" selection-start-line="5885" selection-start-column="29" selection-end-line="5885" selection-end-column="29" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/assignment2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Object2.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Simulation2.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="3" selection-start-line="46" selection-start-column="3" selection-end-line="46" selection-end-column="3" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Application.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="45" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/typings/threejs/three.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5889" column="27" selection-start-line="5889" selection-start-column="27" selection-end-line="5889" selection-end-column="27" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/assignment2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Simulation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7574124">
-          <caret line="84" column="9" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="43" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Simulation2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/libs/examples/js/controls/TrackballControls.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Simulation2.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/ContainingCube.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="34" selection-start-line="2" selection-start-column="1" selection-end-line="9" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/typings/threejs/three.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5882" column="5" selection-start-line="5882" selection-start-column="5" selection-end-line="5882" selection-end-column="5" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/assignment2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Simulation2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/libs/examples/js/controls/TrackballControls.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Simulation2.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/ContainingCube.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="34" selection-start-line="2" selection-start-column="1" selection-end-line="9" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/typings/threejs/three.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5882" column="5" selection-start-line="5882" selection-start-column="5" selection-end-line="5882" selection-end-column="5" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/assignment2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/libs/Three.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Simulation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="100" column="35" selection-start-line="0" selection-start-column="0" selection-end-line="142" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Simulation2.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/assignment2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/assignment1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/assignment1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/BouncingBall.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/libs/Three.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/ContainingCube.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="34" selection-start-line="2" selection-start-column="1" selection-end-line="9" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/libs/examples/js/controls/TrackballControls.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Simulation2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23379175">
+          <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Simulation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="16" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5304519">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/typings/threejs/three.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Application.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="27" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Simulation2.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="42" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Objects.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9537037">
+          <caret line="166" column="18" selection-start-line="166" selection-start-column="18" selection-end-line="166" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Object2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5092593">
+          <caret line="142" column="24" selection-start-line="142" selection-start-column="24" selection-end-line="142" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/csce649/public/assignment2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.89554316">
-          <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
+        <state vertical-scroll-proportion="-9.125">
+          <caret line="46" column="23" selection-start-line="46" selection-start-column="23" selection-end-line="46" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csce649/public/scripts/Object2.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32407406">
+          <caret line="63" column="34" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
           <folding />
         </state>
       </provider>
