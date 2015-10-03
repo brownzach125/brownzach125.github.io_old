@@ -11,7 +11,7 @@ class Simulation2 {
     cameraControls;
     points;
     objects:Object2[];
-    timestep = .01;
+    timestep: number = .01;
     constructor(container) {
         this.objects = [];
 
@@ -24,7 +24,9 @@ class Simulation2 {
         this.scene = new THREE.Scene();
         // Put in a camera
         this.camera = new THREE.PerspectiveCamera( 45, container.offsetWidth / container.offsetHeight, 1, 4000 );
-        this.camera.position.set( 0, 0, 200 );
+        this.camera.position.set( 0, 10, 100 );
+        this.camera.rotation.y = 25;
+        this.camera.rotation.x = 90;
         this.cameraControls = new THREE.TrackballControls( this.camera, this.renderer.domElement );
 
         // Create a directional light to show off the object
@@ -51,54 +53,3 @@ class Simulation2 {
         this.objects.push(object);
     }
 }
-
-/*
- particleCount = 180000;
- particles = new THREE.Geometry();
-
- // now create the individual particles
- for (var p = 0; p < particleCount; p++) {
- // create a particle with random
- // position values, -250 -> 250
- var pX = Math.random() * 500 - 250,
- pY = Math.random() * 500 - 250,
- pZ = Math.random() * 500 - 250,
- particle = new THREE.Vector3(pX, pY, pZ);
-
- // add it to the geometry
- particles.vertices.push(particle);
- }
-
- // vertex colors
- var colors = [];
- for( var i = 0; i < particles.vertices.length; i++ ) {
- // random color
- colors[i] = new THREE.Color();
- colors[i].setHSL( Math.random(), 1.0, 0.5 );
-
- }
- particles.colors = colors;
-
- // material
- var material = new THREE.PointCloudMaterial( {
- size: 10,
- transparent: true,
- opacity: 0.7,
- vertexColors: THREE.VertexColors
- } );
-
- // point cloud
- pointCloud = new THREE.PointCloud( particles, material );
-
- // create the particle system
- //var particleSystem = new THREE.( particles,  pMaterial);
- // add it to the scene
- simulation.addObject(pointCloud);
-
- for (var p = 0; p < particleCount; p++) {
- //pointCloud.geometry.vertices[p] = pointCloud.geometry.vertices[p].add( new THREE.Vector3( 0 , 0 , 1) );
- pointCloud.geometry.colors[p] = new THREE.Color().setHSL( Math.random() , 1.0 ,.5);
- pointCloud.geometry.verticesNeedUpdate = true;
- pointCloud.geometry.colorsNeedUpdate  = true;
- }
- */

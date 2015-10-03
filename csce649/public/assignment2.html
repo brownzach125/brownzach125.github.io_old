@@ -44,8 +44,7 @@
         vColor = color;
         vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
         vec4 distance = vec4( cameraPosition , 1.0 ) - mvPosition;
-        float value = 1.0;
-        //gl_PointSize = 10000.0 / dot(distance , distance);
+        float value = 8.0;
         gl_PointSize = 16.0/ value;
         gl_Position = projectionMatrix * mvPosition;
     }

@@ -3,6 +3,8 @@
 
 // Some definitions to support Sylvester
 var Plane;
+var Line;
+var Vector;
 
 class Object2 {
     object: THREE.Object3D;
@@ -14,12 +16,40 @@ class Object2 {
     }
 }
 
+class Polygon extends Object2 {
+    plane;
+    xRotation = 0;
+    yRotation = 0;
+    constructor(center: THREE.Vector3 , rotationX? : number , rotationY?: number) {
+        super();
+        if ( rotationX) {
+            this.xRotation = rotationX;
+        }
+        if ( rotationY) {
+            this.yRotation = rotationY;
+        }
+        this.plane = Plane.XY;
+        this.plane = this.plane.rotate(this.xRotation * Math.PI / 180 , Line.X);
+        this.plane = this.plane.rotate(this.yRotation * Math.PI / 180 , Line.Y);
+        this.plane = this.plane.translate( Vector.create( [center.x ,center.y , center.z]));
+    }
+    rotateX( degree: number) {
+        this.object.rotation.x += degree * Math.PI / 180;
+        this.plane = this.plane.rotate(degree * Math.PI / 180, Line.X);
+        this.xRotation += degree;
+    }
+    rotateY( degree: number) {
+        this.object.rotation.y += (degree * Math.PI / 180);
+        this.plane = this.plane.rotate(degree * Math.PI / 180 , Line.Y);
+
+    }
+}
+
 class TrianglePolygon extends Object2 {
     object: THREE.Object3D;
     plane;
     constructor() {
-        super();
-        //this.plane = Plane.create( Vector.create() , )
+       super();
        var triangleGeometry = new THREE.Geometry();
        triangleGeometry.vertices.push(new THREE.Vector3( -1.0,  0.0, 0.0));
        triangleGeometry.vertices.push(new THREE.Vector3(  0.0,  0.0, 1.0));
@@ -33,20 +63,39 @@ class TrianglePolygon extends Object2 {
     }
 }
 
-class SquarePolygon extends Object2 {
-    constructor() {
-        super();
-        //this.plane = Plane.create( Vector.create() , )
-        var geometry = new THREE.PlaneGeometry(500 ,500);
+class SquarePolygon extends Polygon {
+    faces = [];
+    constructor( size: number , color , center: THREE.Vector3 , rotationX? : number , rotationY?: number ) {
+        super(center , rotationX , rotationY);
+
+        var geometry = new THREE.PlaneGeometry(size ,size);
         var material = new THREE.MeshBasicMaterial({
-            color:0xFFFFFF,
+            color: color,
             side:THREE.DoubleSide
         });
         this.object = new THREE.Mesh( geometry , material);
-        this.object.rotation.x += 90 * 3.14 / 180;
-    }
-    rotateX( degree: number) {
-        //this.object.rotateX(degree);
+        this.object.position.x = center.x;
+        this.object.position.y = center.y;
+        this.object.position.z = center.z;
+        this.object.rotation.x += this.xRotation * Math.PI / 180;
+        this.object.rotation.y += this.yRotation * Math.PI / 180;
+        var tempFaces = this.object.geometry.faces;
+        var vertices = this.object.geometry.vertices;
+        for ( var i =0; i < tempFaces.length; i++) {
+            var a = tempFaces[i].a;
+            var b = tempFaces[i].b;
+            var c = tempFaces[i].c;
+            var axisX = new THREE.Vector3( 1 , 0 , 0);
+            var axisY = new THREE.Vector3( 0 , 1 , 0);
+            var radiansX = this.xRotation * Math.PI / 180;
+            var radiansY = this.yRotation * Math.PI / 180;
+            a = vertices[a].clone().applyAxisAngle( axisX , radiansX).applyAxisAngle( axisY , radiansY).add(center);
+            b = vertices[b].clone().applyAxisAngle( axisX , radiansX).applyAxisAngle( axisY , radiansY).add(center);
+            c = vertices[c].clone().applyAxisAngle( axisX , radiansX).applyAxisAngle( axisY , radiansY).add(center);
+            this.faces.push( new Array(a,b,c));
+        }
+
+
     }
 }
 
@@ -59,10 +108,14 @@ class ParticleSystem extends Object2 {
     nextParticle: number = 0;
     velocities : THREE.Vector3[] = [];
     gradientCubes;
-    constructor(document) {
+    cubeLength: number = .5;
+    arrayLength: number = 60 / this.cubeLength;
+    hitList;
+    constructor(document , hitList) {
         super();
         this.document = document;  // hack
-        this.particleCount = 20000;
+        this.particleCount = 50000;
+        this.hitList = hitList;
         var vertices = new Float32Array( this.particleCount * 3);
         var alphas   = new Float32Array( this.particleCount );
         var colors   = new Float32Array( this.particleCount * 3);
@@ -83,13 +136,12 @@ class ParticleSystem extends Object2 {
         this.object = particleSystem;
         this.geometry = geometry;
 
-        var arrayLength = 250 / 5;
         this.gradientCubes = [];
-        for ( var i = 0; i < arrayLength; i++ ) {
+        for ( var i = 0; i < this.arrayLength; i++ ) {
             var jArrays = [];
-            for ( var j = 0; j < arrayLength; j++) {
+            for ( var j = 0; j < this.arrayLength; j++) {
                 var kArrays = [];
-                for ( var k = 0; k< arrayLength; k++) {
+                for ( var k = 0; k< this.arrayLength; k++) {
                     kArrays.push(0);
                     //this.gradientCubes[i][j][k] = 0;
                 }
@@ -97,8 +149,6 @@ class ParticleSystem extends Object2 {
             }
             this.gradientCubes.push(jArrays);
         }
-        this.gradientCubes[5][6][5] =10;
-        console.log(arrayLength);
     }
     createShaderMaterial(uniforms) {
         var pMaterial = new THREE.ShaderMaterial({
@@ -134,17 +184,17 @@ class ParticleSystem extends Object2 {
         for ( var i = 0; i < delta * this.particlesPerSecond; i++ ) {
             var nextParticle = this.nextParticle;
             alphas.array[this.nextParticle] = 1;
-            positions.array[nextParticle*3 + 0] = Math.random() * 50 - 25;
-            positions.array[nextParticle*3 + 1] = Math.random() * 50 + 250;
-            positions.array[nextParticle*3 + 2] = Math.random() * 50 -25;
-            this.velocities[nextParticle] = new THREE.Vector3(0,0,0);
+            positions.array[nextParticle*3 + 0] = Math.random() * 4 - 2;
+            positions.array[nextParticle*3 + 1] = Math.random() * 4 + 15;
+            positions.array[nextParticle*3 + 2] = Math.random() * 4 - 2;
+            this.velocities[nextParticle] = new THREE.Vector3(0,-5,0);
             this.nextParticle = (this.nextParticle +1) % this.particleCount;
         }
         //-------------------------
         // Calculate new position and velocity
         //------------------------
         for ( var i =0; i<delta; i+=h) {
-            var arrayLength = 250 / 5;
+            var arrayLength = this.arrayLength;
             var newGradientCubes = [];
             for ( var i = 0; i < arrayLength; i++ ) {
                 var jArrays = [];
@@ -163,59 +213,91 @@ class ParticleSystem extends Object2 {
                     oldPosition.setX( positions.array[particleIndex * 3 + 0] );
                     oldPosition.setY( positions.array[particleIndex * 3 + 1] );
                     oldPosition.setZ( positions.array[particleIndex * 3 + 2] );
-
+                    var velocity    = this.velocities[particleIndex];
                     var acceleration = new THREE.Vector3(0,0,0);
                     //---------------------
                     // calculate accleration;
                     //---------------------
-                    var xIndex = Math.floor(oldPosition.x / 5) + arrayLength/5/2;
-                    var yIndex = Math.floor(oldPosition.y / 5) + arrayLength/5/2;
-                    var zIndex = Math.floor(oldPosition.z / 5) + arrayLength/5/2;
+                    var xIndex = Math.floor(oldPosition.x /this.cubeLength) + arrayLength/2;
+                    var yIndex = Math.floor(oldPosition.y /this.cubeLength) + arrayLength/2;
+                    var zIndex = Math.floor(oldPosition.z /this.cubeLength) + arrayLength/2;
                     var gradientX = 0,
                         gradientY = 0,
                         gradientZ = 0;
-                        // Calculate x gradient
-                        console.log("HI");
-                        console.log(this.gradientCubes);
-                        if ( xIndex - 1 >= 0 && xIndex < arrayLength)
-                            gradientX = this.gradientCubes[ xIndex - 1 ][yIndex][zIndex] - this.gradientCubes[ xIndex + 1 ][yIndex][zIndex];
-                        // Calculate y gradient
-                        if ( yIndex - 1 > 0 && yIndex < arrayLength)
-                            gradientY = this.gradientCubes[ xIndex ][yIndex -1][zIndex] - this.gradientCubes[ xIndex ][yIndex +1 ][zIndex];
-                        // Calculate z gradient
-                        if ( zIndex - 1 > 0 && zIndex < arrayLength)
-                            gradientZ = this.gradientCubes[ xIndex ][yIndex][zIndex-1] - this.gradientCubes[ xIndex ][yIndex][zIndex+1];
-                    acceleration = new THREE.Vector3( gradientX , gradientY + -10 , gradientZ);
+                        // Calculate x gradien
+                        if ( xIndex  > 0 && xIndex +1 < arrayLength && yIndex + 1 < arrayLength && yIndex > 0 && zIndex > 0 && zIndex +1 < arrayLength) {
+                            gradientX = (this.gradientCubes[xIndex - 1][yIndex][zIndex] - this.gradientCubes[xIndex + 1][yIndex][zIndex]);
+                            // Calculate y gradient
+                            gradientY = this.gradientCubes[xIndex][yIndex - 1][zIndex] - this.gradientCubes[xIndex][yIndex + 1][zIndex];
+                            gradientY = Math.min( gradientY , 0);
+                            // Calculate z gradient
+                            gradientZ = (this.gradientCubes[xIndex][yIndex][zIndex - 1] - this.gradientCubes[xIndex][yIndex][zIndex + 1]);
+                        }
+                    var xFriction = velocity.x * .9;
+                    var zFriction = velocity.z * .9;
+                    acceleration = new THREE.Vector3( gradientX - xFriction , 20 * gradientY + -10 , gradientZ - zFriction);
 
                     //--------------------------------
                     // Integrate
                     //-------------------------------
-                    var velocity    = this.velocities[particleIndex];
                     velocity.add( acceleration.multiplyScalar(h) );
                     var newPosition = new THREE.Vector3(0,0,0);
                     newPosition.addVectors( oldPosition , velocity.clone().multiplyScalar(h));
                     // ----------------------
                     // Collision Detection
                     // ----------------------
+                    var plane;
+                    for ( var l = 0; l < this.hitList.length; l++) {
+                        plane = this.hitList[l].plane;
+                        var planeNormal = new THREE.Vector3( plane.normal.elements[0] , plane.normal.elements[1] , plane.normal.elements[2]);
+                        var planeAnchor = new THREE.Vector3( plane.anchor.elements[0] , plane.anchor.elements[1] , plane.anchor.elements[2]);
+                        var oldDistance  = ( new THREE.Vector3().subVectors( oldPosition , planeAnchor ) ).dot( planeNormal );
+                        var newDistance  = ( new THREE.Vector3().subVectors( newPosition , planeAnchor ) ).dot( planeNormal );
+                        // Collision with plane
+                        if ( oldDistance * newDistance  < 0 ) {
+                            //--------------------------------
+                            // Collision with polygon
+                            //--------------------------------
+                            //console.log("collision possible");
+                            var ray = new THREE.Ray(oldPosition , velocity.clone().normalize());
+                            var triangles = this.hitList[l].faces;
+                            for ( var n = 0; n < triangles.length; n++ ) {
+                                var triangle = triangles[n];
+                                var hit = ray.intersectTriangle( triangle[0] , triangle[1] , triangle[2] , false);
+                                if ( hit ) {
+                                    //--------------------------------
+                                    // Collision Response
+                                    //--------------------------------
 
-                    var planeNormal = new THREE.Vector3( 0 , 1, 0);
-                    var planeAnchor = new THREE.Vector3( 0,0,0);
-                    var oldDistance  = ( new THREE.Vector3().subVectors( oldPosition , planeAnchor ) ).dot( planeNormal );
-                    var newDistance  = ( new THREE.Vector3().subVectors( newPosition , planeAnchor ) ).dot( planeNormal );
-                    if ( oldDistance * newDistance  < 0 ) {
-                        //--------------------------------
-                        // Collision Response
-                        //--------------------------------
-                        var elasticity = 1;
-                        var velocityNormal = planeNormal.clone().multiplyScalar(velocity.dot(planeNormal));
-                        var velocityTangent = velocity.clone().sub(velocityNormal);
-                        velocity = velocityNormal.clone().multiplyScalar(-1 * elasticity).add(velocityTangent);
-                        newPosition.subVectors( newPosition , planeNormal.clone().multiplyScalar( 2 * newDistance ));
+                                    var elasticity = .01;
+                                    var velocityNormal = planeNormal.clone().multiplyScalar(velocity.dot(planeNormal));
+                                    var velocityTangent = velocity.clone().sub(velocityNormal);
+                                    velocity = velocityNormal.clone().multiplyScalar(-1 * elasticity).add(velocityTangent);
+                                    newPosition.subVectors( newPosition , planeNormal.clone().multiplyScalar( 2 * newDistance ));
+                                    break;
+                                }
+                            }
+                        }
                     }
-                    positions.array[particleIndex * 3 + 0] = newPosition.x;
-                    positions.array[particleIndex * 3 + 1] = newPosition.y;
-                    positions.array[particleIndex * 3 + 2] = newPosition.z;
-                    newGradientCubes[ Math.floor(newPosition.x/ 5)+ arrayLength/5/2][Math.floor(newPosition.y/5)+ arrayLength/5/2][Math.floor(newPosition.z/5)+ arrayLength/5/2]++;
+                    var epsilon = 1;
+                    //if ( oldPosition.sub(newPosition).length() > epsilon && velocity.length() > epsilon ) {
+                        positions.array[particleIndex * 3 + 0] = newPosition.x;
+                        positions.array[particleIndex * 3 + 1] = newPosition.y;
+                        positions.array[particleIndex * 3 + 2] = newPosition.z;
+                        this.velocities[particleIndex] = velocity;
+                        if ( this.velocities[particleIndex].y > 0) {
+                            this.velocities[particleIndex].setY(0);
+                        }
+
+                   // }
+
+                    xIndex = Math.floor(newPosition.x/this.cubeLength)+ arrayLength/2;
+                    yIndex = Math.floor(newPosition.y/this.cubeLength)+ arrayLength/2;
+                    zIndex = Math.floor(newPosition.z/this.cubeLength)+ arrayLength/2;
+                    if ( zIndex  >= 0 && zIndex < arrayLength && yIndex < arrayLength && yIndex >=0 && xIndex < arrayLength && xIndex >=0) {
+                        newGradientCubes[xIndex][yIndex][zIndex]++;
+                        alphas.array[particleIndex] = newGradientCubes[xIndex][yIndex][zIndex] / 1.0;
+                    }
             }
             this.gradientCubes = newGradientCubes;
         }
