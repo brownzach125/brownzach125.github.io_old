@@ -23,10 +23,9 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <time.h>
-#include <iostream>
 #include <math.h>
 #include "drone.h"		// Do not remove
-
+#include <iostream>
 #define MAX_THREADS     65536
 
 struct timespec start, stop; 	// Do not remove
@@ -52,6 +51,7 @@ typedef struct {
     int startColRealGrid;
     int lastGuessRow;
     int lastGuessCol;
+    bool done;
 } ThreadContext;
 
 int workingGridSize;
@@ -68,15 +68,27 @@ pthread_barrier_t barrier;
 pthread_cond_t cond;
 
 bool found;
+int count = 0;
 void *threadMain(void *context) {
     ThreadContext* threadContext = (ThreadContext*)context;
     int id = threadContext->id;
+    // Go to sleep if you are thread over id 15
 
+    if ( id > ( num_threads - 1 ) ) {
+        pthread_mutex_lock(&lock);
+        while(workingGridSize != 16) {
+            pthread_cond_wait(&cond, &lock);
+        }
+        pthread_mutex_unlock(&lock);
+    }
     while(1) {
         //--------------------
-        // Check if found TODO do I need lock? ehh, only one will ever set
+        // Check if found TODO do I need lock? ehh, only turned on never back off
         //--------------------
         if (found) {
+            pthread_exit(NULL);
+        }
+        if ( threadContext->done) {
             pthread_exit(NULL);
         }
         //----------------
@@ -92,18 +104,11 @@ void *threadMain(void *context) {
         threadContext->startRowRealGrid = startRow;
         threadContext->startColRealGrid = startCol;
 
-        /*
-        if ( id == 0) {
-            std::cout << "Hi im the  " << id << std::endl;
-            std::cout << "The working grid size is " << workingGridSize << std::endl;
-            std::cout << "Root threads " << rootThreads << std::endl;
-            std::cout << "Quad Size " << quadSize << std::endl;
-            std::cout << "Working grid row start" << workingGridRow << std::endl;
-            std::cout << "Working grid col start" << workingGridCol << std::endl;
-        }
-        */
+        //std::cout << "Making decision " << workingGridSize << std::endl;
+        if ( workingGridSize == 16 ) {
 
-        if ( workingGridSize == 32) {
+            //std::cout << "We got to the 16 case" << std::endl;
+            /*
             for ( int i = startRow; i < endRow; i++) {
                 for ( int j = startCol; j < endCol; j++ ) {
                     int distance = check_grid(i , j);
@@ -114,8 +119,95 @@ void *threadMain(void *context) {
                         found = true;
                         break;
                     }
+                    if ( found) {
+                        // Somebody else found it
+                        break;
+                    }
                 }
             }
+            */
+            int xpos = (id / 16) + workingGridRow;
+            int ypos = (id % 16) + workingGridCol;
+            int distance = check_grid( xpos , ypos );
+            //pthread_mutex_lock(&lock);
+            //std::cout << "id " << id << " xpos " << xpos << " ypos " << ypos << std::endl;
+            //count++;
+            //pthread_mutex_unlock(&lock);
+            threadContext->done = true;
+            if ( distance == 0 ){
+                //std::cout << "HI " << std::endl;
+                found = true;
+                drone_i = xpos;
+                drone_j = ypos;
+                break;
+            }
+        }
+        else if ( workingGridSize == 32) {
+            //-----------------
+            // Narrow down 32X32 with four threads
+            //-----------------
+            switch ( id ) {
+                case 0:
+                    // Check top left
+                    threadContext->lastDistance = check_grid( workingGridRow  , workingGridCol);
+                    break;
+                case 1:
+                    // Check top right
+                    threadContext->lastDistance = check_grid( workingGridRow  , workingGridCol + quadSize );
+                    break;
+                case 2:
+                    // Check bottom left
+                    threadContext->lastDistance = check_grid( workingGridRow + quadSize  , workingGridCol);
+                    break;
+                case 3:
+                    // Check bottom right
+                    threadContext->lastDistance = check_grid( workingGridRow + quadSize  , workingGridCol + quadSize );
+                    break;
+                default:
+                    break;
+            }
+            // Wait for the four checking threads to finish
+            int serial = pthread_barrier_wait(&barrier);
+            if ( serial ) {
+                int threadMin = 0;
+                int min = contexts[0].lastDistance;
+                for ( int i =0; i < 4; i++) {
+                    if ( contexts[i].lastDistance < min ) {
+                        min = contexts[i].lastDistance;
+                        threadMin = i;
+                    }
+                }
+                switch (threadMin) {
+                    case 0:
+                        // The top left is the best
+                        workingGridRow = workingGridRow;
+                        workingGridCol = workingGridCol;
+                        break;
+                    case 1:
+                        // The top right is the best
+                        workingGridRow = workingGridRow;
+                        workingGridCol = workingGridCol + 16;
+                        break;
+                    case 2:
+                        // The bottom left is the best
+                        workingGridRow = workingGridRow + 16;
+                        workingGridCol = workingGridCol;
+                        break;
+                    case 3:
+                        // The bottom right is the best
+                        workingGridRow = workingGridRow + 16;
+                        workingGridCol = workingGridCol + 16;
+                        break;
+
+                }
+                // The new working grid size must now be 16
+                workingGridSize = 16;
+                // Wake up all the extrathreads
+                pthread_cond_broadcast(&cond);
+                //std::cout << "Finished 32 case " << std::endl;
+                //std::cout << "Workingff grid size " << workingGridSize << std::endl;
+            }
+            pthread_barrier_wait(&barrier);
         }
         else {
             //-----------------------------
@@ -126,66 +218,63 @@ void *threadMain(void *context) {
             threadContext->lastDistance = check_grid(quadMidX, quadMidY);
             threadContext->lastGuessRow = quadMidX;
             threadContext->lastGuessCol = quadMidY;
-        }
-        //-------------------------------
-        // Wait at barrier
-        //-------------------------------
-        int master = pthread_barrier_wait(&barrier);
-        if ( master == PTHREAD_BARRIER_SERIAL_THREAD) {
-            //------------
-            // I am the serial thread and must do some serial work.
-            //------------
+            //-------------------------------
+            // Wait at barrier
+            //-------------------------------
+            int master = pthread_barrier_wait(&barrier);
+            if (master == PTHREAD_BARRIER_SERIAL_THREAD) {
+                //------------
+                // I am the serial thread and must do some serial work.
+                //------------
+                //-----------------
+                // Find the minimum
+                //-----------------
+                int minValue = contexts[0].lastDistance;
+                int minThread = 0;
+                for (int i = 1; i < num_threads; i++) {
+                    //std::cout << "Thread " << i <<" was " << std::endl;
+                    if (contexts[i].lastDistance < minValue) {
+                        minValue = contexts[i].lastDistance;
+                        minThread = i;
+                    }
 
-            //-----------------
-            // Find the minimum
-            //-----------------
-            int minValue = contexts[0].lastDistance;
-            int minThread = 0;
-            for ( int i =1; i < num_threads; i++) {
-                //std::cout << "Thread " << i <<" was " << std::endl;
-                if ( contexts[i].lastDistance < minValue ) {
-                    minValue = contexts[i].lastDistance;
-                    minThread = i;
                 }
-
+                //std::cout << "Closet thread " << minThread << std::endl;
+                //std::cout << "Working Grid Size " << workingGridSize << std::endl;
+                if (minValue == 0) {
+                    found = true;
+                    drone_i = contexts[minThread].lastGuessRow;
+                    drone_j = contexts[minThread].lastGuessCol;
+                }
+                else {
+                    //-----------
+                    // Setup next search area
+                    //-----------
+                    /*
+                    if (0) {//(quadSize < (2 * minValue)) {
+                        workingGridSize = quadSize;
+                        workingGridRow = contexts[minThread].startRowRealGrid;
+                        workingGridCol = contexts[minThread].startColRealGrid;
+                    }
+                    else {
+                     */
+                        workingGridSize = 2 * minValue;
+                        workingGridRow = contexts[minThread].lastGuessRow - minValue;
+                        workingGridCol = contexts[minThread].lastGuessCol - minValue;
+                    //}
+                }
             }
-            std::cout << "The working gridSize is " << workingGridSize << std::endl;
-            std::cout << "The quad size is " << workingGridSize / rootThreads << std::endl;
-            std::cout << "The closest thread is " << minThread << " with " << minValue << std::endl;
-            std::cout << "They checked " << contexts[minThread].lastGuessRow << " " << contexts[minThread].lastGuessCol << std::endl;
-            if ( minValue == 0) {
-                found = true;
-                drone_i = contexts[minThread].lastGuessRow;
-                drone_j = contexts[minThread].lastGuessCol;
-            }
-            else {
-                //-----------
-                // Setup next search area
-                //-----------
-                // breakdown quadrant
-                //workingGridSize = quadSize;
-                //workingGridRow  = contexts[minThread].startRowRealGrid;
-                //workingGridCol  = contexts[minThread].startColRealGrid;
-
-                // Make new quad
-                workingGridSize = 2 * minValue;
-                workingGridRow  = contexts[minThread].lastGuessRow - minValue;
-                workingGridCol  = contexts[minThread].lastGuessCol - minValue;
-            }
-            //----------------------
-            // I was the serial thread I need to wake up the others
-            //----------------------
-            pthread_barrier_wait(&barrier);
-        }
-        else {
+            // Every one who is not serial thread wait, serail will get here soon
             pthread_barrier_wait(&barrier);
         }
     }
 }
-
+int all_threads;
 void prepareForThread() {
-    num_threads = 16;
+    all_threads = 256;
+    num_threads = 64;
     rootThreads  = sqrt(num_threads);
+    //rootThreads = 4;
     pthread_mutex_init(&lock, NULL);
     pthread_attr_init(&attr);
     pthread_attr_setdetachstate(&attr , PTHREAD_CREATE_JOINABLE);
@@ -219,22 +308,22 @@ int main(int argc, char *argv[]) {
     initialize_grid(gridsize, seed, nanosleep_ntime); 	// Do not remove
     gridsize = get_gridsize();	 			// Do not remove
 
-    std::cout << _drone_i << " " << _drone_j << std::endl;
     prepareForThread(); // Just Initialize my shared structures
     clock_gettime(CLOCK_REALTIME, &start); 	// Do not remove
 
 
-
+    std::cout << _drone_i << " " << _drone_i << std::endl;
     // Multithreaded code to find drone in the grid
     // ...
     // ...
     // ... sample serial code shown below ...
-    for ( int i =0; i < num_threads; i++) {
+    for ( int i =0; i < all_threads; i++) {
         contexts[i].id = i;
+        contexts[i].done = 0;
         pthread_create(&threads[i] , &attr , threadMain , (void *) &contexts[i]);
     }
     // Join threads
-    for (int i = 0; i < num_threads; i++) {
+    for (int i = 0; i < all_threads; i++) {
         pthread_join(threads[i], NULL);
     }
     // ...

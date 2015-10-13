@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Straight And Narrow</title>
+
+    <link href="../css/webglbook.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="game.css" />
+    <script src="../libs/Three.js"></script>
+    <script src="../libs/jquery-1.6.4.js"></script>
+    <script src="../libs/jquery.mousewheel.js"></script>
+    <script src="../libs/RequestAnimationFrame.js"></script>
+    <script src="../sim/sim.js"></script>
+    <script src="../sim/animation.js"></script>
+    <script src="../sim/webGLDetector.js"></script>
+    <script type="text/javascript" src="enviroment.js"></script>
+    <script type="text/javascript" src="game.js"></script>
+
+    <script>
+
+        var app = null;
+
+        $(document).ready(
+                function() {
+                    var container = document.getElementById("container");
+                        Sim.WebGLDetector.detectWebGL();
+                        app = new Game();
+
+                        app.init(
+                                { container: container,
+                                }
+                        );
+                        app.focus();
+                        app.run();
+                }
+        );
+    </script>
+
+</head>
+<body>
+<h1> My Game! </h1>
+<div id="container" style="width:98%; height:85%; position:absolute; outline:none; background-color:#3fafdd;"></div>
+</body>
+</html>

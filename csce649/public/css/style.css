@@ -10,7 +10,7 @@ html , body {
 
 #container {
 	width:  100%; 
-	height: 100%;
+	height: 50%;
 }
 
 #controls {
@@ -32,4 +32,14 @@ html , body {
 #controls input.vectorComponent {
 	margin-right: -2px;
 	border: black;
+}
+
+.slider {
+	width: 25%;
+	margin-left: 10px;
+	float:left;
+}
+.sliderValue{
+	float:left;
+	width: 10%;
 }

@@ -2133,7 +2133,7 @@ declare module THREE {
 
     export class MeshBasicMaterial extends Material {
         constructor(parameters?: MeshBasicMaterialParameters);
-
+        doubleSided;
         color: Color;
         map: Texture;
         lightMap: Texture;
@@ -4138,7 +4138,7 @@ declare module THREE {
     export class Mesh extends Object3D {
         constructor(geometry?: Geometry, material?: Material);
         constructor(geometry?: BufferGeometry, material?: Material);
-
+        doubleSided;
         geometry: Geometry;
         material: Material;
 
@@ -4183,7 +4183,7 @@ declare module THREE {
     /**
      * A class for displaying particles in the form of variable size points. For example, if using the WebGLRenderer, the particles are displayed using GL_POINTS.
      *
-     * @see <a href="https://github.com/mrdoob/three.js/blob/master/src/objects/ParticleSystem.js">src/objects/ParticleSystem.js</a>
+     * @see <a href="https://github.com/mrdoob/three.js/blob/master/src/objects/ParticleSystem.ts">src/objects/ParticleSystem.ts</a>
      */
     export class PointCloud extends Object3D {
 
@@ -4857,7 +4857,7 @@ declare module THREE {
      */
     export class Scene extends Object3D {
         constructor();
-
+        data;
         /**
          * A fog instance defining the type of fog that affects everything rendered in the scene. Default is null.
          */
@@ -5152,10 +5152,10 @@ declare module THREE {
     export class Audio extends Object3D {
         constructor(listener: AudioListener);
         type: string;
-        context: AudioContext;
-        source: AudioBufferSourceNode;
-        gain: GainNode;
-        panner: PannerNode;
+        context;
+        source;
+        gain;
+        panner;
         autoplay: boolean;
         startTime: number;
         isPlaying: boolean;
@@ -5175,7 +5175,7 @@ declare module THREE {
         constructor();
 
         type: string;
-        context: AudioContext;
+        context;
 
         updateMatrixWorld(force?: boolean): void;
     }
@@ -5890,6 +5890,8 @@ declare module THREE {
     export class PointsMaterial extends Material {
         constructor( map );
     }
+
+
 }
 
 declare module 'three' {
