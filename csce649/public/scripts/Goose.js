@@ -24,9 +24,14 @@ var Goose = (function (_super) {
         this.mesh = mesh;
         //this.object3D.position.copy(new THREE.Vector3(0,-10,0));
     };
-    Goose.prototype.bank = function (acceleration) {
-        var upPart = this.upVector.clone().dot(acceleration);
-        var sidePart = this.velocity.clone().cross(this.upVector).normalize().dot(acceleration);
+    Goose.prototype.update = function (delta, timestep) {
+        //var headingDiff = new THREE.Vector3(0,0,0).subVectors(this.velocity , this.headingVector);
+        var lookPoint = this.object3D.position.clone().add(this.velocity.clone().multiplyScalar(-10));
+        this.object3D.lookAt(lookPoint);
+        var upPart = this.acceleration.clone().dot(this.velocity);
+        var sidePart = this.acceleration.clone().dot(this.velocity);
+        var radians = Math.atan(sidePart / upPart);
+        this.object3D.rotateOnAxis(new THREE.Vector3(0, 0, 1), radians);
     };
     Goose.prototype.makeMaterial = function () {
         return new THREE.MeshBasicMaterial();
@@ -46,7 +51,6 @@ var SmartGoose = (function (_super) {
         _super.prototype.init.call(this, param);
     };
     SmartGoose.prototype.update = function (delta, timestep) {
-        console.log("Sup");
     };
     SmartGoose.prototype.pullUp = function (Up) {
         var degree = 5;

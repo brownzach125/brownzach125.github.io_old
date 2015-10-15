@@ -35,6 +35,8 @@ var ParticleSystem = (function (_super) {
         for (var i = 0; i < this.particleCount; i++) {
             this.children[i].object3D.position.copy(this.state[i]);
             this.children[i].velocity.copy(this.state[i + this.particleCount]);
+            this.children[i].acceleration.copy(this.statePrime[i + this.particleCount]);
+            this.children[i].update();
         }
     };
     ParticleSystem.prototype.F = function (state, statePrime) {
@@ -42,7 +44,12 @@ var ParticleSystem = (function (_super) {
             // Set Velocites
             statePrime[i].copy(state[i + this.particleCount]);
             // Initilize Acclerations to 0
-            statePrime[i + this.particleCount].set(0, 0, 0);
+            if (statePrime[i + this.particleCount]) {
+                statePrime[i + this.particleCount].set(0, 0, 0);
+            }
+            else {
+                statePrime[i + this.particleCount] = new THREE.Vector3(0, 0, 0);
+            }
         }
         // Loop over points apply vertex forces
         for (var i = 0; i < this.particleCount; i++) {
@@ -55,7 +62,12 @@ var ParticleSystem = (function (_super) {
     };
     ParticleSystem.prototype.integrate = function (state, statePrime, timestep) {
         for (var i = 0; i < statePrime.length; i++) {
-            state[i].add(statePrime[i].multiplyScalar(timestep));
+            if (statePrime[i] instanceof THREE.Vector3) {
+                state[i].add(statePrime[i].multiplyScalar(timestep));
+            }
+            else {
+                console.log("Some kind of error i is " + i);
+            }
         }
     };
     ParticleSystem.prototype.vertexForce = function (particleIndex) {

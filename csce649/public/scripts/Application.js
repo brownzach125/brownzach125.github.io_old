@@ -57,7 +57,8 @@ var Application = (function () {
         var i, len;
         len = this.objects.length;
         for (i = 0; i < len; i++) {
-            this.objects[i].update(delta, timestep);
+            if (this.objects[i].update)
+                this.objects[i].update(delta, timestep);
         }
     };
     Application.prototype.focus = function () {

@@ -1,7 +1,79 @@
 /// <reference path="./ParticleSystem.ts" />
 /// <reference path="./jsonModel.ts" />
 /// <reference path="./Goose.ts" />
+/// <reference path="./Collidable.ts" />
 'use strict'
+
+class SpatialDivision {
+    cubeSize;
+    map;
+    constructor( cubeSize ) {
+        this.cubeSize = cubeSize;
+        this.map = {};
+    }
+    reset() {
+        this.map = {};
+    }
+    placePoint( object) {
+        if ( !object)
+            return;
+        var vector = object.object3D.position;
+        var i = Math.floor(vector.x / this.cubeSize);
+        var j = Math.floor(vector.y / this.cubeSize);
+        var k = Math.floor(vector.z / this.cubeSize);
+        this.checkEntry(i,j,k);
+        this.map[i][j][k].push( object);
+    }
+    placeObject( object) {
+        if ( !object)
+            return;
+        var vector = object.object3D.position;
+        var i = Math.floor(vector.x / this.cubeSize);
+        var j = Math.floor(vector.y / this.cubeSize);
+        var k = Math.floor(vector.z / this.cubeSize);
+
+        var radius = Math.floor(object.object3D.geometry.boundingSphere.radius / this.cubeSize);
+
+        for (var x = i - radius; x <= i + radius; x++) {
+            for (var y = j - radius; y <= y + radius; y++) {
+                for ( var z = k - radius; z <= k + radius; z++) {
+                    this.checkEntry( x, y ,z);
+                    this.map[x][y][z].push(object);
+                }
+            }
+        }
+    }
+    checkEntry( i ,j ,k) {
+        if ( ! this.map[i] ){
+            this.map[i] = {};
+        }
+        if ( ! this.map[i][j]){
+            this.map[i][j] = {};
+        }
+        if ( !this.map[i][j][k]) {
+            this.map[i][j][k] = [];
+        }
+    }
+    within( radius, vector) {
+        //TODO only checks nearby by one layer
+        var i = Math.floor(vector.x / this.cubeSize);
+        var j = Math.floor(vector.y / this.cubeSize);
+        var k = Math.floor(vector.z / this.cubeSize);
+        var result = [];
+        radius = Math.floor(radius / this.cubeSize);
+        for ( var x = i - radius; x <= i + radius; x++){
+            if ( this.map[x])
+            for ( var y = j -radius; y <= j+radius; y++) {
+                if ( this.map[x][y])
+                for ( var z = k-radius; z <= k+radius; z++) {
+                    if ( this.map[x][y][z] )
+                        result = result.concat( this.map[x][y][z]);
+                }
+            }
+        }
+        return result;
+    }
+}
 
 class FlockSystem extends ParticleSystem {
     gooseModel;
@@ -11,88 +83,138 @@ class FlockSystem extends ParticleSystem {
     smartGoose: SmartGoose;
     smartGooseIndex;
     keys = {};
+    spatialMap: SpatialDivision;
+    collidables;
     constructor() {
         super();
-        this.particleCount = 25
+        this.particleCount = 25;
         this.centeringConstant = .4;
         this.velocityMatchConstant = .5;
         this.avoidanceConstant = .5;
         this.object3D = new THREE.Object3D();
         this.loadGoose();
+        this.spatialMap = new SpatialDivision(2);
     }
     update(delta? , timestep?) {
-        // Update the smart goose
-        // Let the particle system parent handle the rest
         super.update(delta , timestep);
+        if ( this.ready && this.spatialMap ) {
+            this.spatialMap.reset();
+            for ( var i =0; i < this.collidables.length; i++) {
+                this.spatialMap.placePoint(this.collidables[i]);
+            }
+            for (var i = 0; i < this.children.length; i++) {
+                this.spatialMap.placePoint(this.children[i]);
+            }
+        }
     }
     init(params) {
         var that = this;
         if ( params.advoidanceSlider ){
+            that.avoidanceConstant = params.advoidanceSlider.slider.value;
             params.advoidanceSlider.setCallback( function(value) {
                 that.avoidanceConstant = value;
                 that.getApp().focus();
             } );
         }
-        if ( params.velocitySlider ){
+        if ( params.velocitySlider ) {
+            that.velocityMatchConstant = params.velocitySlider.slider.value;
             params.velocitySlider.setCallback( function(value) {
                 that.velocityMatchConstant = value;
                 that.getApp().focus();
             } );
         }
-        if ( params.centeringSlider ){
+        if ( params.centeringSlider ) {
+            that.centeringConstant = params.centeringSlider.slider.value;
             params.centeringSlider.setCallback( function(value) {
                 that.centeringConstant = value;
                 that.getApp().focus();
             } );
         }
+        this.collidables = params.collidables;
     }
     sigmoid(t) {
         return 1/(1+Math.pow(Math.E, -t));
     }
     vertexForce(boidIndex: number) {
         if ( boidIndex == this.smartGooseIndex) {
-            return new THREE.Vector3(0,0,0);
+            return this.avoidObjects(boidIndex);
         }
         var positionI:THREE.Vector3 = this.children[boidIndex].object3D.position;
         var positionJ:THREE.Vector3 = new THREE.Vector3(0,0,0);
-
         var velocityI:THREE.Vector3 = this.children[boidIndex].velocity;
         var velocityJ:THREE.Vector3 = new THREE.Vector3(0,0,0);
-
         var normal:THREE.Vector3 = new THREE.Vector3(0,0,0);
         var force:THREE.Vector3  = new THREE.Vector3(0,0,0);
-        for ( var j = 0; j < this.children.length; j++) {
-            if ( j == boidIndex){
+        var things = this.spatialMap.within(2 , positionI);
+        things.push(this.smartGoose);
+        for ( var j = 0; j < things.length; j++) {
+            if ( !(things[j] instanceof Goose) )
                 continue;
-            }
+            // TODO do I need to check for the same boid
             var partialForce:THREE.Vector3 = new THREE.Vector3(0,0,0);
             var temp:THREE.Vector3 = new THREE.Vector3(0,0,0);
-            positionJ  = this.children[j].object3D.position;
+            positionJ  = things[j].object3D.position;
             normal.subVectors( positionJ , positionI).normalize();
             var distance = positionI.distanceTo(positionJ);
-            velocityJ = this.children[j].velocity;
+            velocityJ = things[j].velocity;
             var weight = 1;
-            if ( j == this.smartGooseIndex) {
-                //weight = 500;
+            if ( j == things.length - 1) {
+                weight = 10;
             }
-            else {
-                weight *= this.sigmoid(distance * distance * distance);
-            }
+            weight *= this.sigmoid(distance * distance * distance);
             // Avoidance Force
             partialForce.add( normal.clone().multiplyScalar( this.avoidanceConstant * -1).divideScalar( distance ));
-
             // Centering Force
             partialForce.add( normal.multiplyScalar(distance * this.centeringConstant) );
-
             // Velocity Matching
             partialForce.add( temp.subVectors( velocityJ , velocityI).multiplyScalar(this.velocityMatchConstant));
-
-            if (j != this.smartGooseIndex ){
-                partialForce.divideScalar(100);
-            }
             force.add(partialForce.multiplyScalar(weight));
         }
+
+        // Add acceleration to avoid collidables
+        var avoidObjectForce = this.avoidObjects(boidIndex);
+        force.add( avoidObjectForce );
+        // Add gradientForce
+        //force.add(this.gradient.effect(positionI));
         return force;
+    }
+
+    avoidObjects( boidIndex ) {
+        // Detect If On Collision Route
+        var boid = this.children[boidIndex];
+        var things = this.spatialMap.within(8 , boid.object3D.position.clone());
+
+        var action = new THREE.Vector3(0,0,0);
+        for ( var i = 0; i < things.length; i++) {
+            if ( ! (things[i] instanceof Collidable) ) {
+                continue;
+            }
+            var collidable = things[i];
+            var radius = collidable.object3D.geometry.boundingSphere.radius;
+            var boidPosition = boid.object3D.position;
+            var collidablePosition = collidable.object3D.position;
+            var boidVelocity = boid.velocity;
+            var normal = collidablePosition.clone().sub(boidPosition).normalize();
+            var distanceToTravel   = collidablePosition.clone().sub(boidPosition).length() - radius;
+            var time = distanceToTravel / boidVelocity.dot(normal);
+            if ( boidVelocity.dot(normal) < 0 )
+                continue;
+            var m = boidVelocity.clone().sub(  normal.clone().multiplyScalar(boidVelocity.dot(normal)) ).length() * time;
+            if ( m > radius ) {
+                // No action needed
+                continue;
+            }
+            else {
+                var direction = boidVelocity.clone().sub( normal.multiplyScalar(boidVelocity.dot(normal))   );
+                var amount =  2 * (distanceToTravel - m) / ( time * time );
+                action.add(direction.multiplyScalar(amount));
+            }
+
+        }
+        if (action.length() > 2){
+            action.normalize().multiplyScalar(2);
+        }
+        return action;
     }
 
     loadGoose() {
@@ -117,7 +239,6 @@ class FlockSystem extends ParticleSystem {
             this.createGeese();
         }
     }
-
     createGeese() {
         var object = this.createGoose();
         this.smartGoose = new SmartGoose();
@@ -133,17 +254,15 @@ class FlockSystem extends ParticleSystem {
             this.addChild(goose);
         }
         for ( var i =0; i < amount; i++) {
-            this.state.push( new THREE.Vector3( 0 , 0,0));
-            // this.state.push( new THREE.Vector3(Math.random() * 5 - 2 ,Math.random() *5 -2, Math.random() * 5 -2));
+            //this.state.push( new THREE.Vector3( 0 , 0,0));
+            this.state.push( new THREE.Vector3(Math.random() * 5 - 2 ,Math.random() *5 -2, Math.random() * 5 -2));
             this.statePrime.push(new THREE.Vector3(0,0,0));
         }
-
         for ( var i =0; i < amount; i++) {
-            this.state.push( new THREE.Vector3(Math.random() * 10 - 5, Math.random() * 10 - 5 , Math.random() * 10 - 5));
+            this.state.push(new THREE.Vector3(0,0,0));
             this.statePrime.push(new THREE.Vector3(0,0,0));
         }
-
-        this.state[0 + this.particleCount].set( 0 , 0 ,0);
+        this.state[this.particleCount].set( 0 , 0 ,0);
         this.ready = true;
     }
     createGoose() {
@@ -227,3 +346,38 @@ class FlockSystem extends ParticleSystem {
         }
     }
 }
+
+/*
+ for ( var j = 0; j < this.children.length; j++) {
+ if ( j == boidIndex){
+ continue;
+ }
+ var partialForce:THREE.Vector3 = new THREE.Vector3(0,0,0);
+ var temp:THREE.Vector3 = new THREE.Vector3(0,0,0);
+ positionJ  = this.children[j].object3D.position;
+ normal.subVectors( positionJ , positionI).normalize();
+ var distance = positionI.distanceTo(positionJ);
+ velocityJ = this.children[j].velocity;
+ var weight = 1;
+ if ( j == this.smartGooseIndex) {
+ // Avoidance Force
+ partialForce.add( normal.clone().multiplyScalar( this.avoidanceConstant * -1).divideScalar( distance ));
+ // Centering Force
+ partialForce.add( normal.multiplyScalar(distance * this.centeringConstant) );
+ // Velocity Matching
+ partialForce.add( temp.subVectors( velocityJ , velocityI).multiplyScalar(this.velocityMatchConstant));
+ force.add(partialForce.multiplyScalar(weight));
+ }
+ else {
+ weight *= this.sigmoid(distance * distance * distance);
+ // Avoidance Force
+ partialForce.add( normal.clone().multiplyScalar( this.avoidanceConstant * -1).divideScalar( distance ));
+ // Centering Force
+ partialForce.add( normal.multiplyScalar(distance * this.centeringConstant) );
+ // Velocity Matching
+ partialForce.add( temp.subVectors( velocityJ , velocityI).multiplyScalar(this.velocityMatchConstant));
+
+ force.add(partialForce.multiplyScalar(weight));
+ }
+ }
+    */

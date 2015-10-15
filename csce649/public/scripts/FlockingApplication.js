@@ -16,9 +16,12 @@ var FlockingApplication = (function (_super) {
         var light = new THREE.DirectionalLight(0xFFFFFF, 1);
         this.scene.add(light);
         this.cameraControls = new THREE.TrackballControls(this.camera, this.renderer.domElement);
+        var thing = new Collidable();
         this.gooseSystem = new FlockSystem();
+        params.collidables = [thing];
         this.gooseSystem.init(params);
         this.addObject(this.gooseSystem);
+        this.addObject(thing);
         var axes = this.buildAxes(10);
         this.scene.add(axes);
     };

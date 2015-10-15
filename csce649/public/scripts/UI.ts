@@ -26,7 +26,7 @@ class SliderControl {
             this.slider.max = this.max;
             this.value.max = this.max;
         }
-        if (this .min ) {
+        if (this.min ) {
             this.slider.min = this.min;
             this.value.min = this.min;
         }

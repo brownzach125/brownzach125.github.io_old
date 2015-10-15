@@ -29,7 +29,15 @@ class Goose extends Object2 {
     }
 
     update( delta? , timestep?) {
-        
+        //var headingDiff = new THREE.Vector3(0,0,0).subVectors(this.velocity , this.headingVector);
+        var lookPoint = this.object3D.position.clone().add(this.velocity.clone().multiplyScalar(-10));
+        this.object3D.lookAt( lookPoint );
+
+        var upPart = this.acceleration.clone().dot(this.velocity);
+        var sidePart = this.acceleration.clone().dot(this.velocity);
+        var radians = Math.atan( sidePart / upPart );
+        this.object3D.rotateOnAxis(new THREE.Vector3(0,0,1) , radians);
+
     }
     makeMaterial() {
         return new THREE.MeshBasicMaterial();
@@ -49,7 +57,6 @@ class SmartGoose extends Goose {
         super.init(param);
     }
     update(delta?, timestep?) {
-        console.log("Sup");
     }
     pullUp(Up) {
         var degree = 5;

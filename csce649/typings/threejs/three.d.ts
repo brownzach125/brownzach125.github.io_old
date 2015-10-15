@@ -5891,6 +5891,9 @@ declare module THREE {
         constructor( map );
     }
 
+    export class LineSegments {
+
+    }
 
 }
 

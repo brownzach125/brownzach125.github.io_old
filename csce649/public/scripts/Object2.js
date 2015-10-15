@@ -3,6 +3,7 @@
 var Object2 = (function () {
     function Object2() {
         this.velocity = new THREE.Vector3(0, 0, 0);
+        this.acceleration = new THREE.Vector3(0, 0, 0);
         this.children = [];
     }
     Object2.prototype.update = function (delta, timestep) {
