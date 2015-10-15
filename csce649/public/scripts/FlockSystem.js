@@ -165,10 +165,13 @@ var FlockSystem = (function (_super) {
         }
         // Add acceleration to avoid collidables
         var avoidObjectForce = this.avoidObjects(boidIndex);
-        force.add(avoidObjectForce);
+        if (avoidObjectForce.length() == 0)
+            return force;
+        else
+            return avoidObjectForce;
         // Add gradientForce
         //force.add(this.gradient.effect(positionI));
-        return force;
+        //return force;
     };
     FlockSystem.prototype.avoidObjects = function (boidIndex) {
         // Detect If On Collision Route

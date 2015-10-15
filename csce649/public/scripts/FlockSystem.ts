@@ -173,10 +173,13 @@ class FlockSystem extends ParticleSystem {
 
         // Add acceleration to avoid collidables
         var avoidObjectForce = this.avoidObjects(boidIndex);
-        force.add( avoidObjectForce );
+        if ( avoidObjectForce.length() ==0)
+            return force;
+        else
+            return avoidObjectForce;
         // Add gradientForce
         //force.add(this.gradient.effect(positionI));
-        return force;
+        //return force;
     }
 
     avoidObjects( boidIndex ) {
