@@ -7,11 +7,11 @@
 html {
     height: 100%;
     width: 100%;
-    background-color: black;
 }
 body {
     height: 100%;
     width: 100%;
+    background-color: black;
 }
 
 #title {
@@ -21,17 +21,33 @@ body {
     float:left;
 }
 
-#controls {
+.rightMargin {
     margin : 50px;
     float:left;
     display: inline-block;
+    max-width: 30%;
 }
-#controls a {
+.rightMargin a {
     float:left;
     display: inline-block;
 }
 
-#controls span {
+#.rightMargin span {
     float:left;
     dispaly: inline-block;
 }
+
+#gameMockup {
+    float:left;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/IronRodPath.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+
+
+
+
