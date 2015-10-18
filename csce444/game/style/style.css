@@ -1,0 +1,37 @@
+
+* {
+    font-family: "Georgia";
+    color: white;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+}
+body {
+    height: 100%;
+    width: 100%;
+}
+
+#title {
+    height: 100%;
+    width: 60%;
+    display: inline-block;
+    float:left;
+}
+
+#controls {
+    margin : 50px;
+    float:left;
+    display: inline-block;
+}
+#controls a {
+    float:left;
+    display: inline-block;
+}
+
+#controls span {
+    float:left;
+    dispaly: inline-block;
+}
