@@ -2,16 +2,20 @@ var PLAYER_SPEED = 2;
 var PLAYER_ACCEL = 0.5;
 var PLAYER_SPEED_FRICTION = 0.4;
 
+var DEFAULT_GUY_OFFSET_RIGHT = 12;
+var DEFAULT_GUY_OFFSET_LEFT = -6;
+var DEFAULT_GUY_OFFSET_TOP =  -12;
+var DEFAULT_GUY_OFFSET_BOTTOM =12;
 var PLAYER_TURN_SPEED = 10;
 
 function Player() {
     this.position = {
-        x: 240,
-        y: 135
+        x: 60,
+        y: 0
     };
-    this.worldPosition = {
-        x: 240,
-        y: 135
+    this.drawPosition = {
+        x: CAMERA_NATIVE_WIDTH  /2 - 14,
+        y: CAMERA_NATIVE_HEIGHT /2 - 26
     }
     this.health = 3;
     this.dead = false;
@@ -95,8 +99,7 @@ Player.prototype.update = function() {
         vX += 1;
         moving = true;
     }
-
-
+    
     // if attacking
     if(this.attacking) {
         if(this.isAttackFinished())
@@ -117,21 +120,13 @@ Player.prototype.update = function() {
         this.vector = Math.atan2(vX, vY);
     }
 
-
     var newPos = {
-        x: this.position.x + Math.sin(this.vector ) * this.velocity,
+        x: this.position.x + Math.sin(this.vector ) *  this.velocity,
         y: this.position.y + Math.cos(this.vector ) *  this.velocity
     };
 
-    var newWorldPos = {
-        x: this.worldPosition.x + Math.sin(this.vector ) * this.velocity,
-        y: this.worldPosition.y + Math.cos(this.vector ) *  this.velocity
-    };
-
-
     if(canBeAt({x: newPos.x, y: this.position.y}, this)) {
-        //this.position.x = newPos.x;
-        this.worldPosition.x = newWorldPos.x;
+        this.position.x = newPos.x;
     }
     else { // try to move a smaller amount
         newPos.x = this.position.x + Math.sin(this.vector ) * this.velocity / 2;
@@ -140,29 +135,17 @@ Player.prototype.update = function() {
     }
 
     if(canBeAt({x: this.position.x, y: newPos.y}, this)) {
-        //this.position.y = newPos.y;
-        this.worldPosition.y = newWorldPos.y;
+        this.position.y = newPos.y;
     }
     else { // try to move a smaller amount
         newPos.y = this.position.y + Math.cos(this.vector ) *  this.velocity / 2;
-
         if(canBeAt({x: this.position.x, y: newPos.y}, this))
             this.position.y = newPos.y;
     }
 
     this.velocity -= this.velocity * PLAYER_SPEED_FRICTION;
-
-    // keep in the arnea please
-
-    if(this.position.x > 480-8)
-        this.position.x = 480 - 8;
-    else if(this.position.x < -8)
-        this.position.x = -8;
-
-    if(this.position.y > 270-20)
-        this.position.y = 270 - 20;
-    else if(this.position.y < -20)
-        this.position.y = -20;
+    // Update camera center
+    Camera.center = { x: this.position.x - CAMERA_NATIVE_WIDTH/2 , y: this.position.y - CAMERA_NATIVE_HEIGHT/2}
 
 
     //aconsole.log(this.vector);
@@ -242,8 +225,7 @@ Player.prototype.attack = function() {
         }
     }
 
-    if(hit)
-    {
+    if(hit) {
         // play hit SOUND
         this.hitSound.play();
     }
@@ -255,44 +237,38 @@ Player.prototype.attack = function() {
 
 };
 
-Player.prototype.isAttackFinished = function()
-{
+Player.prototype.isAttackFinished = function() {
     if( Util.getTime() > this.attackStartTime + this.attackTime)
         return true;
 
     return false;
 };
 
-Player.prototype.resetAttack = function()
-{
+Player.prototype.resetAttack = function() {
     this.attacking = false;
     this.attackArea = null;
     this.attackEndTime = Util.getTime();
 };
 
-Player.prototype.loseHealth = function(dmg)
-{
+Player.prototype.loseHealth = function(dmg) {
     this.health -= dmg;
 
     if(this.health == 0)
         this.die();
 };
 
-Player.prototype.die = function()
-{
+Player.prototype.die = function() {
     this.dead = true;
     gameState = "over";
 };
 
-Player.prototype.getHitBox = function()
-{
+Player.prototype.getHitBox = function() {
     var pos = {};
     pos.x = this.position.x + 3;
     pos.y = this.position.y + 2;
 
     var w = 11;
     var h = 34;
-
     return new PosArea(pos, w, h);
 };
 
@@ -305,13 +281,15 @@ Player.prototype.draw = function() {
 
     //guy shadow
     //Camera.drawImage(this.shadowImage, this.position.x - 3, this.position.y + 33, 21, 12);
-
+    var img;
     if ( this.facing == 'left') {
-        Camera.drawImage(this.playerImageLeft , this.position.x , this.position.y , 50 , 50);
+        img = this.playerImageLeft;
     }
     else {
-        Camera.drawImage(this.playerImageRight , this.position.x , this.position.y , 50 , 50);
+        img = this.playerImageRight;
     }
+    Camera.drawImageWorldPos(img , this.position.x - 14 , this.position.y - 26 , 50 , 50);
+
     // guy
     /*
     if(this.attacking)
@@ -335,6 +313,7 @@ Player.prototype.draw = function() {
         else if(this.facing == "right")
             Camera.drawImage(this.guyRight, this.position.x, this.position.y, 17, 40);
     }
+*/
 
     if(DEBUG)
     {
@@ -354,7 +333,7 @@ Player.prototype.draw = function() {
 
         var fy = this.position.y + 16 ;
 
-        Camera.drawLine("yellow", this.position.x + 9, this.position.y + 16, fx, fy);
+        Camera.drawLine("yellow", this.drawPosition.x + 9, this.drawPosition.y + 16, fx, fy);
 
         Camera.drawLine("purple", this.getLeftBounds(), this.getTopBounds(), this.getRightBounds(), this.getTopBounds());
         Camera.drawLine("purple", this.getRightBounds(), this.getTopBounds(), this.getRightBounds(), this.getBottomBounds());
@@ -369,21 +348,18 @@ Player.prototype.draw = function() {
 
 
     }
-    */
 };
 
 Player.prototype.drawEffects = function()  {
     //attacl swoosh
-    if(this.attacking)
-    {
+    if(this.attacking) {
         if(this.facing == "left")
             Camera.drawImage(this.swoosh_left, this.position.x-13, this.position.y, 31, 40);
         else if(this.facing == "right")
             Camera.drawImage(this.swoosh_right, this.position.x-1, this.position.y, 31, 40);
     }
 
-    if(DEBUG && this.attackArea)
-    {
+    if(DEBUG && this.attackArea) {
         Camera.drawLine("red", this.attackArea.getLeftBounds(), this.attackArea.getTopBounds(), this.attackArea.getRightBounds(), this.attackArea.getTopBounds());
         Camera.drawLine("red", this.attackArea.getRightBounds(), this.attackArea.getTopBounds(), this.attackArea.getRightBounds(), this.attackArea.getBottomBounds());
         Camera.drawLine("red", this.attackArea.getRightBounds(), this.attackArea.getBottomBounds(), this.attackArea.getLeftBounds(), this.attackArea.getBottomBounds());
@@ -391,59 +367,44 @@ Player.prototype.drawEffects = function()  {
     }
 };
 
-Player.prototype.drawLight = function()
-{
-
-
+Player.prototype.drawLight = function() {
+    
     //guy light
     //Camera.drawImage(this.lightImage, this.lightPosition.x - 480+9, this.lightPosition.y -270+16 , 960, 540);
     Camera.drawImage(this.lightImage,  - 480+240, -270+135 , 960, 540);
-
-    if(this.dead)
-    {
+    if(this.dead) {
         Camera.drawImage(this.deathLightImage, -480 + this.position.x + 6, -270 + this.position.y + 36, 960, 540);
     }
-
 };
 
-
-
-Player.prototype.getTopBounds = function()
-{
+Player.prototype.getTopBounds = function() {
     return this.position.y + DEFAULT_GUY_OFFSET_TOP;
 };
 
-Player.prototype.getBottomBounds = function()
-{
+Player.prototype.getBottomBounds = function() {
     return this.position.y + DEFAULT_GUY_OFFSET_BOTTOM;
 };
 
-Player.prototype.getLeftBounds = function()
-{
+Player.prototype.getLeftBounds = function() {
     return this.position.x + DEFAULT_GUY_OFFSET_LEFT;
 };
 
-Player.prototype.getRightBounds = function()
-{
+Player.prototype.getRightBounds = function() {
     return this.position.x + DEFAULT_GUY_OFFSET_RIGHT;
 };
 
-Player.prototype.getTopBoundsFromPos = function(pos)
-{
+Player.prototype.getTopBoundsFromPos = function(pos) {
     return pos.y + DEFAULT_GUY_OFFSET_TOP;
 };
 
-Player.prototype.getBottomBoundsFromPos = function(pos)
-{
+Player.prototype.getBottomBoundsFromPos = function(pos) {
     return pos.y + DEFAULT_GUY_OFFSET_BOTTOM;
 };
 
-Player.prototype.getLeftBoundsFromPos = function(pos)
-{
+Player.prototype.getLeftBoundsFromPos = function(pos) {
     return pos.x + DEFAULT_GUY_OFFSET_LEFT;
 };
 
-Player.prototype.getRightBoundsFromPos = function(pos)
-{
+Player.prototype.getRightBoundsFromPos = function(pos) {
     return pos.x + DEFAULT_GUY_OFFSET_RIGHT;
 };

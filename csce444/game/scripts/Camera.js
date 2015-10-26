@@ -55,8 +55,8 @@ Camera.setScale = function(scale) {
     Camera.width = CAMERA_NATIVE_WIDTH * Camera.scale;
     Camera.height = CAMERA_NATIVE_HEIGHT * Camera.scale;
 
-    Camera.canvas.width = Camera.width,
-        Camera.canvas.height = Camera.height;
+    Camera.canvas.width = Camera.width;
+    Camera.canvas.height = Camera.height;
 
     Camera.positionCanvas();
 
@@ -67,6 +67,8 @@ Camera.clear = function() {
 
 };
 
+Camera.center = { x : 0 ,y: 0 };
+
 Camera.drawImage = function(img, x, y, width, height) {
     //draw canvas without smoothing
     Camera.context.imageSmoothingEnabled = false;
@@ -75,6 +77,15 @@ Camera.drawImage = function(img, x, y, width, height) {
     Camera.context.imageSmoothingEnabled = false;
     Camera.context.drawImage(img, x*Camera.scale, y*Camera.scale, width*Camera.scale, height*Camera.scale);
 };
+
+Camera.drawImageWorldPos = function(img , x , y , width , height) {
+    Camera.context.imageSmoothingEnabled = false;
+    Camera.context.mozImageSmoothingEnabled = false;
+    Camera.context.oImageSmoothingEnabled = false;
+    Camera.context.imageSmoothingEnabled = false;
+    Camera.context.drawImage(img, (x - Camera.center.x)*Camera.scale, ( y - Camera.center.y )*Camera.scale, width*Camera.scale, height*Camera.scale);
+}
+
 
 Camera.drawLine = function(color, x, y, dx, dy) {
     Camera.context.beginPath();

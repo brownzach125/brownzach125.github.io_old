@@ -7,7 +7,7 @@ KeyHandler.right = false;
 
 
 KeyHandler.onKeyDown = function(event) {
-    console.log(event.keyCode);
+    //console.log(event.keyCode);
     switch(event.keyCode) {
         // W, Up Arrow
         case 87:

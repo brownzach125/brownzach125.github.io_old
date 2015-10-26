@@ -92,6 +92,7 @@ function getAllDrawables() {
     //{
     //    drawables.push(BaddieManager.baddies[i]);
     //}
+    //drawables.push(world.getDrawables());
     drawables.push(world);
     drawables.push(player);
 
@@ -99,6 +100,17 @@ function getAllDrawables() {
 }
 
 function canBeAt(pos, obj) {
+
+    var nearByObjects = world.nearByObjects(pos , 16);
+    if ( nearByObjects.length != 0) {
+    }
+    for ( var i =0; i < nearByObjects.length; i++) {
+        if ( nearByObjects[i] != obj) {
+            if (intersects(pos , obj , nearByObjects[i])) {
+                return false;
+            }
+        }
+    }
     /*
     // check map objects
 
@@ -127,3 +139,24 @@ function canBeAt(pos, obj) {
     */
     return true;
 };
+
+function intersects(pos, obj, staticObj) {
+
+    if(obj.getRightBoundsFromPos(pos) <= staticObj.getLeftBounds()) {
+        return false;
+    }
+
+    if(obj.getLeftBoundsFromPos(pos) >= staticObj.getRightBounds()) {
+        return false;
+    }
+
+    if(obj.getBottomBoundsFromPos(pos) <= staticObj.getTopBounds()) {
+        return false;
+    }
+
+    if(obj.getTopBoundsFromPos(pos) >= staticObj.getBottomBounds()) {
+        return false;
+    }
+
+    return true;
+}
