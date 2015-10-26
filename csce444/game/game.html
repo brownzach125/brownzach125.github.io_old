@@ -5,10 +5,19 @@
             The Straight and Narrow Path
         </title>
         <link rel="stylesheet" type="text/css" href="style/style.css">
+        <script type="text/javascript" src="scripts/KeyHandler.js"></script>
+        <script type="text/javascript" src="scripts/ResourceManager.js"></script>
+        <script type="text/javascript" src="scripts/Camera.js"></script>
+        <script type="text/javascript" src="scripts/player/Player.js"></script>
+        <script type="text/javascript" src="scripts/World.js"></script>
+        <script type="text/javascript" src="scripts/Main.js"></script>
     </head>
-    <body>
-        <div id="gameMockup"></div>
-        <div class="rightMargin">
-        </div>
+    <body oncontextmenu="return false;">
+        <canvas id='gameCanvas'>
+
+        </canvas>
+        <script>
+            loadGame();
+        </script>
     </body>
 </html>
