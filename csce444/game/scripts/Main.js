@@ -123,7 +123,7 @@ function canBeAt(pos, obj) {
     }
 
     if ( player !=obj ) {
-        if ( intersectsNew(pos , obj , player))
+        if ( intersects(pos , obj , player))
             return false;
     }
     return true;
@@ -146,6 +146,13 @@ function intersects(pos, obj, staticObj) {
     if(obj.getTopBoundsFromPos(pos) >= staticObj.getBottomBounds()) {
         return false;
     }
+
+    return true;
+}
+function intersectsZ(obj, staticObj, zTolerance) {
+
+    if(Math.abs(obj.position.y - staticObj.position.y) > zTolerance)
+        return false;
 
     return true;
 }

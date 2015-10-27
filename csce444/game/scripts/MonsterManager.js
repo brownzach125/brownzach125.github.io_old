@@ -29,7 +29,7 @@ MonsterManager.prototype.getMonstersOnScreen = function() {
 
 MonsterManager.prototype.addMonster= function(pos , type) {
     this.monsters.push( new Monster(pos , type , this.monsterImage))
-}
+};
 
 
 
@@ -76,6 +76,11 @@ Monster.prototype.update = function() {
 
     this.position.x = newPos.x;
     this.position.y = newPos.y;
+
+    if ( intersects( this.position , this , player)) {
+        console.log("Ive sinned");
+    }
+
 };
 
 Monster.prototype.onScreen = function(viewInfo){
@@ -98,3 +103,18 @@ Monster.prototype.getRightBounds = function() {
     return this.position.x + MONSTER_OFFSET_RIGHT;
 };
 
+Monster.prototype.getTopBoundsFromPos = function(pos) {
+    return pos.y + MONSTER_OFFSET_TOP;
+};
+
+Monster.prototype.getBottomBoundsFromPos = function(pos) {
+    return pos.y + MONSTER_OFFSET_BOTTOM;
+};
+
+Monster.prototype.getLeftBoundsFromPos = function(pos) {
+    return pos.x + MONSTER_OFFSET_LEFT;
+};
+
+Monster.prototype.getRightBoundsFromPos = function(pos) {
+    return pos.x + MONSTER_OFFSET_RIGHT;
+};
