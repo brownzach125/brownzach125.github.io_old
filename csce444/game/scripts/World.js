@@ -16,6 +16,12 @@ function World() {
     this.tiles[BLACK_TILE]     = ResourceManager.loadImage("./images/tiles/BlackTile.png");
 
     this.worldMap              = ResourceManager.loadImage("./images/tiles/TileMap.png");
+
+    // Over lays
+    this.roadOverLay           = ResourceManager.loadImage("./images/overlays/RoadOverLay.png");
+    this.offRoadOverLay1        = ResourceManager.loadImage("./images/overlays/OffRoadOverLay1.png");
+    this.offRoadOverLay2        = ResourceManager.loadImage("./images/overlays/OffRoadOverLay2.png");
+
     this.monsterManager = new MonsterManager();
 
     this.terrainMap = [];
@@ -41,6 +47,11 @@ World.prototype.init = function() {
             }
             case PLAYER_OBJ: {
                 player.position = obj.pos;
+                this.roadPosition = {};
+                this.roadPosition.x = obj.pos.x;
+                this.roadPosition.y = obj.pos.y;
+                player.position.y += 220;
+                break;
             }
         }
     }
@@ -53,8 +64,8 @@ World.prototype.init = function() {
 World.prototype.getDrawables = function() {
     var drawables = [];
     var viewInfo = Camera.getViewScreenInfo();
-    for ( var r = viewInfo.startRow; r < viewInfo.startRow + viewInfo.rows; r++) {
-        for ( var c = viewInfo.startCol; c < viewInfo.startCol + viewInfo.cols; c++ ) {
+    for ( var r = viewInfo.startRow -5; r < viewInfo.startRow + viewInfo.rows +5; r++) {
+        for ( var c = viewInfo.startCol-5; c < viewInfo.startCol + viewInfo.cols +5; c++ ) {
             var index = r * this.WorldWidth + c;
             if ( index >= 0 && index < this.terrainMap.length) {
                 if ( this.objs[index] && this.objs[index].obj ) {
@@ -65,33 +76,6 @@ World.prototype.getDrawables = function() {
     }
     drawables = drawables.concat( this.monsterManager.getMonstersOnScreen() );
     return drawables;
-};
-
-World.prototype.drawTerrain = function() {
-    if ( this.terrainMap.length == 0)
-        return;
-
-    var viewInfo = Camera.getViewScreenInfo();
-    for ( var r = viewInfo.startRow - 5; r < viewInfo.startRow + viewInfo.rows +5; r++ ) {
-        for ( var c = viewInfo.startCol - 5; c < viewInfo.startCol + viewInfo.cols + 5; c++) {
-            var index;
-            if ( r  < 0 || c < 0){
-                index  =-1;
-            }
-            else {
-                index = r * this.WorldWidth + c;
-
-            }
-            if ( index >=0 && index < this.terrainMap.length) {
-                img = this.tiles[this.terrainMap[index]];
-            } else {
-                img = this.tiles[BLACK_TILE];
-            }
-            Camera.drawImageWorldPos(img, c * TILE_LENGTH, r * TILE_LENGTH , TILE_LENGTH, TILE_LENGTH);
-        }
-
-    }
-
 };
 
 World.prototype.nearByObjects = function(pos , radius) {
@@ -129,4 +113,48 @@ World.prototype.getMonsters = function() {
 
 World.prototype.update = function() {
     this.monsterManager.updateAll();
+};
+
+World.prototype.drawTerrain = function() {
+    if ( this.terrainMap.length == 0)
+        return;
+
+    var viewInfo = Camera.getViewScreenInfo();
+    for ( var r = viewInfo.startRow - 5; r < viewInfo.startRow + viewInfo.rows +5; r++ ) {
+        for ( var c = viewInfo.startCol - 5; c < viewInfo.startCol + viewInfo.cols + 10; c++) {
+            var index;
+            if ( r  < 0 || c < 0){
+                index  =-1;
+            }
+            else {
+                index = r * this.WorldWidth + c;
+
+            }
+            if ( index >=0 && index < this.terrainMap.length) {
+                img = this.tiles[this.terrainMap[index]];
+            } else {
+                img = this.tiles[BLACK_TILE];
+            }
+            Camera.drawImageWorldPos(img, c * TILE_LENGTH, r * TILE_LENGTH , TILE_LENGTH, TILE_LENGTH);
+        }
+
+    }
+
+};
+
+World.prototype.drawOverLays = function() {
+    if ( !this.roadPosition)
+        return;
+    //var pos = player.position;
+    // On road?
+    var distance = Math.abs(player.position.y - this.roadPosition.y);
+    if ( distance <  200) {
+        Camera.drawImageSmoothWorldPos(this.roadOverLay, player.position.x - CAMERA_NATIVE_WIDTH / 2, this.roadPosition.y - this.roadOverLay.height * TILE_LENGTH / 2, CAMERA_NATIVE_WIDTH, this.roadOverLay.height * TILE_LENGTH);
+    }
+    else {
+        if ( DEBUG )
+            Camera.drawImageSmooth(this.offRoadOverLay1 , 0  , 0 , CAMERA_NATIVE_WIDTH , CAMERA_NATIVE_HEIGHT);
+        else
+            Camera.drawImageSmooth(this.offRoadOverLay2 , 0  , 0 , CAMERA_NATIVE_WIDTH , CAMERA_NATIVE_HEIGHT);
+    }
 };

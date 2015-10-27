@@ -79,6 +79,16 @@ Camera.drawImage = function(img, x, y, width, height) {
     Camera.context.drawImage(img, x*Camera.scale, y*Camera.scale, width*Camera.scale, height*Camera.scale);
 };
 
+Camera.drawImageSmooth = function(img, x, y, width, height) {
+    //draw canvas without smoothing
+    Camera.context.imageSmoothingEnabled = true;
+    Camera.context.mozImageSmoothingEnabled = true;
+    Camera.context.oImageSmoothingEnabled = true;
+    Camera.context.imageSmoothingEnabled = true;
+    Camera.context.drawImage(img, x*Camera.scale, y*Camera.scale, width*Camera.scale, height*Camera.scale);
+};
+
+
 Camera.drawImageWorldPos = function(img , x , y , width , height) {
     Camera.context.imageSmoothingEnabled = false;
     Camera.context.mozImageSmoothingEnabled = false;
@@ -86,6 +96,16 @@ Camera.drawImageWorldPos = function(img , x , y , width , height) {
     Camera.context.imageSmoothingEnabled = false;
     Camera.context.drawImage(img, (x - Camera.center.x)*Camera.scale, ( y - Camera.center.y )*Camera.scale, width*Camera.scale, height*Camera.scale);
 }
+
+Camera.drawImageSmoothWorldPos = function(img, x, y, width, height) {
+    //draw canvas without smoothing
+    Camera.context.imageSmoothingEnabled = true;
+    Camera.context.mozImageSmoothingEnabled = true;
+    Camera.context.oImageSmoothingEnabled = true;
+    Camera.context.imageSmoothingEnabled = true;
+    Camera.context.drawImage(img, (x - Camera.center.x)*Camera.scale, ( y - Camera.center.y )*Camera.scale, width*Camera.scale, height*Camera.scale);
+};
+
 
 
 Camera.drawLine = function(color, x, y, dx, dy) {

@@ -81,6 +81,7 @@ function redraw() {
             drawables[i].drawEffects();
     }
 
+    world.drawOverLays();
     // draw player Light effect
     //player.drawLight();
     //HUD.draw();
