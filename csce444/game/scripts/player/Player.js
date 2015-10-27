@@ -2,10 +2,12 @@ var PLAYER_SPEED = 2;
 var PLAYER_ACCEL = 0.5;
 var PLAYER_SPEED_FRICTION = 0.4;
 
-var DEFAULT_GUY_OFFSET_RIGHT = 12;
-var DEFAULT_GUY_OFFSET_LEFT = -6;
-var DEFAULT_GUY_OFFSET_TOP =  -12;
-var DEFAULT_GUY_OFFSET_BOTTOM =12;
+var PLAYER_LENGTH = 150;
+var DEFAULT_GUY_OFFSET_RIGHT  = PLAYER_LENGTH *   .1;
+var DEFAULT_GUY_OFFSET_LEFT   = PLAYER_LENGTH  * -.2;
+var DEFAULT_GUY_OFFSET_TOP    = PLAYER_LENGTH  * -.3;
+var DEFAULT_GUY_OFFSET_BOTTOM = PLAYER_LENGTH  *  .2;
+
 var PLAYER_TURN_SPEED = 10;
 
 function Player() {
@@ -13,10 +15,6 @@ function Player() {
         x: 60,
         y: 0
     };
-    this.drawPosition = {
-        x: CAMERA_NATIVE_WIDTH  /2 - 14,
-        y: CAMERA_NATIVE_HEIGHT /2 - 26
-    }
     this.health = 3;
     this.dead = false;
 
@@ -45,6 +43,8 @@ function Player() {
     // images
     this.playerImageLeft  = ResourceManager.loadImage('./images/player/CharacterLeft.png');
     this.playerImageRight = ResourceManager.loadImage('./images/player/CharacterRight.png');
+    this.playerImageUp    = ResourceManager.loadImage('./images/player/CharacterUp.png');
+    this.playerImageDown    = ResourceManager.loadImage('./images/player/CharacterDown.png');
     /*
     this.playerImage = ResourceManager.loadImage("art/player/blackGuy.png");
     this.guyLeft = ResourceManager.loadImage("art/player/blackGuy_left.png");
@@ -154,6 +154,12 @@ Player.prototype.update = function() {
         this.facing = "right";
     else if(this.vector < 0)
         this.facing = "left";
+    if ( this.vector == Math.PI) {
+        this.facing = "up";
+    }
+    if ( this.vector == 0) {
+        this.facing = "down";
+    }
 
     //update light position
     var ldx = this.lightPosition.x - this.position.x;
@@ -269,7 +275,7 @@ Player.prototype.getHitBox = function() {
 
     var w = 11;
     var h = 34;
-    return new PosArea(pos, w, h);
+    //return new PosArea(pos, w, h);
 };
 
 Player.prototype.draw = function() {
@@ -285,10 +291,14 @@ Player.prototype.draw = function() {
     if ( this.facing == 'left') {
         img = this.playerImageLeft;
     }
-    else {
+    else if( this.facing == 'right') {
         img = this.playerImageRight;
+    } else if( this.facing =='up') {
+        img = this.playerImageUp;
+    } else {
+        img = this.playerImageDown;
     }
-    Camera.drawImageWorldPos(img , this.position.x - 14 , this.position.y - 26 , 50 , 50);
+    Camera.drawImageWorldPos(img , this.position.x -.5 * PLAYER_LENGTH , this.position.y -.5 * PLAYER_LENGTH , PLAYER_LENGTH , PLAYER_LENGTH);
 
     // guy
     /*
@@ -320,12 +330,12 @@ Player.prototype.draw = function() {
         var dx = this.position.x +  9 - Math.sin(this.vector ) * this.velocity * 8;
         var dy = this.position.y + 16 - Math.cos(this.vector ) * this.velocity * 8;
 
-        Camera.drawLine("blue", this.position.x + 9, this.position.y + 16, dx, dy);
+        Camera.drawLineWorldPos("blue", this.position.x + 9, this.position.y + 16, dx, dy);
 
         var vx = this.position.x +  9 + Math.sin(this.vector ) * 6;
         var vy = this.position.y + 16 + Math.cos(this.vector ) * 6;
 
-        Camera.drawLine("green", this.position.x + 9, this.position.y + 16, vx, vy);
+        Camera.drawLineWorldPos("green", this.position.x + 9, this.position.y + 16, vx, vy);
 
         var fx = this.position.x +  9 + 3;
         if(this.facing == "left")
@@ -333,18 +343,18 @@ Player.prototype.draw = function() {
 
         var fy = this.position.y + 16 ;
 
-        Camera.drawLine("yellow", this.drawPosition.x + 9, this.drawPosition.y + 16, fx, fy);
+        Camera.drawLineWorldPos("yellow", this.position.x + 9, this.position.y + 16, fx, fy);
 
-        Camera.drawLine("purple", this.getLeftBounds(), this.getTopBounds(), this.getRightBounds(), this.getTopBounds());
-        Camera.drawLine("purple", this.getRightBounds(), this.getTopBounds(), this.getRightBounds(), this.getBottomBounds());
-        Camera.drawLine("purple", this.getRightBounds(), this.getBottomBounds(), this.getLeftBounds(), this.getBottomBounds());
-        Camera.drawLine("purple", this.getLeftBounds(), this.getBottomBounds(), this.getLeftBounds(), this.getTopBounds());
+        Camera.drawLineWorldPos("purple", this.getLeftBounds(), this.getTopBounds(), this.getRightBounds(), this.getTopBounds());
+        Camera.drawLineWorldPos("purple", this.getRightBounds(), this.getTopBounds(), this.getRightBounds(), this.getBottomBounds());
+        Camera.drawLineWorldPos("purple", this.getRightBounds(), this.getBottomBounds(), this.getLeftBounds(), this.getBottomBounds());
+        Camera.drawLineWorldPos("purple", this.getLeftBounds(), this.getBottomBounds(), this.getLeftBounds(), this.getTopBounds());
 
-        var box = this.getHitBox();
-        Camera.drawLine("blue", box.getLeftBounds(), box.getTopBounds(), box.getRightBounds(), box.getTopBounds());
-        Camera.drawLine("blue", box.getRightBounds(), box.getTopBounds(), box.getRightBounds(), box.getBottomBounds());
-        Camera.drawLine("blue", box.getRightBounds(), box.getBottomBounds(), box.getLeftBounds(), box.getBottomBounds());
-        Camera.drawLine("blue", box.getLeftBounds(), box.getBottomBounds(), box.getLeftBounds(), box.getTopBounds());
+        //var box = this.getHitBox();
+        //Camera.drawLineWorldPos("blue", box.getLeftBounds(), box.getTopBounds(), box.getRightBounds(), box.getTopBounds());
+        //Camera.drawLineWorldPos("blue", box.getRightBounds(), box.getTopBounds(), box.getRightBounds(), box.getBottomBounds());
+        //Camera.drawLineWorldPos("blue", box.getRightBounds(), box.getBottomBounds(), box.getLeftBounds(), box.getBottomBounds());
+        //Camera.drawLineWorldPos("blue", box.getLeftBounds(), box.getBottomBounds(), box.getLeftBounds(), box.getTopBounds());
 
 
     }
@@ -360,10 +370,10 @@ Player.prototype.drawEffects = function()  {
     }
 
     if(DEBUG && this.attackArea) {
-        Camera.drawLine("red", this.attackArea.getLeftBounds(), this.attackArea.getTopBounds(), this.attackArea.getRightBounds(), this.attackArea.getTopBounds());
-        Camera.drawLine("red", this.attackArea.getRightBounds(), this.attackArea.getTopBounds(), this.attackArea.getRightBounds(), this.attackArea.getBottomBounds());
-        Camera.drawLine("red", this.attackArea.getRightBounds(), this.attackArea.getBottomBounds(), this.attackArea.getLeftBounds(), this.attackArea.getBottomBounds());
-        Camera.drawLine("red", this.attackArea.getLeftBounds(), this.attackArea.getBottomBounds(), this.attackArea.getLeftBounds(), this.attackArea.getTopBounds());
+        Camera.drawLineWorldPos("red", this.attackArea.getLeftBounds(), this.attackArea.getTopBounds(), this.attackArea.getRightBounds(), this.attackArea.getTopBounds());
+        Camera.drawLineWorldPos("red", this.attackArea.getRightBounds(), this.attackArea.getTopBounds(), this.attackArea.getRightBounds(), this.attackArea.getBottomBounds());
+        Camera.drawLineWorldPos("red", this.attackArea.getRightBounds(), this.attackArea.getBottomBounds(), this.attackArea.getLeftBounds(), this.attackArea.getBottomBounds());
+        Camera.drawLineWorldPos("red", this.attackArea.getLeftBounds(), this.attackArea.getBottomBounds(), this.attackArea.getLeftBounds(), this.attackArea.getTopBounds());
     }
 };
 

@@ -3,7 +3,7 @@
     "metadata" :
     {
         "formatVersion" : 3,
-        "sourceFile"    : "monster.obj",
+        "sourceFile"    : "monsters.obj",
         "generatedBy"   : "OBJConverter",
         "vertices"      : 1020,
         "faces"         : 1018,

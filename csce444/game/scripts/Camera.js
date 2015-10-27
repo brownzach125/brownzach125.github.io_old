@@ -67,6 +67,7 @@ Camera.clear = function() {
 
 };
 
+// Set by player
 Camera.center = { x : 0 ,y: 0 };
 
 Camera.drawImage = function(img, x, y, width, height) {
@@ -94,4 +95,27 @@ Camera.drawLine = function(color, x, y, dx, dy) {
     Camera.context.strokeStyle= color;
     Camera.context.stroke();
 };
+
+Camera.drawLineWorldPos = function(color, x, y, dx, dy) {
+    x -= Camera.center.x;
+    y -= Camera.center.y;
+    dx-= Camera.center.x;
+    dy-= Camera.center.y;
+
+    Camera.context.beginPath();
+    Camera.context.moveTo(x*Camera.scale,y*Camera.scale);
+    Camera.context.lineTo(dx*Camera.scale,dy*Camera.scale);
+    Camera.context.strokeStyle= color;
+    Camera.context.stroke();
+};
+
+Camera.getViewScreenInfo = function() {
+    var info = {};
+    info.rows = Math.floor(CAMERA_NATIVE_HEIGHT / TILE_LENGTH);
+    info.cols = Math.floor(CAMERA_NATIVE_WIDTH  / TILE_LENGTH);
+    info.startRow = Math.floor(Camera.center.y / TILE_LENGTH);
+    info.startCol = Math.floor(Camera.center.x / TILE_LENGTH);
+    return info;
+};
+
 

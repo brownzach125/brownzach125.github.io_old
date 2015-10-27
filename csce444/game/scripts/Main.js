@@ -56,7 +56,7 @@ function redraw() {
 
     // draw background
     //arena.drawGround();
-
+    world.drawTerrain();
     // draw bottom floor objects
     //for(var i = 0; i < BaddieManager.corpses.length; i++)
     //{
@@ -93,7 +93,9 @@ function getAllDrawables() {
     //    drawables.push(BaddieManager.baddies[i]);
     //}
     //drawables.push(world.getDrawables());
-    drawables.push(world);
+    //drawables.push(world);
+    var worldObjects = world.getDrawables();
+    drawables = drawables.concat( worldObjects );
     drawables.push(player);
 
     return drawables;
@@ -101,7 +103,7 @@ function getAllDrawables() {
 
 function canBeAt(pos, obj) {
 
-    var nearByObjects = world.nearByObjects(pos , 16);
+    var nearByObjects = world.nearByObjects(pos , TILE_LENGTH * 2);
     if ( nearByObjects.length != 0) {
     }
     for ( var i =0; i < nearByObjects.length; i++) {
@@ -111,6 +113,7 @@ function canBeAt(pos, obj) {
             }
         }
     }
+
     /*
     // check map objects
 

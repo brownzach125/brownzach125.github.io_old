@@ -1,24 +1,24 @@
-var TILE_LENGTH = 64;
+var TILE_LENGTH = 24;
 
+// Tiles enum
+var ROAD_TILE  =  1;
+var BLACK_TILE =  0;
 
-// Tile enum
-var ROAD_TILE =1;
-var IRON_ROAD_TILE = 255;
-var BLACK_TILE = 2;
+// Object enum
+var PLAYER_OBJ    = 50;
+var IRON_RAIL_OBJ = 255;
+
 
 function World() {
     this.tiles = {};
     this.tiles[ROAD_TILE]      = ResourceManager.loadImage("./images/tiles/IronPath_0.png");
-    this.tiles[IRON_ROAD_TILE] = ResourceManager.loadImage("./images/tiles/IronPath_1.png");
+    this.tiles[IRON_RAIL_OBJ]  = ResourceManager.loadImage("./images/tiles/IronPath_1.png");
     this.tiles[BLACK_TILE]     = ResourceManager.loadImage("./images/tiles/BlackTile.png");
 
-    this.worldMap    = ResourceManager.loadImage("./images/tiles/TileMap.png");
+    this.worldMap              = ResourceManager.loadImage("./images/tiles/TileMap.png");
+    this.monsterManager = new MonsterManager();
 
-    this.position = {
-        x : 0,
-        y : -50
-    };
-    this.map = [];
+    this.terrainMap = [];
 }
 
 World.prototype.init = function() {
@@ -26,102 +26,90 @@ World.prototype.init = function() {
     this.WorldHeight = this.worldMap.height;
     this.viewScreenWidth =  Math.floor(CAMERA_NATIVE_WIDTH / TILE_LENGTH);
     this.viewScreenHeight = Math.floor(CAMERA_NATIVE_HEIGHT / TILE_LENGTH);
-    Camera.context.drawImage(this.worldMap , 0,0, this.worldMap.width , this.worldMap.height);
-    var pixels = Camera.context.getImageData( 0 , 0 , this.worldMap.width , this.worldMap.height);
-    for ( var i =0; i < pixels.data.length/4; i++) {
-        //this.map.push( pixels.data[i*4]);
 
-        var type = pixels.data[i*4];
-        var r = i / this.WorldWidth;
-        var c = i % this.WorldWidth;
-        var obj;
-        var pos = { x: c * TILE_LENGTH + TILE_LENGTH/2 , y: r * TILE_LENGTH + TILE_LENGTH /2};
-        switch( type ) {
-            case IRON_ROAD_TILE:{
-                obj = { type: type , obj: new IronRod(pos)};
+    var result = LoadTileMap(this.worldMap);
+    this.terrainMap = result.terrain;
+    var objs = result.objs;
+    this.objs = {};
+    for ( var key in objs ) {
+        var obj = objs[key];
+        switch( obj.type ) {
+            case IRON_RAIL_OBJ: {
+                obj.obj = new IronRod(obj.pos);
+                this.objs[key] = obj;
                 break;
             }
-            default: {
-                obj = { type: type , obj: { position: pos}};
-                break;
+            case PLAYER_OBJ: {
+                player.position = obj.pos;
             }
         }
-        //this.map[r , c] = obj;
-        this.map.push(obj);
     }
-}
-
+    for ( var key in result.monsters) {
+        var obj = result.monsters[key];
+        this.monsterManager.addMonster(obj.pos , obj.type);
+    }
+};
 
 World.prototype.getDrawables = function() {
+    var drawables = [];
+    var viewInfo = Camera.getViewScreenInfo();
+    for ( var r = viewInfo.startRow; r < viewInfo.startRow + viewInfo.rows; r++) {
+        for ( var c = viewInfo.startCol; c < viewInfo.startCol + viewInfo.cols; c++ ) {
+            var index = r * this.WorldWidth + c;
+            if ( index >= 0 && index < this.terrainMap.length) {
+                if ( this.objs[index] && this.objs[index].obj ) {
+                    drawables.push(this.objs[index].obj);
+                }
+            }
+        }
+    }
+    drawables = drawables.concat( this.monsterManager.getMonstersOnScreen() );
+    return drawables;
+};
 
-}
-
-World.prototype.draw = function() {
-    if ( this.map.length == 0)
+World.prototype.drawTerrain = function() {
+    if ( this.terrainMap.length == 0)
         return;
 
-    var rows = this.viewScreenHeight + 5;
-    var cols = this.viewScreenWidth + 5;
-    var startRow = Math.floor(player.position.y / TILE_LENGTH) - Math.floor(this.viewScreenHeight /2);
-    var offsetR = player.position.y % TILE_LENGTH;
-    var offsetC = player.position.x % TILE_LENGTH;
-    var startCol = Math.floor(player.position.x / TILE_LENGTH) - Math.floor(this.viewScreenWidth  /2);
-    var count =0;
-    for ( var r = 0; r < rows; r++ ) {
-        for ( var c = 0; c < cols; c++) {
+    var viewInfo = Camera.getViewScreenInfo();
+    for ( var r = viewInfo.startRow - 5; r < viewInfo.startRow + viewInfo.rows +5; r++ ) {
+        for ( var c = viewInfo.startCol - 5; c < viewInfo.startCol + viewInfo.cols + 5; c++) {
             var index;
-
-            if ( r + startRow < 0 || c + startCol < 0){
+            if ( r  < 0 || c < 0){
                 index  =-1;
             }
             else {
-                index = (r + startRow) * this.WorldWidth + (c + startCol);
-            }
+                index = r * this.WorldWidth + c;
 
-            /*
-            var img;
-            var type;
-            var obj = this.map[(r + startRow) , (c+startCol)];
-            if ( obj ) {
-                type = obj.type;
             }
-            else {
-                type = BLACK_TILE;
-            }
-            */
-
-            if ( index >=0 && index < this.map.length) {
-                img = this.tiles[this.map[index].type];
+            if ( index >=0 && index < this.terrainMap.length) {
+                img = this.tiles[this.terrainMap[index]];
             } else {
                 img = this.tiles[BLACK_TILE];
             }
-
-            //img = this.tiles[type];
-            Camera.drawImage(img, c * TILE_LENGTH - offsetC, r * TILE_LENGTH - offsetR , TILE_LENGTH, TILE_LENGTH);
-            count++;
+            Camera.drawImageWorldPos(img, c * TILE_LENGTH, r * TILE_LENGTH , TILE_LENGTH, TILE_LENGTH);
         }
 
     }
-    //console.log("Count " + count);
 
 };
 
 World.prototype.nearByObjects = function(pos , radius) {
 
-    var tileC = Math.round(pos.x / TILE_LENGTH);
-    var tileR = Math.round(pos.y / TILE_LENGTH);
+    var tileC = Math.floor(pos.x / TILE_LENGTH);
+    var tileR = Math.floor(pos.y / TILE_LENGTH);
     radius = Math.floor(radius / TILE_LENGTH) + 1;
     // TODO kinda hacky
     var possible = [];
     for ( var r = tileR - radius; r < tileR + radius; r++) {
         for ( var c = tileC - radius; c < tileC + radius; c++) {
             var index = r  * this.WorldWidth + c;
-            var obj = this.map[index];
+            var obj = this.objs[index];
             var type = undefined;
             if ( obj )
                 type = obj.type;
             switch (type) {
-                case IRON_ROAD_TILE: {
+                case IRON_RAIL_OBJ: {
                     possible.push(obj.obj);
                     break;
                 }
@@ -133,16 +121,28 @@ World.prototype.nearByObjects = function(pos , radius) {
         }
     }
     return possible;
+
 }
 
-ROD_OFFSET_TOP    = -2 *  TILE_LENGTH/4;
-ROD_OFFSET_BOTTOM =       TILE_LENGTH/8;
-ROD_OFFSET_RIGHT  =       TILE_LENGTH/4;
-ROD_OFFSET_LEFT   = -1 *  TILE_LENGTH/4;
+ROD_OFFSET_TOP    =       TILE_LENGTH/2 - TILE_LENGTH/8;
+ROD_OFFSET_BOTTOM =       -1 * TILE_LENGTH/2;
+ROD_OFFSET_RIGHT  =       TILE_LENGTH/2;
+ROD_OFFSET_LEFT   = -1 *  TILE_LENGTH/2;
 
 IronRod = function(pos) {
     this.position = pos;
 };
+
+IronRod.prototype.draw = function() {
+    // TODO hack
+    Camera.drawImageWorldPos( world.tiles[IRON_RAIL_OBJ] , this.position.x - TILE_LENGTH/2 , this.position.y  - TILE_LENGTH/2 , TILE_LENGTH , TILE_LENGTH);
+    if ( DEBUG) {
+        Camera.drawLineWorldPos("purple", this.getLeftBounds(), this.getTopBounds(), this.getRightBounds(), this.getTopBounds());
+        Camera.drawLineWorldPos("purple", this.getRightBounds(), this.getTopBounds(), this.getRightBounds(), this.getBottomBounds());
+        Camera.drawLineWorldPos("purple", this.getRightBounds(), this.getBottomBounds(), this.getLeftBounds(), this.getBottomBounds());
+        Camera.drawLineWorldPos("purple", this.getLeftBounds(), this.getBottomBounds(), this.getLeftBounds(), this.getTopBounds());
+    }
+}
 
 IronRod.prototype.getTopBounds = function() {
     return this.position.y + ROD_OFFSET_TOP;
