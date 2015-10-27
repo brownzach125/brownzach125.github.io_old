@@ -2,7 +2,7 @@ var PLAYER_SPEED = 2;
 var PLAYER_ACCEL = 0.5;
 var PLAYER_SPEED_FRICTION = 0.4;
 
-var PLAYER_LENGTH = 150;
+var PLAYER_LENGTH = TILE_LENGTH * 5;
 var DEFAULT_GUY_OFFSET_RIGHT  = PLAYER_LENGTH *   .1;
 var DEFAULT_GUY_OFFSET_LEFT   = PLAYER_LENGTH  * -.2;
 var DEFAULT_GUY_OFFSET_TOP    = PLAYER_LENGTH  * -.3;
@@ -45,30 +45,6 @@ function Player() {
     this.playerImageRight = ResourceManager.loadImage('./images/player/CharacterRight.png');
     this.playerImageUp    = ResourceManager.loadImage('./images/player/CharacterUp.png');
     this.playerImageDown    = ResourceManager.loadImage('./images/player/CharacterDown.png');
-    /*
-    this.playerImage = ResourceManager.loadImage("art/player/blackGuy.png");
-    this.guyLeft = ResourceManager.loadImage("art/player/blackGuy_left.png");
-    this.guyRight = ResourceManager.loadImage("art/player/blackGuy_right.png");
-
-    this.prep_left = ResourceManager.loadImage("art/player/blackGuy_prep_left.png");
-    this.prep_right = ResourceManager.loadImage("art/player/blackGuy_prep_right.png");
-
-    this.attack_left = ResourceManager.loadImage("art/player/blackGuy_attack_left.png");
-    this.attack_right = ResourceManager.loadImage("art/player/blackGuy_attack_right.png");
-
-    this.swoosh_left = ResourceManager.loadImage("art/player/blackGuy_attack_swoosh_left.png");
-    this.swoosh_right = ResourceManager.loadImage("art/player/blackGuy_attack_swoosh_right.png");
-
-    this.shadowImage = ResourceManager.loadImage("art/player/guyShadow.png");
-    this.lightImage = ResourceManager.loadImage("art/player/playerLight1.png");
-
-    this.deadImage = ResourceManager.loadImage("art/player/blackGuyDead.png");
-    this.deathLightImage = ResourceManager.loadImage("art/player/playerDeathLight.png");
-
-    // sounds
-    this.hitSound = ResourceManager.loadSound("sound/sword_hit.wav");
-    this.missSound = ResourceManager.loadSound("sound/sword_swing.wav");
-    */
 }
 
 Player.prototype.update = function() {
@@ -220,10 +196,8 @@ Player.prototype.attack = function() {
     for(var i = 0; i < BaddieManager.baddies.length; i++)
     {
         var baddie = BaddieManager.baddies[i];
-        if(intersectsZ(this, baddie, 8))
-        {
-            if(intersects(this.attackArea, baddie.getHitBox()))
-            {
+        if(intersectsZ(this, baddie, 8)) {
+            if(intersects(this.attackArea, baddie.getHitBox())) {
                 // apply damage
                 baddie.loseHealth(1);
                 hit = true;
@@ -270,12 +244,14 @@ Player.prototype.die = function() {
 
 Player.prototype.getHitBox = function() {
     var pos = {};
-    pos.x = this.position.x + 3;
-    pos.y = this.position.y + 2;
+    var hitBoxWidth  = PLAYER_LENGTH * .2;
+    var hitBoxHeight = PLAYER_LENGTH * .5;
+    pos.x = this.position.x - .5 * hitBoxWidth - 4;
+    pos.y = this.position.y - .5 * hitBoxHeight -4;
 
-    var w = 11;
-    var h = 34;
-    //return new PosArea(pos, w, h);
+    var w = hitBoxWidth;
+    var h = hitBoxHeight;
+    return new PosArea(pos, w, h);
 };
 
 Player.prototype.draw = function() {
@@ -350,11 +326,11 @@ Player.prototype.draw = function() {
         Camera.drawLineWorldPos("purple", this.getRightBounds(), this.getBottomBounds(), this.getLeftBounds(), this.getBottomBounds());
         Camera.drawLineWorldPos("purple", this.getLeftBounds(), this.getBottomBounds(), this.getLeftBounds(), this.getTopBounds());
 
-        //var box = this.getHitBox();
-        //Camera.drawLineWorldPos("blue", box.getLeftBounds(), box.getTopBounds(), box.getRightBounds(), box.getTopBounds());
-        //Camera.drawLineWorldPos("blue", box.getRightBounds(), box.getTopBounds(), box.getRightBounds(), box.getBottomBounds());
-        //Camera.drawLineWorldPos("blue", box.getRightBounds(), box.getBottomBounds(), box.getLeftBounds(), box.getBottomBounds());
-        //Camera.drawLineWorldPos("blue", box.getLeftBounds(), box.getBottomBounds(), box.getLeftBounds(), box.getTopBounds());
+        var box = this.getHitBox();
+        Camera.drawLineWorldPos("blue", box.getLeftBounds(), box.getTopBounds(), box.getRightBounds(), box.getTopBounds());
+        Camera.drawLineWorldPos("blue", box.getRightBounds(), box.getTopBounds(), box.getRightBounds(), box.getBottomBounds());
+        Camera.drawLineWorldPos("blue", box.getRightBounds(), box.getBottomBounds(), box.getLeftBounds(), box.getBottomBounds());
+        Camera.drawLineWorldPos("blue", box.getLeftBounds(), box.getBottomBounds(), box.getLeftBounds(), box.getTopBounds());
 
 
     }

@@ -1,4 +1,4 @@
-var TILE_LENGTH = 24;
+TILE_LENGTH = 16;
 
 // Tiles enum
 var ROAD_TILE  =  1;
@@ -35,7 +35,7 @@ World.prototype.init = function() {
         var obj = objs[key];
         switch( obj.type ) {
             case IRON_RAIL_OBJ: {
-                obj.obj = new IronRod(obj.pos);
+                obj.obj = new IronRod(obj.pos , this.tiles[IRON_RAIL_OBJ]);
                 this.objs[key] = obj;
                 break;
             }
@@ -99,7 +99,6 @@ World.prototype.nearByObjects = function(pos , radius) {
     var tileC = Math.floor(pos.x / TILE_LENGTH);
     var tileR = Math.floor(pos.y / TILE_LENGTH);
     radius = Math.floor(radius / TILE_LENGTH) + 1;
-    // TODO kinda hacky
     var possible = [];
     for ( var r = tileR - radius; r < tileR + radius; r++) {
         for ( var c = tileC - radius; c < tileC + radius; c++) {
@@ -120,58 +119,14 @@ World.prototype.nearByObjects = function(pos , radius) {
             }
         }
     }
+    //possible = possible.concat( this.monsterManager.getMonstersOnScreen() );
     return possible;
-
 }
 
-ROD_OFFSET_TOP    =       TILE_LENGTH/2 - TILE_LENGTH/8;
-ROD_OFFSET_BOTTOM =       -1 * TILE_LENGTH/2;
-ROD_OFFSET_RIGHT  =       TILE_LENGTH/2;
-ROD_OFFSET_LEFT   = -1 *  TILE_LENGTH/2;
-
-IronRod = function(pos) {
-    this.position = pos;
-};
-
-IronRod.prototype.draw = function() {
-    // TODO hack
-    Camera.drawImageWorldPos( world.tiles[IRON_RAIL_OBJ] , this.position.x - TILE_LENGTH/2 , this.position.y  - TILE_LENGTH/2 , TILE_LENGTH , TILE_LENGTH);
-    if ( DEBUG) {
-        Camera.drawLineWorldPos("purple", this.getLeftBounds(), this.getTopBounds(), this.getRightBounds(), this.getTopBounds());
-        Camera.drawLineWorldPos("purple", this.getRightBounds(), this.getTopBounds(), this.getRightBounds(), this.getBottomBounds());
-        Camera.drawLineWorldPos("purple", this.getRightBounds(), this.getBottomBounds(), this.getLeftBounds(), this.getBottomBounds());
-        Camera.drawLineWorldPos("purple", this.getLeftBounds(), this.getBottomBounds(), this.getLeftBounds(), this.getTopBounds());
-    }
+World.prototype.getMonsters = function() {
+    return this.monsterManager.monsters;
 }
 
-IronRod.prototype.getTopBounds = function() {
-    return this.position.y + ROD_OFFSET_TOP;
-};
-
-IronRod.prototype.getBottomBounds = function() {
-    return this.position.y + ROD_OFFSET_BOTTOM;
-};
-
-IronRod.prototype.getLeftBounds = function() {
-    return this.position.x + ROD_OFFSET_LEFT;
-};
-
-IronRod.prototype.getRightBounds = function() {
-    return this.position.x + ROD_OFFSET_RIGHT;
-};
-
-IronRod.prototype.getTopBoundsFromPos = function(pos) {
-    return pos.y + ROD_OFFSET_TOP;
-};
-
-IronRod.prototype.getBottomBoundsFromPos = function(pos) {
-    return pos.y + ROD_OFFSET_BOTTOM;
-};
-
-IronRod.prototype.getLeftBoundsFromPos = function(pos) {
-    return pos.x + ROD_OFFSET_LEFT;
-};
-
-IronRod.prototype.getRightBoundsFromPos = function(pos) {
-    return pos.x + ROD_OFFSET_RIGHT;
+World.prototype.update = function() {
+    this.monsterManager.updateAll();
 };

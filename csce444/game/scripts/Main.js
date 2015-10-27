@@ -48,6 +48,7 @@ function resizeHandler(event) {
 
 function gameLoop() {
     // TODO
+    world.update();
     player.update();
     redraw();
 }
@@ -103,9 +104,7 @@ function getAllDrawables() {
 
 function canBeAt(pos, obj) {
 
-    var nearByObjects = world.nearByObjects(pos , TILE_LENGTH * 2);
-    if ( nearByObjects.length != 0) {
-    }
+    var nearByObjects = world.nearByObjects(pos , TILE_LENGTH * 3);
     for ( var i =0; i < nearByObjects.length; i++) {
         if ( nearByObjects[i] != obj) {
             if (intersects(pos , obj , nearByObjects[i])) {
@@ -114,32 +113,19 @@ function canBeAt(pos, obj) {
         }
     }
 
-    /*
-    // check map objects
-
-    // check baddie objects
-    for(var i = 0; i < BaddieManager.corpses.length; i++)
-    {
-        if(BaddieManager.corpses[i] != obj)
-            if(intersectsNew(pos, obj, BaddieManager.corpses[i]))
+    var monsters = world.getMonsters();
+    for ( var i =0; i < monsters.length; i++) {
+        if ( monsters[i] != obj ) {
+            if ( intersects(pos , obj , monsters[i])) {
                 return false;
+            }
+        }
     }
 
-    // check baddies
-    for(var i = 0; i < BaddieManager.baddies.length; i++)
-    {
-        if(BaddieManager.baddies[i] != obj)
-            if(intersectsNew(pos, obj, BaddieManager.baddies[i]))
-                return false;
-    }
-
-    // check player
-    if(player != obj)
-        if(intersectsNew(pos, obj, player))
+    if ( player !=obj ) {
+        if ( intersectsNew(pos , obj , player))
             return false;
-
-    return true;
-    */
+    }
     return true;
 };
 
