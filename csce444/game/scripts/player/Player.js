@@ -207,7 +207,7 @@ Player.prototype.draw = function() {
 
 Player.prototype.onTheStraightAndNarrow = function(pos) {
     var distance = Math.abs(pos.y - world.roadPosition.y);
-    if ( distance < 50 ) {
+    if ( distance < 65 ) {
         return true;
     } else {
         return false;
@@ -244,10 +244,18 @@ Player.prototype.pathChangeHandler = function(oldPos , newPos) {
         console.log("Going off road");
         this.onPathMusic.volume = 0;
         this.onRoad = false;
+
+        offRoadEvent();
+        return;
+    }
+
+    if ( this.onTheStraightAndNarrow(oldPos) && !this.onTheStraightAndNarrow(newPos)) {
+        offStraightAndNarrow();
         return;
     }
 
     if ( !this.onRoad && this.onTheStraightAndNarrow(newPos) ) {
+        backOnRoadEvent();
         // Got back on straight and narrow
         console.log("Back on the narrow");
         this.onPathMusic.volume = .05;
@@ -285,6 +293,32 @@ Player.prototype.drawLight = function() {
 
     }
 };
+
+
+function offStraightAndNarrow() {
+    var sassyMessage = "There is nothing out there... Come back or perish"
+    ToggleWordBlock(sassyMessage);
+    PAUSE = true;
+}
+
+function offRoadEvent() {
+    if ( player.fallen)
+        return;
+    console.log("Off road event");
+    var sassyMessage = "You have fallen.";
+    player.fallen = true;
+    ToggleWordBlock(sassyMessage);
+    PAUSE = true;
+}
+
+function backOnRoadEvent() {
+    player.fallen = false;
+    console.log("Cant wait to get on the road again");
+    var sassyMessage = "It is so nice to see you again.";
+    ToggleWordBlock(sassyMessage);
+    PAUSE = true;
+}
+
 
 
 Player.prototype.getTopBounds = function() {

@@ -47,7 +47,7 @@ KeyHandler.onKeyDown = function(event) {
 
         // Q
         case 81: 	{
-            var words = "THIS IS AWESOME";
+            var words = "THIS IS AWESOME! I think this is very cool I hope other people like it too!";
             ToggleWordBlock(words);
             break;
 
@@ -70,6 +70,7 @@ KeyHandler.onKeyDown = function(event) {
             }
             else if (gameState == "on") {
                 PAUSE = !PAUSE;
+                ToggleWordBlock(null , true);
             }
             else if (gameState == "over") {
                 resetGame();
