@@ -17,11 +17,6 @@ function World() {
 
     this.worldMap              = ResourceManager.loadImage("./images/tiles/TileMap.png");
 
-    // Over lays
-    this.roadOverLay           = ResourceManager.loadImage("./images/overlays/RoadOverLay.png");
-    this.offRoadOverLay1        = ResourceManager.loadImage("./images/overlays/OffRoadOverLay1.png");
-    this.offRoadOverLay2        = ResourceManager.loadImage("./images/overlays/OffRoadOverLay2.png");
-
     this.monsterManager = new MonsterManager();
 
     this.terrainMap = [];
@@ -50,7 +45,6 @@ World.prototype.init = function() {
                 this.roadPosition = {};
                 this.roadPosition.x = obj.pos.x;
                 this.roadPosition.y = obj.pos.y;
-                player.position.y += 220;
                 break;
             }
         }
@@ -140,21 +134,4 @@ World.prototype.drawTerrain = function() {
 
     }
 
-};
-
-World.prototype.drawOverLays = function() {
-    if ( !this.roadPosition)
-        return;
-    //var pos = player.position;
-    // On road?
-    var distance = Math.abs(player.position.y - this.roadPosition.y);
-    if ( distance <  200) {
-        Camera.drawImageSmoothWorldPos(this.roadOverLay, player.position.x - CAMERA_NATIVE_WIDTH / 2, this.roadPosition.y - this.roadOverLay.height * TILE_LENGTH / 2, CAMERA_NATIVE_WIDTH, this.roadOverLay.height * TILE_LENGTH);
-    }
-    else {
-        if ( DEBUG )
-            Camera.drawImageSmooth(this.offRoadOverLay1 , 0  , 0 , CAMERA_NATIVE_WIDTH , CAMERA_NATIVE_HEIGHT);
-        else
-            Camera.drawImageSmooth(this.offRoadOverLay2 , 0  , 0 , CAMERA_NATIVE_WIDTH , CAMERA_NATIVE_HEIGHT);
-    }
 };

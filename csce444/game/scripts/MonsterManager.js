@@ -79,6 +79,7 @@ Monster.prototype.update = function() {
 
     if ( intersects( this.position , this , player)) {
         console.log("Ive sinned");
+        player.commitSin();
     }
 
 };

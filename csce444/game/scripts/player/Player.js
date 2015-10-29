@@ -8,6 +8,7 @@ var DEFAULT_GUY_OFFSET_LEFT   = PLAYER_LENGTH  * -.2;
 var DEFAULT_GUY_OFFSET_TOP    = PLAYER_LENGTH  * -.3;
 var DEFAULT_GUY_OFFSET_BOTTOM = PLAYER_LENGTH  *  .2;
 
+
 var PLAYER_TURN_SPEED = 10;
 
 function Player() {
@@ -15,42 +16,48 @@ function Player() {
         x: 60,
         y: 0
     };
-    this.health = 3;
-    this.dead = false;
+
+    this.canSin = true;
+    this.lightLevel = 0;
+    this.onRoad = true;
 
     this.vector = Math.PI/2;
-
     this.velocity = 0;
-
     this.lightPosition = {
         x: 0,
         y: 0
     };
 
     this.facing = "right";
-
-    this.attacking = false;
-    this.preppingAttack = false;
-
-    this.prepTime = 200;
-    this.attackTime = 200;
-    this.attackResetTime = 100;
-
-    this.prepStartTime = 0;
-    this.attackStartTime = 0;
-    this.attackEndTime = 0;
-
     // images
-    this.playerImageLeft  = ResourceManager.loadImage('./images/player/CharacterLeft.png');
-    this.playerImageRight = ResourceManager.loadImage('./images/player/CharacterRight.png');
-    this.playerImageUp    = ResourceManager.loadImage('./images/player/CharacterUp.png');
+    this.playerImageLeft    = ResourceManager.loadImage('./images/player/CharacterLeft.png');
+    this.playerImageRight   = ResourceManager.loadImage('./images/player/CharacterRight.png');
+    this.playerImageUp      = ResourceManager.loadImage('./images/player/CharacterUp.png');
     this.playerImageDown    = ResourceManager.loadImage('./images/player/CharacterDown.png');
+
+    // sounds
+    this.commitSinSound     = ResourceManager.loadSound('./sounds/CommitSin.mp3');
+    this.onPathMusic        = ResourceManager.loadSound('./sounds/OnThePath.mp3');
+
+
+    // Overlays
+    this.roadOverLay            = ResourceManager.loadImage("./images/overlays/RoadOverLay.png");
+    this.offRoadOverLays = [];
+    this.overlay = 0;
+    this.offRoadOverLays[0]        = ResourceManager.loadImage("./images/overlays/OffRoadOverLay1.png");
+    this.offRoadOverLays[1]        = ResourceManager.loadImage("./images/overlays/OffRoadOverLay2.png");
+    this.offRoadOverLays[2]        = ResourceManager.loadImage("./images/overlays/OffRoadOverLay3.png");
+    this.offRoadOverLays[3]        = ResourceManager.loadImage("./images/overlays/OffRoadOverLay4.png");
+}
+
+
+Player.prototype.init = function() {
+    this.onPathMusic.play();
+    this.onPathMusic.volume = .05;
+    this.commitSinSound.volume = .05;
 }
 
 Player.prototype.update = function() {
-    if(this.dead)
-        return;
-
     var moving = false;
 
     var vX = 0;
@@ -101,6 +108,8 @@ Player.prototype.update = function() {
         y: this.position.y + Math.cos(this.vector ) *  this.velocity
     };
 
+    this.pathChangeHandler( this.position , newPos );
+
     if(canBeAt({x: newPos.x, y: this.position.y}, this)) {
         this.position.x = newPos.x;
     }
@@ -123,8 +132,6 @@ Player.prototype.update = function() {
     // Update camera center
     Camera.center = { x: this.position.x - CAMERA_NATIVE_WIDTH/2 , y: this.position.y - CAMERA_NATIVE_HEIGHT/2}
 
-
-    //aconsole.log(this.vector);
     //update facing
     if(this.vector > 0 && this.vector < Math.PI)
         this.facing = "right";
@@ -136,110 +143,6 @@ Player.prototype.update = function() {
     if ( this.vector == 0) {
         this.facing = "down";
     }
-
-    //update light position
-    var ldx = this.lightPosition.x - this.position.x;
-    var ldy = this.lightPosition.y - this.position.y;
-
-    this.lightPosition.x -= ldx * 0.035;
-    this.lightPosition.y -= ldy * 0.035;
-
-};
-
-Player.prototype.attemptAttack = function() {
-    if(this.canAttack() && !this.attacking && !this.preppingAttack)
-        this.prepAttack();
-};
-
-Player.prototype.canAttack = function() {
-    if( Util.getTime() > this.attackEndTime + this.attackResetTime)
-        return true;
-
-    return false;
-};
-
-Player.prototype.prepAttack = function() {
-    this.preppingAttack = true;
-    this.prepStartTime = Util.getTime();
-};
-
-Player.prototype.isAttackReady = function() {
-    if( Util.getTime() > this.prepStartTime + this.prepTime)
-        return true;
-
-    return false;
-};
-
-Player.prototype.attack = function() {
-    this.preppingAttack = false;
-
-    this.attacking = true;
-
-    this.attackStartTime = Util.getTime();
-
-    var attackPos = {};
-
-    if(this.facing == "left") {
-        attackPos.x = this.position.x - 13 + 0;
-        attackPos.y = this.position.y - 0 + 15;
-    }
-    else
-    {
-        attackPos.x = this.position.x - 1 + 16;
-        attackPos.y = this.position.y - 0 + 15;
-    }
-
-    this.attackArea = new PosArea(attackPos, 15, 11);
-
-    // check for hit
-    var hit = false;
-    for(var i = 0; i < BaddieManager.baddies.length; i++)
-    {
-        var baddie = BaddieManager.baddies[i];
-        if(intersectsZ(this, baddie, 8)) {
-            if(intersects(this.attackArea, baddie.getHitBox())) {
-                // apply damage
-                baddie.loseHealth(1);
-                hit = true;
-            }
-        }
-    }
-
-    if(hit) {
-        // play hit SOUND
-        this.hitSound.play();
-    }
-    else
-    {
-        // play miss sound
-        this.missSound.play();
-    }
-
-};
-
-Player.prototype.isAttackFinished = function() {
-    if( Util.getTime() > this.attackStartTime + this.attackTime)
-        return true;
-
-    return false;
-};
-
-Player.prototype.resetAttack = function() {
-    this.attacking = false;
-    this.attackArea = null;
-    this.attackEndTime = Util.getTime();
-};
-
-Player.prototype.loseHealth = function(dmg) {
-    this.health -= dmg;
-
-    if(this.health == 0)
-        this.die();
-};
-
-Player.prototype.die = function() {
-    this.dead = true;
-    gameState = "over";
 };
 
 Player.prototype.getHitBox = function() {
@@ -275,34 +178,7 @@ Player.prototype.draw = function() {
         img = this.playerImageDown;
     }
     Camera.drawImageWorldPos(img , this.position.x -.5 * PLAYER_LENGTH , this.position.y -.5 * PLAYER_LENGTH , PLAYER_LENGTH , PLAYER_LENGTH);
-
-    // guy
-    /*
-    if(this.attacking)
-    {
-        if(this.facing == "left")
-            Camera.drawImage(this.attack_left, this.position.x-13, this.position.y, 31, 40);
-        else if(this.facing == "right")
-            Camera.drawImage(this.attack_right, this.position.x-1, this.position.y, 31, 40);
-    }
-    else if(this.preppingAttack)
-    {
-        if(this.facing == "left")
-            Camera.drawImage(this.prep_left, this.position.x-1, this.position.y, 35, 40);
-        else if(this.facing == "right")
-            Camera.drawImage(this.prep_right, this.position.x-17, this.position.y, 35, 40);
-    }
-    else
-    {
-        if(this.facing == "left")
-            Camera.drawImage(this.guyLeft, this.position.x, this.position.y, 17, 40);
-        else if(this.facing == "right")
-            Camera.drawImage(this.guyRight, this.position.x, this.position.y, 17, 40);
-    }
-*/
-
-    if(DEBUG)
-    {
+    if(DEBUG) {
         var dx = this.position.x +  9 - Math.sin(this.vector ) * this.velocity * 8;
         var dy = this.position.y + 16 - Math.cos(this.vector ) * this.velocity * 8;
 
@@ -321,47 +197,95 @@ Player.prototype.draw = function() {
 
         Camera.drawLineWorldPos("yellow", this.position.x + 9, this.position.y + 16, fx, fy);
 
-        Camera.drawLineWorldPos("purple", this.getLeftBounds(), this.getTopBounds(), this.getRightBounds(), this.getTopBounds());
-        Camera.drawLineWorldPos("purple", this.getRightBounds(), this.getTopBounds(), this.getRightBounds(), this.getBottomBounds());
-        Camera.drawLineWorldPos("purple", this.getRightBounds(), this.getBottomBounds(), this.getLeftBounds(), this.getBottomBounds());
-        Camera.drawLineWorldPos("purple", this.getLeftBounds(), this.getBottomBounds(), this.getLeftBounds(), this.getTopBounds());
+        DrawBoundingBox(this , "purple");
 
         var box = this.getHitBox();
-        Camera.drawLineWorldPos("blue", box.getLeftBounds(), box.getTopBounds(), box.getRightBounds(), box.getTopBounds());
-        Camera.drawLineWorldPos("blue", box.getRightBounds(), box.getTopBounds(), box.getRightBounds(), box.getBottomBounds());
-        Camera.drawLineWorldPos("blue", box.getRightBounds(), box.getBottomBounds(), box.getLeftBounds(), box.getBottomBounds());
-        Camera.drawLineWorldPos("blue", box.getLeftBounds(), box.getBottomBounds(), box.getLeftBounds(), box.getTopBounds());
 
-
+        DrawBoundingBox(box , "blue");
     }
 };
 
-Player.prototype.drawEffects = function()  {
-    //attacl swoosh
-    if(this.attacking) {
-        if(this.facing == "left")
-            Camera.drawImage(this.swoosh_left, this.position.x-13, this.position.y, 31, 40);
-        else if(this.facing == "right")
-            Camera.drawImage(this.swoosh_right, this.position.x-1, this.position.y, 31, 40);
+Player.prototype.onTheStraightAndNarrow = function(pos) {
+    var distance = Math.abs(pos.y - world.roadPosition.y);
+    if ( distance < 50 ) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
+Player.prototype.offRoad = function(pos) {
+    var distance = Math.abs(pos.y - world.roadPosition.y);
+    if ( distance > 200 ) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
+Player.prototype.commitSin = function() {
+    if ( this.lightLevel == this.offRoadOverLays.length - 1)
+        return
+    if ( this.canSin ) {
+        this.lightLevel = (this.lightLevel + 1) % this.offRoadOverLays.length;
+        this.commitSinSound.play();
+        this.canSin = false;
+        var that = this;
+        setTimeout( function() {
+            that.canSin = true;
+        } ,
+        1000);
+    }
+};
+
+Player.prototype.pathChangeHandler = function(oldPos , newPos) {
+    if ( !this.offRoad(oldPos) && this.offRoad(newPos) ) {
+        // Going off road
+        console.log("Going off road");
+        this.onPathMusic.volume = 0;
+        this.onRoad = false;
+        return;
     }
 
-    if(DEBUG && this.attackArea) {
-        Camera.drawLineWorldPos("red", this.attackArea.getLeftBounds(), this.attackArea.getTopBounds(), this.attackArea.getRightBounds(), this.attackArea.getTopBounds());
-        Camera.drawLineWorldPos("red", this.attackArea.getRightBounds(), this.attackArea.getTopBounds(), this.attackArea.getRightBounds(), this.attackArea.getBottomBounds());
-        Camera.drawLineWorldPos("red", this.attackArea.getRightBounds(), this.attackArea.getBottomBounds(), this.attackArea.getLeftBounds(), this.attackArea.getBottomBounds());
-        Camera.drawLineWorldPos("red", this.attackArea.getLeftBounds(), this.attackArea.getBottomBounds(), this.attackArea.getLeftBounds(), this.attackArea.getTopBounds());
+    if ( !this.onRoad && this.onTheStraightAndNarrow(newPos) ) {
+        // Got back on straight and narrow
+        console.log("Back on the narrow");
+        this.onPathMusic.volume = .05;
+        this.onRoad = true;
+        this.lightLevel = 0;
+        return;
     }
 };
 
 Player.prototype.drawLight = function() {
-    
-    //guy light
-    //Camera.drawImage(this.lightImage, this.lightPosition.x - 480+9, this.lightPosition.y -270+16 , 960, 540);
-    Camera.drawImage(this.lightImage,  - 480+240, -270+135 , 960, 540);
-    if(this.dead) {
-        Camera.drawImage(this.deathLightImage, -480 + this.position.x + 6, -270 + this.position.y + 36, 960, 540);
+    if ( !world.roadPosition)
+        return;
+    if ( this.onRoad ) {
+        Camera.drawImageSmoothWorldPos(this.roadOverLay, this.position.x - CAMERA_NATIVE_WIDTH / 2, world.roadPosition.y - this.roadOverLay.height * TILE_LENGTH / 2, CAMERA_NATIVE_WIDTH, this.roadOverLay.height * TILE_LENGTH);
+    }
+    else {
+        switch ( this.lightLevel ) {
+            case 0 : {
+                Camera.drawImageSmooth(this.offRoadOverLays[0] , 0  , 0 , CAMERA_NATIVE_WIDTH , CAMERA_NATIVE_HEIGHT);
+                break;
+            }
+            case 1 : {
+                Camera.drawImageSmooth(this.offRoadOverLays[1] , 0  , 0 , CAMERA_NATIVE_WIDTH , CAMERA_NATIVE_HEIGHT);
+                break;
+            }
+            case 2 : {
+                Camera.drawImageSmooth(this.offRoadOverLays[2] , 0  , 0 , CAMERA_NATIVE_WIDTH , CAMERA_NATIVE_HEIGHT);
+                break;
+            }
+            case 3 : {
+                Camera.drawImageSmooth(this.offRoadOverLays[3] , 0  , 0 , CAMERA_NATIVE_WIDTH , CAMERA_NATIVE_HEIGHT);
+                break;
+            }
+        }
+
     }
 };
+
 
 Player.prototype.getTopBounds = function() {
     return this.position.y + DEFAULT_GUY_OFFSET_TOP;

@@ -46,8 +46,13 @@ KeyHandler.onKeyDown = function(event) {
             break;
 
         // Q
-        case 81: 	BaddieManager.spawnFreshBaddie();
+        case 81: 	{
+            var words = "THIS IS AWESOME";
+            ToggleWordBlock(words);
             break;
+
+
+        }
 
         // Space
         case 32: 	if(!PAUSE)

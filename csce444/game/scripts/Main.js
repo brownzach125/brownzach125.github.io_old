@@ -7,8 +7,8 @@ var player;
 var world;
 
 function loadGame() {
-    player = new Player();
     world  = new World();
+    player = new Player();
     attemptToStartGame();
 }
 
@@ -28,13 +28,15 @@ function setupGame() {
     // init World
     world.init();
 
+    player.init();
+
     // set up handlers
     // set resize handler
     window.onresize = resizeHandler;
     window.onkeydown = KeyHandler.onKeyDown;
     window.onkeyup = KeyHandler.onKeyUp;
 
-    gameState = "menu";
+    gameState = "on";
 
     // start game loop
     console.log("starting game loop");
@@ -47,22 +49,17 @@ function resizeHandler(event) {
 }
 
 function gameLoop() {
-    // TODO
-    world.update();
-    player.update();
+    if (!PAUSE) {
+        world.update();
+        player.update();
+    }
     redraw();
 }
 
 function redraw() {
 
     // draw background
-    //arena.drawGround();
     world.drawTerrain();
-    // draw bottom floor objects
-    //for(var i = 0; i < BaddieManager.corpses.length; i++)
-    //{
-    //    BaddieManager.corpses[i].draw();
-    //}
 
     // put all the drawables together
     var drawables = getAllDrawables();
@@ -80,26 +77,16 @@ function redraw() {
         if(drawables[i].drawEffects)
             drawables[i].drawEffects();
     }
-
-    world.drawOverLays();
     // draw player Light effect
-    //player.drawLight();
+    player.drawLight();
     //HUD.draw();
 }
 
 function getAllDrawables() {
     var drawables = [];
-
-    //for(var i = 0; i < BaddieManager.baddies.length; i++)
-    //{
-    //    drawables.push(BaddieManager.baddies[i]);
-    //}
-    //drawables.push(world.getDrawables());
-    //drawables.push(world);
     var worldObjects = world.getDrawables();
     drawables = drawables.concat( worldObjects );
     drawables.push(player);
-
     return drawables;
 }
 
