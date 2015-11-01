@@ -8,7 +8,6 @@ var DEFAULT_GUY_OFFSET_LEFT   = PLAYER_LENGTH  * -.2;
 var DEFAULT_GUY_OFFSET_TOP    = PLAYER_LENGTH  * -.3;
 var DEFAULT_GUY_OFFSET_BOTTOM = PLAYER_LENGTH  *  .2;
 
-
 var PLAYER_TURN_SPEED = 10;
 
 function Player() {
@@ -27,7 +26,7 @@ function Player() {
         x: 0,
         y: 0
     };
-
+    this.count = 0;
     this.facing = "right";
     // images
     this.playerImageLeft    = ResourceManager.loadImage('./images/player/CharacterLeft.png');
@@ -48,6 +47,8 @@ function Player() {
     this.offRoadOverLays[1]        = ResourceManager.loadImage("./images/overlays/OffRoadOverLay2.png");
     this.offRoadOverLays[2]        = ResourceManager.loadImage("./images/overlays/OffRoadOverLay3.png");
     this.offRoadOverLays[3]        = ResourceManager.loadImage("./images/overlays/OffRoadOverLay4.png");
+    this.blankOverLay              = ResourceManager.loadImage("./images/overlays/BlankOverLay.png");
+
 }
 
 
@@ -55,6 +56,10 @@ Player.prototype.init = function() {
     this.onPathMusic.play();
     this.onPathMusic.volume = .05;
     this.commitSinSound.volume = .05;
+
+    this.offRoadData  = getImageData(this.offRoadOverLays[0]);
+    this.onRoadData   = getImageData(this.roadOverLay);
+    this.blankData = getImageData(this.blankOverLay);
 }
 
 Player.prototype.update = function() {
@@ -268,32 +273,57 @@ Player.prototype.pathChangeHandler = function(oldPos , newPos) {
 Player.prototype.drawLight = function() {
     if ( !world.roadPosition)
         return;
-    if ( this.onRoad ) {
-        Camera.drawImageSmoothWorldPos(this.roadOverLay, this.position.x - CAMERA_NATIVE_WIDTH / 2, world.roadPosition.y - this.roadOverLay.height * TILE_LENGTH / 2, CAMERA_NATIVE_WIDTH, this.roadOverLay.height * TILE_LENGTH);
-    }
-    else {
-        switch ( this.lightLevel ) {
-            case 0 : {
-                Camera.drawImageSmooth(this.offRoadOverLays[0] , 0  , 0 , CAMERA_NATIVE_WIDTH , CAMERA_NATIVE_HEIGHT);
-                break;
-            }
-            case 1 : {
-                Camera.drawImageSmooth(this.offRoadOverLays[1] , 0  , 0 , CAMERA_NATIVE_WIDTH , CAMERA_NATIVE_HEIGHT);
-                break;
-            }
-            case 2 : {
-                Camera.drawImageSmooth(this.offRoadOverLays[2] , 0  , 0 , CAMERA_NATIVE_WIDTH , CAMERA_NATIVE_HEIGHT);
-                break;
-            }
-            case 3 : {
-                Camera.drawImageSmooth(this.offRoadOverLays[3] , 0  , 0 , CAMERA_NATIVE_WIDTH , CAMERA_NATIVE_HEIGHT);
-                break;
-            }
-        }
 
-    }
+        if ( this.count % 5 == 0) {
+            this.blendImages(this.onRoadData, this.offRoadData, this.blankData, this.blankOverLay.width, this.blankOverLay.height);
+        }
+        this.count++;
+        Camera.drawImageSmooth(this.blankOverLay , 0 , 0 , CAMERA_NATIVE_WIDTH , CAMERA_NATIVE_HEIGHT);
 };
 
+Player.prototype.blendImages = function(img1 , img2, newImage , width , height) {
+    var canvas  = document.getElementById('blendCanvas');
+    var context = canvas.getContext('2d');
+
+    if ( Math.abs(roadPosY) > 300)
+        return;
+    var roadPosY = Math.floor(player.position.y - world.roadPosition.y);
+
+    var pos = 0;
+
+    var max = 640 * 400;
+    for ( var r = 0; r < 400; r++ ) {
+        for ( var c = 0; c < 640; c++) {
+            var indexSelfLight = (r * 640 + c);
+            var roadLight      = ((r + roadPosY)  * 640 + c);
+            if ( roadLight < 0 || roadLight > (max)) {
+                indexSelfLight *= 4;
+                for ( var p = 0; p < 4; p++) {
+                    newImage.data[indexSelfLight + p] = img2.data[indexSelfLight + p];
+                }
+            }
+            else {
+                roadLight *=4;
+                indexSelfLight *=4;
+                for ( var p = 0; p < 4; p++) {
+                    newImage.data[indexSelfLight + p] = Math.min( img1.data[roadLight + p] , img2.data[indexSelfLight +p]);
+                }
+            }
+        }
+    }
+    context.clearRect(0,0,640,400);
+    context.putImageData(newImage , 0 ,0);
+    this.blankOverLay.src = canvas.toDataURL();
+};
+
+function getImageData(img) {
+    var canvas  = document.getElementById('blendCanvas');
+    var context = canvas.getContext('2d');
+    context.clearRect(0,0, 640 , 400);
+    context.drawImage(img,  0,0 , 640 , 400 );
+    var data = context.getImageData(0,0 , 640 , 400);
+    return data;
+}
 
 function offStraightAndNarrow() {
     var sassyMessage = "There is nothing out there... Come back or perish"

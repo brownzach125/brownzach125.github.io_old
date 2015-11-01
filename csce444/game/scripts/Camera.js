@@ -18,6 +18,12 @@ Camera.init = function() {
         Camera.canvas.height = Camera.height;
 
     Camera.bestFitCamera();
+
+    var canvas  = document.getElementById('blendCanvas');
+    var context = canvas.getContext('2d');
+
+    canvas.width = 640;
+    canvas.height = 400;
 };
 
 Camera.bestFitCamera = function() {
@@ -80,7 +86,6 @@ Camera.drawImage = function(img, x, y, width, height) {
 };
 
 Camera.drawImageSmooth = function(img, x, y, width, height) {
-    //draw canvas without smoothing
     Camera.context.imageSmoothingEnabled = true;
     Camera.context.mozImageSmoothingEnabled = true;
     Camera.context.oImageSmoothingEnabled = true;
@@ -98,7 +103,6 @@ Camera.drawImageWorldPos = function(img , x , y , width , height) {
 }
 
 Camera.drawImageSmoothWorldPos = function(img, x, y, width, height) {
-    //draw canvas without smoothing
     Camera.context.imageSmoothingEnabled = true;
     Camera.context.mozImageSmoothingEnabled = true;
     Camera.context.oImageSmoothingEnabled = true;
