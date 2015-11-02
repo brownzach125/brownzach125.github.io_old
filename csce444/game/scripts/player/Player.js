@@ -47,6 +47,7 @@ function Player() {
     this.offRoadOverLays[1]        = ResourceManager.loadImage("./images/overlays/OffRoadOverLay2.png");
     this.offRoadOverLays[2]        = ResourceManager.loadImage("./images/overlays/OffRoadOverLay3.png");
     this.offRoadOverLays[3]        = ResourceManager.loadImage("./images/overlays/OffRoadOverLay4.png");
+    this.offRoadOverLays[4]        = ResourceManager.loadImage("./images/overlays/OffRoadOverLay5.png");
     this.blankOverLay              = ResourceManager.loadImage("./images/overlays/BlankOverLay.png");
 
 }
@@ -57,9 +58,14 @@ Player.prototype.init = function() {
     this.onPathMusic.volume = .05;
     this.commitSinSound.volume = .05;
 
-    this.offRoadData  = getImageData(this.offRoadOverLays[0]);
-    this.onRoadData   = getImageData(this.roadOverLay);
-    this.blankData = getImageData(this.blankOverLay);
+    this.offRoadDatas = [];
+    this.offRoadDatas[0]  = Util.getImageData(this.offRoadOverLays[0]);
+    this.offRoadDatas[1]  = Util.getImageData(this.offRoadOverLays[1]);
+    this.offRoadDatas[2]  = Util.getImageData(this.offRoadOverLays[2]);
+    this.offRoadDatas[3]  = Util.getImageData(this.offRoadOverLays[3]);
+    this.offRoadDatas[4]  = Util.getImageData(this.offRoadOverLays[4]);
+    this.onRoadData   = Util.getImageData(this.roadOverLay);
+    this.blankData = Util.getImageData(this.blankOverLay);
 }
 
 Player.prototype.update = function() {
@@ -87,23 +93,8 @@ Player.prototype.update = function() {
         vX += 1;
         moving = true;
     }
-    
-    // if attacking
-    if(this.attacking) {
-        if(this.isAttackFinished())
-            this.resetAttack();
-    }
 
-    // else if preparing to attack
-    else if(this.preppingAttack) {
-        if(this.isAttackReady())
-            this.attack();
-
-        // keep prepping that attack bro
-        this.vector = Math.atan2(vX, vY);
-    }
-
-    else if(moving) {
+    if(moving) {
         this.velocity += PLAYER_ACCEL;
         this.vector = Math.atan2(vX, vY);
     }
@@ -113,8 +104,10 @@ Player.prototype.update = function() {
         y: this.position.y + Math.cos(this.vector ) *  this.velocity
     };
 
-    this.pathChangeHandler( this.position , newPos );
 
+    var oldPos = {};
+    oldPos.x = this.position.x;
+    oldPos.y = this.position.y;
     if(canBeAt({x: newPos.x, y: this.position.y}, this)) {
         this.position.x = newPos.x;
     }
@@ -132,6 +125,8 @@ Player.prototype.update = function() {
         if(canBeAt({x: this.position.x, y: newPos.y}, this))
             this.position.y = newPos.y;
     }
+
+    this.pathChangeHandler( oldPos , newPos );
 
     this.velocity -= this.velocity * PLAYER_SPEED_FRICTION;
     // Update camera center
@@ -163,11 +158,6 @@ Player.prototype.getHitBox = function() {
 };
 
 Player.prototype.draw = function() {
-
-    if(this.dead) {
-        //Camera.drawImage(this.deadImage, this.position.x - 11, this.position.y + 21, 35, 30);
-        return;
-    }
 
     //guy shadow
     //Camera.drawImage(this.shadowImage, this.position.x - 3, this.position.y + 33, 21, 12);
@@ -210,21 +200,108 @@ Player.prototype.draw = function() {
     }
 };
 
-Player.prototype.onTheStraightAndNarrow = function(pos) {
-    var distance = Math.abs(pos.y - world.roadPosition.y);
-    if ( distance < 65 ) {
-        return true;
-    } else {
-        return false;
+
+
+Part = {};
+Part.straightAndNarrow = 0;
+Part.road = 1;
+Part.aroundRoad = 2;
+Part.offRoad = 3;
+
+Player.prototype.onPart = function(part , pos) {
+    var distance = Math.abs( pos.y - world.roadPosition.y );
+    switch (part) {
+        case Part.straightAndNarrow:{
+            if (distance < 15) {
+              return true;
+            }
+            break;
+        }
+        case Part.road: {
+          if ( distance >=15 &&  distance < 62 ) {
+              return true;
+          }
+          break;
+        }
+        case Part.aroundRoad: {
+            if ( distance >= 62 && distance < 200 ) {
+                return true;
+            }
+            break;
+        }
+        case Part.offRoad: {
+            if ( distance >= 200 ) {
+                return true;
+            }
+            break;
+        }
     }
+    return false;
 };
 
-Player.prototype.offRoad = function(pos) {
-    var distance = Math.abs(pos.y - world.roadPosition.y);
-    if ( distance > 200 ) {
-        return true;
-    } else {
-        return false;
+Player.prototype.pathChangeHandler = function(oldPos , newPos) {
+    // Off straight and narrow
+    if ( this.onPart( Part.straightAndNarrow , oldPos ) &&  !this.onPart( Part.straightAndNarrow , newPos ) ) {
+        this.roadEvent(RoadEvent.offStraight);
+        console.log("Got off straight and narrow");
+    }
+    // Off road
+    if ( this.onPart( Part.road , oldPos ) &&  !this.onPart( Part.road , newPos ) && !this.onPart( Part.straightAndNarrow , newPos)) {
+        this.roadEvent(RoadEvent.offRoad);
+        console.log("Got off road");
+    }
+    // Off around road
+    if ( this.onPart( Part.aroundRoad , oldPos ) &&  !this.onPart( Part.aroundRoad , newPos ) && !this.onPart( Part.road , newPos)) {
+        this.roadEvent(RoadEvent.offAroundRoad);
+        console.log("Got off aroundroad");
+    }
+
+    // Back around road
+    if ( this.onPart( Part.offRoad , oldPos ) &&  !this.onPart( Part.offRoad , newPos )) {
+        this.roadEvent(RoadEvent.onAroundRoad);
+        console.log("Got on aroundroad");
+    }
+    // Back on road
+    if ( this.onPart( Part.aroundRoad , oldPos ) &&  this.onPart( Part.road , newPos )) {
+        this.roadEvent(RoadEvent.onRoad);
+        console.log("Got on road");
+    }
+    // Back on straiht and narrow
+    if ( this.onPart( Part.road , oldPos ) &&  this.onPart( Part.straightAndNarrow , newPos )) {
+        this.roadEvent(RoadEvent.onStraight);
+        console.log("Got on straight and narrow");
+    }
+};
+RoadEvent = {};
+RoadEvent.offStraight = 0;
+RoadEvent.offRoad = 1;
+RoadEvent.offAroundRoad = 2;
+RoadEvent.onAroundRoad = 3;
+RoadEvent.onRoad = 4;
+RoadEvent.onStraight = 5;
+Player.prototype.roadEvent = function( event ) {
+    switch (event ) {
+        case RoadEvent.onStraight: {
+            this.lightLevel = 0;
+            if ( this.beenFarOut ) {
+                var message = "You have found the one true light again.";
+                ToggleWordBlock(message);
+                this.beenFarOut = false;
+            }
+            break;
+        }
+        case RoadEvent.offRoad: {
+            console.log("Off Road Event");
+            var message = "There is nothing out there... Come back or perish";
+            ToggleWordBlock(message);
+            break;
+        }
+        case RoadEvent.offAroundRoad: {
+            var message = "You are alone.";
+            ToggleWordBlock(message);
+            this.beenFarOut = true;
+            break;
+        }
     }
 };
 
@@ -237,36 +314,9 @@ Player.prototype.commitSin = function() {
         this.canSin = false;
         var that = this;
         setTimeout( function() {
-            that.canSin = true;
-        } ,
-        1000);
-    }
-};
-
-Player.prototype.pathChangeHandler = function(oldPos , newPos) {
-    if ( !this.offRoad(oldPos) && this.offRoad(newPos) ) {
-        // Going off road
-        console.log("Going off road");
-        this.onPathMusic.volume = 0;
-        this.onRoad = false;
-
-        offRoadEvent();
-        return;
-    }
-
-    if ( this.onTheStraightAndNarrow(oldPos) && !this.onTheStraightAndNarrow(newPos)) {
-        offStraightAndNarrow();
-        return;
-    }
-
-    if ( !this.onRoad && this.onTheStraightAndNarrow(newPos) ) {
-        backOnRoadEvent();
-        // Got back on straight and narrow
-        console.log("Back on the narrow");
-        this.onPathMusic.volume = .05;
-        this.onRoad = true;
-        this.lightLevel = 0;
-        return;
+                that.canSin = true;
+            } ,
+            1000);
     }
 };
 
@@ -275,13 +325,13 @@ Player.prototype.drawLight = function() {
         return;
 
         if ( this.count % 5 == 0) {
-            this.blendImages(this.onRoadData, this.offRoadData, this.blankData, this.blankOverLay.width, this.blankOverLay.height);
+            this.blendImages(this.onRoadData, this.offRoadDatas[this.lightLevel], this.blankData);
         }
         this.count++;
         Camera.drawImageSmooth(this.blankOverLay , 0 , 0 , CAMERA_NATIVE_WIDTH , CAMERA_NATIVE_HEIGHT);
 };
 
-Player.prototype.blendImages = function(img1 , img2, newImage , width , height) {
+Player.prototype.blendImages = function(img1 , img2, newImage) {
     var canvas  = document.getElementById('blendCanvas');
     var context = canvas.getContext('2d');
 
@@ -315,41 +365,6 @@ Player.prototype.blendImages = function(img1 , img2, newImage , width , height) 
     context.putImageData(newImage , 0 ,0);
     this.blankOverLay.src = canvas.toDataURL();
 };
-
-function getImageData(img) {
-    var canvas  = document.getElementById('blendCanvas');
-    var context = canvas.getContext('2d');
-    context.clearRect(0,0, 640 , 400);
-    context.drawImage(img,  0,0 , 640 , 400 );
-    var data = context.getImageData(0,0 , 640 , 400);
-    return data;
-}
-
-function offStraightAndNarrow() {
-    var sassyMessage = "There is nothing out there... Come back or perish"
-    ToggleWordBlock(sassyMessage);
-    PAUSE = true;
-}
-
-function offRoadEvent() {
-    if ( player.fallen)
-        return;
-    console.log("Off road event");
-    var sassyMessage = "You have fallen.";
-    player.fallen = true;
-    ToggleWordBlock(sassyMessage);
-    PAUSE = true;
-}
-
-function backOnRoadEvent() {
-    player.fallen = false;
-    console.log("Cant wait to get on the road again");
-    var sassyMessage = "It is so nice to see you again.";
-    ToggleWordBlock(sassyMessage);
-    PAUSE = true;
-}
-
-
 
 Player.prototype.getTopBounds = function() {
     return this.position.y + DEFAULT_GUY_OFFSET_TOP;

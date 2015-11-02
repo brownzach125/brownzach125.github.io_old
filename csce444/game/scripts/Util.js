@@ -50,3 +50,13 @@ Util.getRandomNumber = function(bound)
 {
     return Math.floor(Math.random() * bound);
 };
+
+
+Util.getImageData = function(img) {
+    var canvas  = document.getElementById('blendCanvas');
+    var context = canvas.getContext('2d');
+    context.clearRect(0,0, 640 , 400);
+    context.drawImage(img,  0,0 , 640 , 400 );
+    var data = context.getImageData(0,0 , 640 , 400);
+    return data;
+};
