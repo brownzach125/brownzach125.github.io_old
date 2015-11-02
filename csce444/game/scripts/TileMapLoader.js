@@ -1,5 +1,3 @@
-
-
 function LoadTileMap(img) {
     var result = { terrain: [] , objs: {} , monsters: [] }
     var width = img.width;

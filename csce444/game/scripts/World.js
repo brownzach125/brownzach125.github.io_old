@@ -7,7 +7,7 @@ var BLACK_TILE =  0;
 // Object enum
 var PLAYER_OBJ    = 50;
 var IRON_RAIL_OBJ = 255;
-
+var TREE_OBJ = 170;
 
 function World() {
     this.tiles = {};
@@ -16,6 +16,8 @@ function World() {
     this.tiles[BLACK_TILE]     = ResourceManager.loadImage("./images/tiles/BlackTile.png");
 
     this.worldMap              = ResourceManager.loadImage("./images/tiles/TileMap.png");
+
+    this.treeImg                  = ResourceManager.loadImage("./images/TreeOfLife2.png");
 
     this.monsterManager = new MonsterManager();
 
@@ -47,6 +49,14 @@ World.prototype.init = function() {
                 this.roadPosition.y = obj.pos.y;
                 break;
             }
+            case TREE_OBJ: {
+                this.tree = new Tree(this.treeImg);
+                this.tree.position.x = obj.pos.x;
+                this.tree.position.y = obj.pos.y;
+                Camera.center.x = obj.pos.x - CAMERA_NATIVE_WIDTH/2;
+                Camera.center.y = obj.pos.y - CAMERA_NATIVE_HEIGHT/2;
+                break;
+            }
         }
     }
     for ( var key in result.monsters) {
@@ -69,6 +79,9 @@ World.prototype.getDrawables = function() {
         }
     }
     drawables = drawables.concat( this.monsterManager.getMonstersOnScreen() );
+    if ( this.tree) {
+        drawables.push(this.tree);
+    }
     return drawables;
 };
 
@@ -97,7 +110,6 @@ World.prototype.nearByObjects = function(pos , radius) {
             }
         }
     }
-    //possible = possible.concat( this.monsterManager.getMonstersOnScreen() );
     return possible;
 }
 

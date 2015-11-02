@@ -36,10 +36,11 @@ function setupGame() {
     window.onkeydown = KeyHandler.onKeyDown;
     window.onkeyup = KeyHandler.onKeyUp;
 
-    gameState = "on";
+    gameState = "pan";
 
     // start game loop
     console.log("starting game loop");
+    ToggleWordBlock("Get to the tree of life");
     setInterval(gameLoop, LOOP_DELAY);
 
 }
@@ -48,12 +49,31 @@ function resizeHandler(event) {
     Camera.bestFitCamera();
 }
 
+var pan_rate = 1;
+
 function gameLoop() {
-    if (!PAUSE) {
-        world.update();
-        player.update();
+
+    if (gameState == 'pan') {
+        Camera.center.x -= pan_rate;
+        if (  Camera.center.x - player.position.x < -1 * CAMERA_NATIVE_WIDTH /2 ) {
+            gameState = 'on';
+        }
+        pan_rate+= .1;
+    } else if ( gameState == 'on') {
+        if (!PAUSE) {
+            world.update();
+            player.update();
+        }
     }
-    redraw();
+    // Detect end game
+    var distance = Math.abs(world.tree.position.x - player.position.x);
+    if ( distance < 5) {
+        ToggleWordBlock("You have achieved everlasting life");
+        gameState == 'over'
+    }
+    else {
+        redraw();
+    }
 }
 
 function redraw() {
