@@ -245,11 +245,11 @@ var System = (function (_super) {
                     var newdistance = newPoint1.position.clone().sub(opoint1).dot(planeNormal);
                     if (olddistance * newdistance < 0 && s <= 1 && s >= 0 && t <= 1 && t >= 0) {
                         console.log("collision detected");
-                        var velocity = (point1.velocity.clone().add(point2.velocity)).divideScalar(10);
+                        var velocity = (point1.velocity.clone().add(point2.velocity)).divideScalar(2);
                         var vn = planeNormal.clone().multiplyScalar(velocity.dot(planeNormal));
                         var velocityTangent = velocity.clone().sub(vn);
-                        //var velocityChange = vn.clone().multiplyScalar(-1 * this.elasticity).clone().add(velocityTangent).clone().sub(velocity);
-                        //var vDelta = velocityChange.divideScalar( s *s + (1-s) * (1-s));
+                        var velocityChange = vn.clone().multiplyScalar(-1 * this.elasticity).clone().add(velocityTangent).clone().sub(velocity);
+                        var vDelta = velocityChange.divideScalar(s * s + (1 - s) * (1 - s));
                         //velocity.addVectors(velocityNormal.clone().multiplyScalar(-1 * this.elasticity)  , velocityTangent);
                         //newPoint.sub(normal.clone().multiplyScalar( 2 * newDistance ));
                         newPoint1.velocity.addVectors(vn.clone().multiplyScalar(-1 * this.elasticity), velocityTangent);
@@ -258,11 +258,8 @@ var System = (function (_super) {
                         //this.state.vertices[ (i + 1) % this.state.vertices.length ].velocity.addVectors ( point2.velocity , vDelta.clone().multiplyScalar(1-s));
                         //newPoint1.velocity.addVectors( point1.velocity ,  vDelta.clone().multiplyScalar(s));
                         //newPoint2.velocity.addVectors ( point2.velocity , vDelta.clone().multiplyScalar(1-s));
-                        newPoint1.position.subVectors(newPoint1.position, planeNormal.clone().multiplyScalar(2 * newDistance));
-                        newPoint2.position.subVectors(newPoint2.position, planeNormal.clone().multiplyScalar(2 * newDistance));
-                        //newPoint1.position.sub(planeNormal.clone().multiplyScalar( 2 * newDistance ));
-                        //newPoint2.position.sub( planeNormal.clone().multiplyScalar( 2 * newDistance ));
-                        return;
+                        newPoint1.position.subVectors(newPoint1.position, planeNormal.clone().multiplyScalar(2 * newdistance));
+                        newPoint2.position.subVectors(newPoint2.position, planeNormal.clone().multiplyScalar(2 * newdistance));
                     }
                 }
             }

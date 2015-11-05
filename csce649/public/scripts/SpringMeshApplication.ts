@@ -27,12 +27,17 @@ class SpringMeshApplication extends Application {
         var polygon2 = new SquarePolygon(10 , 0xFF0000 , new THREE.Vector3(0,-10,5) );
         polygon2.rotateX(45);
 
-        var polygon3 = new SquarePolygon(5 , 0xFF0000 , new THREE.Vector3(0,-10, 0));
+        var polygon3 = new SquarePolygon(5 , 0xFF0000 , new THREE.Vector3(-4,-9, 0));
         polygon3.rotateX(90);
+
+        var polygon4 = new SquarePolygon(100 , 0x00FF00 , new THREE.Vector3(0,-15, 0));
+        polygon4.rotateX(90);
+
 
         this.addObject(polygon);
         this.addObject(polygon2);
         this.addObject(polygon3);
+        this.addObject(polygon4);
         this.scene.add(axes);
     }
 
