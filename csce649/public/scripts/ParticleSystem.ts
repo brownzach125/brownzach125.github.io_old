@@ -2,7 +2,7 @@
 'use strict'
 
 class ParticleSystem extends Object2 {
-    state: THREE.Vector3[];
+    state;
     statePrime: THREE.Vector3[];
     clock: THREE.Clock;
     defaultTimestep:number = .01;

@@ -1,4 +1,28 @@
 'use strict';
+function getAllSliders() {
+    var sliders = [];
+    var htmlSliders = document.getElementsByClassName('slider');
+    for (var i = 0; i < htmlSliders.length; i++) {
+        var id = htmlSliders[i].id;
+        var s = htmlSliders[i];
+        var variableName = id.substring(0, id.indexOf("Slider"));
+        var value = document.getElementById(variableName + "Value");
+        var min = s.min;
+        var max = s.max;
+        var step = s.step;
+        var valuestart;
+        sliders.push(new SliderControl({
+            slider: s,
+            value: value,
+            max: max,
+            min: min,
+            step: step,
+            valuestart: valuestart,
+            variableName: variableName
+        }));
+    }
+    return sliders;
+}
 var SliderControl = (function () {
     function SliderControl(param) {
         this.callback = null;
@@ -7,6 +31,7 @@ var SliderControl = (function () {
         this.max = param.max;
         this.min = param.min;
         this.step = param.step;
+        this.variableName = param.variableName;
         var that = this;
         that.slider.addEventListener('input', function () {
             that.onChangeSlider();
@@ -38,14 +63,14 @@ var SliderControl = (function () {
         var value = this.slider.value;
         this.value.value = value; //('value', value);
         if (this.callback) {
-            this.callback(value);
+            this.callback(value, this.variableName);
         }
     };
     SliderControl.prototype.onChangeValue = function () {
         var value = this.value.value;
         this.slider.value = value; //('value', value);
         if (this.callback) {
-            this.callback(value);
+            this.callback(value, this.variableName);
         }
     };
     return SliderControl;

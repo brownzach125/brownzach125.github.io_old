@@ -82,6 +82,18 @@ var Object2 = (function () {
         var scene = this.getScene();
         return scene ? scene.data : null;
     };
+    Object2.prototype.rotateX = function (degree) {
+        degree = degree * Math.PI / 180;
+        this.object3D.rotation.x += degree;
+    };
+    Object2.prototype.rotateY = function (degree) {
+        degree = degree * Math.PI / 180;
+        this.object3D.rotation.y += degree;
+    };
+    Object2.prototype.rotateZ = function (degree) {
+        degree = degree * Math.PI / 180;
+        this.object3D.rotation.z += degree;
+    };
     return Object2;
 })();
 //# sourceMappingURL=Object2.js.map

@@ -4,8 +4,19 @@ var Application = (function () {
     function Application() {
         this.clock = new THREE.Clock();
     }
+    Application.prototype.restart = function () {
+        var camera = this.camera;
+        var cameraControls = this.cameraControls;
+        this.container.removeChild(this.renderer.domElement);
+        this.scene = null;
+        this.init(this.params);
+        this.camera = camera;
+        this.scene.add(camera);
+        this.cameraControls = new THREE.TrackballControls(this.camera, this.renderer.domElement);
+    };
     Application.prototype.init = function (param) {
         param = param || {};
+        this.params = param;
         var container = param.container;
         var canvas = param.canvas;
         // Create the Three.js renderer, add it to our div
@@ -21,6 +32,7 @@ var Application = (function () {
         var camera = new THREE.PerspectiveCamera(45, container.offsetWidth / container.offsetHeight, 1, 10000);
         camera.position.set(0, 0, 10);
         camera.lookAt(new THREE.Vector3(0, 0, 0));
+        this.cameraControls = new THREE.TrackballControls(camera, renderer.domElement);
         scene.add(camera);
         // Create a root object to contain all other scene objects
         var root = new THREE.Object3D();
@@ -253,6 +265,30 @@ var Application = (function () {
         else {
             return { object: null, point: null, normal: null };
         }
+    };
+    Application.prototype.buildAxes = function (length) {
+        var axes = new THREE.Object3D();
+        axes.add(this.buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(length, 0, 0), 0xFF0000, false)); // +X
+        axes.add(this.buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(-length, 0, 0), 0xFF0000, true)); // -X
+        axes.add(this.buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, length, 0), 0x00FF00, false)); // +Y
+        axes.add(this.buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, -length, 0), 0x00FF00, true)); // -Y
+        axes.add(this.buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, length), 0x0000FF, false)); // +Z
+        axes.add(this.buildAxis(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, -length), 0x0000FF, true)); // -Z
+        return axes;
+    };
+    Application.prototype.buildAxis = function (src, dst, colorHex, dashed) {
+        var geom = new THREE.Geometry(), mat;
+        if (dashed) {
+            mat = new THREE.LineDashedMaterial({ linewidth: 3, color: colorHex, dashSize: 3, gapSize: 3 });
+        }
+        else {
+            mat = new THREE.LineBasicMaterial({ linewidth: 3, color: colorHex });
+        }
+        geom.vertices.push(src.clone());
+        geom.vertices.push(dst.clone());
+        geom.computeLineDistances(); // This one is SUPER important, otherwise dashed lines will appear as simple plain lines
+        var axis = new THREE.Line(geom, mat, THREE.LineSegments);
+        return axis;
     };
     return Application;
 })();

@@ -236,9 +236,9 @@
 					"visible"  : true
 				},
 
-				"monster" : {
+				"monsters" : {
 					"type": "dae",
-					"url" : "models/collada/monster/monster.dae",
+					"url" : "models/collada/monsters/monsters.dae",
 					"position" : [ -43, -10, 27 ],
 					"rotation" : [ -1.57, 0, 0 ],
 					"scale"	   : [ 0.01, 0.01, 0.01 ],

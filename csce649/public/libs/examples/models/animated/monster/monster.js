@@ -18,11 +18,11 @@
     "materials": [	{
 	"DbgColor" : 15658734,
 	"DbgIndex" : 0,
-	"DbgName" : "monster",
+	"DbgName" : "monsters",
 	"colorAmbient" : [0.0, 0.0, 0.0],
 	"colorDiffuse" : [0.6400000190734865, 0.6400000190734865, 0.6400000190734865],
 	"colorSpecular" : [0.37434511778136503, 0.37434511778136503, 0.37434511778136503],
-	"mapDiffuse" : "monster.jpg",
+	"mapDiffuse" : "monsters.jpg",
 	"mapDiffuseWrap" : ["repeat", "repeat"],
 	"shading" : "Lambert",
 	"specularCoef" : 50,

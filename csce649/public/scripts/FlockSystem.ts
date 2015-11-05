@@ -349,38 +349,3 @@ class FlockSystem extends ParticleSystem {
         }
     }
 }
-
-/*
- for ( var j = 0; j < this.children.length; j++) {
- if ( j == boidIndex){
- continue;
- }
- var partialForce:THREE.Vector3 = new THREE.Vector3(0,0,0);
- var temp:THREE.Vector3 = new THREE.Vector3(0,0,0);
- positionJ  = this.children[j].object3D.position;
- normal.subVectors( positionJ , positionI).normalize();
- var distance = positionI.distanceTo(positionJ);
- velocityJ = this.children[j].velocity;
- var weight = 1;
- if ( j == this.smartGooseIndex) {
- // Avoidance Force
- partialForce.add( normal.clone().multiplyScalar( this.avoidanceConstant * -1).divideScalar( distance ));
- // Centering Force
- partialForce.add( normal.multiplyScalar(distance * this.centeringConstant) );
- // Velocity Matching
- partialForce.add( temp.subVectors( velocityJ , velocityI).multiplyScalar(this.velocityMatchConstant));
- force.add(partialForce.multiplyScalar(weight));
- }
- else {
- weight *= this.sigmoid(distance * distance * distance);
- // Avoidance Force
- partialForce.add( normal.clone().multiplyScalar( this.avoidanceConstant * -1).divideScalar( distance ));
- // Centering Force
- partialForce.add( normal.multiplyScalar(distance * this.centeringConstant) );
- // Velocity Matching
- partialForce.add( temp.subVectors( velocityJ , velocityI).multiplyScalar(this.velocityMatchConstant));
-
- force.add(partialForce.multiplyScalar(weight));
- }
- }
-    */

@@ -99,5 +99,18 @@ class Object2 {
         var scene = this.getScene();
         return scene ? scene.data : null;
     }
+
+    rotateX(degree) {
+        degree = degree * Math.PI / 180;
+        this.object3D.rotation.x +=degree;
+    }
+    rotateY(degree) {
+        degree = degree * Math.PI / 180;
+        this.object3D.rotation.y +=degree;
+    }
+    rotateZ(degree) {
+        degree = degree * Math.PI / 180;
+        this.object3D.rotation.z +=degree;
+    }
 }
 

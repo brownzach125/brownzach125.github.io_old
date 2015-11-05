@@ -979,7 +979,7 @@ declare module THREE {
      */
     export class Object3D {
         constructor();
-
+        geometry;
         /**
          * Unique number of this object instance.
          */

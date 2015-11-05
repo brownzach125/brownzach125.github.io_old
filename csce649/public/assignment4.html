@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Springy Mesh </title>
+
+    <link rel="stylesheet" href="css/webglbook.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="../node_modules/three/three.js"></script>
+    <script src="libs/RequestAnimationFrame.js"></script>
+    <script src="libs/examples/js/controls/TrackballControls.js"></script>
+    <script src='scripts/Object2.js'></script>
+    <script src='scripts/Polygon.js'></script>
+    <script src='scripts/System.js'></script>
+    <script src='scripts/Application.js'></script>
+    <script src='scripts/ParticleSystem.js'></script>
+    <script src='scripts/SpringyMeshSystem.js'></script>s
+    <script src='scripts/SpringMeshApplication.js'></script>
+    <script src='scripts/jsonModel.js'></script>
+    <script src='scripts/Collidable.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="scripts/UI.js"></script>
+    <script>
+        var app = null;
+        var avoidanceSlider = null;
+        var velocitySlider  = null;
+        var centeringSlider = null;
+        function onLoad() {
+            var container = document.getElementById("container");
+
+            var sliders = getAllSliders();
+
+            app = new SpringMeshApplication();
+            app.init({
+                container: container,
+                sliders : sliders
+            });
+
+            app.focus();
+            app.run();
+        };
+        function restartApp() {
+            app.restart();
+        }
+    </script>
+
+</head>
+<body onLoad="onLoad();">
+<div id='header'><h1>CSCE 649: Assignment4 -Zach Brown</h1></div>
+<div id="container"></div>
+<div id='bottomPanel'>
+    <div id='controls'>
+        Elasticity <br>
+        <input class='slider' type='range' id="elasticitySlider"  min="0" max="5" step=".1" value="1"">
+        <input class='sliderValue' type='number' id='elasticityValue'> <br>
+        <br> DamperConstant <br>
+        <input class='slider' type='range' id="damperConstantSlider"  min="0" max="1" step=".1" value="1"">
+        <input class='sliderValue' type='number' id='damperConstantValue'> <br>
+        <br>Spring Constant <br>
+        <input class='slider' type='range' id="springConstantSlider"  min="0" max="100" step=".1" value ="1">
+        <input class='sliderValue' type='number' id='springConstantValue' > <br>
+        <br>GravityX Constant <br>
+        <input class='slider' type='range' id="gravityXSlider"  min="-10" max="10" step=".1" value="0">
+        <input class='sliderValue' type='number' id='gravityXValue' > <br>
+        <br>GravityY Constant <br>
+        <input class='slider' type='range' id="gravityYSlider"  min="-10" max="10" step=".1" value="-1">
+        <input class='sliderValue' type='number' id='gravityYValue' > <br>
+        <br>GravityZ <br>
+        <input class='slider' type='range' id="gravityZSlider"  min="-10" max="10" step=".1" value="0">
+        <input class='sliderValue' type='number' id='gravityZValue' > <br>
+
+        <input id="restartButton" type="button" value="restart" onclick = 'restartApp()'></div>
+    </div>
+</div>
+
+</body>
+</html>
