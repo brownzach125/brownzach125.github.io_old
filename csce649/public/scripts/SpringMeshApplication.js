@@ -21,12 +21,16 @@ var SpringMeshApplication = (function (_super) {
         var system = new SpringyMeshSystem();
         system.init(params);
         this.addObject(system);
-        var polygon = new SquarePolygon(10, 0xFF0000, new THREE.Vector3(2, -10, 0));
-        polygon.rotateX(0);
-        var polygon2 = new SquarePolygon(10, 0xFF0000, new THREE.Vector3(0, -10, 0));
-        polygon2.rotateX(90);
+        var polygon = new SquarePolygon(5, 0xFF0000, new THREE.Vector3(2, -5, 0));
+        polygon.rotateX(-45);
+        polygon.rotateZ(5);
+        var polygon2 = new SquarePolygon(10, 0xFF0000, new THREE.Vector3(0, -10, 5));
+        polygon2.rotateX(45);
+        var polygon3 = new SquarePolygon(5, 0xFF0000, new THREE.Vector3(0, -10, 0));
+        polygon3.rotateX(90);
         this.addObject(polygon);
-        //this.addObject(polygon2);
+        this.addObject(polygon2);
+        this.addObject(polygon3);
         this.scene.add(axes);
     };
     SpringMeshApplication.prototype.update = function (delta, timestep) {

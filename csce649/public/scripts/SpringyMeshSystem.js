@@ -19,7 +19,7 @@ var SpringyMeshSystem = (function (_super) {
         // Create vertices
         var vertices = [];
         var geometry = new THREE.BoxGeometry(1, 1, 1);
-        var material = new THREE.MeshBasicMaterial({});
+        var material = new THREE.MeshNormalMaterial();
         this.object3D = new THREE.Mesh(geometry, material);
         for (var i = 0; i < geometry.vertices.length; i++) {
             vertices.push(new Vertex(geometry.vertices[i]));
@@ -44,6 +44,29 @@ var SpringyMeshSystem = (function (_super) {
             this.object3D.geometry.vertices[i] = this.state.vertices[i].position;
         }
         this.object3D.geometry.verticesNeedUpdate = true;
+    };
+    SpringyMeshSystem.prototype.getEdges = function () {
+        var edges = [];
+        for (var i = 0; i < this.state.faces.length; i++) {
+            var face = this.state.faces[i];
+            edges.push({ a: face.a, b: face.b });
+            edges.push({ a: face.b, b: face.c });
+            edges.push({ a: face.c, b: face.a });
+        }
+        var found = {};
+        var result = [];
+        for (var i = 0; i < edges.length; i++) {
+            var a = edges[i].a;
+            var b = edges[i].b;
+            if (!((found[a] && found[a][b]) || (found[b] && found[b][a]))) {
+                result.push(edges[i]);
+                if (!found[a]) {
+                    found[edges[i].a] = {};
+                }
+                found[a][b] = true;
+            }
+        }
+        return result;
     };
     // Compute force on each vertex, store in vertex force field
     SpringyMeshSystem.prototype.computeForces = function (state) {
