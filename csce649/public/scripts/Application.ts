@@ -45,7 +45,7 @@ class Application {
         // Put in a camera at a good default location
         var camera = new THREE.PerspectiveCamera( 45, container.offsetWidth / container.offsetHeight, 1, 10000 );
         camera.position.set( 0, 0, 10 );
-        camera.lookAt(new THREE.Vector3(0,0,0));
+        camera.lookAt(new THREE.Vector3(0,-10,0));
         this.cameraControls = new THREE.TrackballControls( camera, renderer.domElement );
 
         scene.add(camera);
