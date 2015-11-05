@@ -21,9 +21,12 @@ var SpringMeshApplication = (function (_super) {
         var system = new SpringyMeshSystem();
         system.init(params);
         this.addObject(system);
-        var polygon = new SquarePolygon(10, 0xFF0000, new THREE.Vector3(0, -10, 0));
+        var polygon = new SquarePolygon(10, 0xFF0000, new THREE.Vector3(2, -10, 0));
         polygon.rotateX(0);
+        var polygon2 = new SquarePolygon(10, 0xFF0000, new THREE.Vector3(0, -10, 0));
+        polygon2.rotateX(90);
         this.addObject(polygon);
+        //this.addObject(polygon2);
         this.scene.add(axes);
     };
     SpringMeshApplication.prototype.update = function (delta, timestep) {

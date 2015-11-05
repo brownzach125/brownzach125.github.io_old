@@ -115,6 +115,7 @@ class System extends Object2 {
     state: State;
     oldState: State;
     elasticity =1;
+    integration =1;
     constructor() {
         super();
         this.createInitialState();
@@ -137,7 +138,12 @@ class System extends Object2 {
     }
     update( delta , timestep) {
         for ( var h =0; h < delta; h += timestep ) {
-            this.integrate( timestep , "RK");
+            if ( this.integration) {
+                this.integrate(timestep , "RK");
+            }
+            else {
+                this.integrate(timestep , "ER");
+            }
             var collision = this.detectCollision();
             if ( collision ) {
                 this.collisionResponse(collision);
@@ -247,10 +253,22 @@ class System extends Object2 {
                         var velocity = point1.velocity.clone().add(point2.velocity).divideScalar(2);
                         var vn = planeNormal.clone().multiplyScalar(velocity.dot(planeNormal));
                         var velocityTangent = velocity.clone().sub(vn);
-                        this.state.vertices[i].velocity.addVectors(vn.clone().multiplyScalar(-1 * this.elasticity)  , velocityTangent);
-                        this.state.vertices[ (i + 1) % this.state.vertices.length ].velocity.addVectors(vn.clone().multiplyScalar(-1 * this.elasticity)  , velocityTangent);
+
+                        var velocityChange = vn.clone().multiplyScalar(-1 * this.elasticity).clone().add(velocityTangent).sub(velocity);
+                        var vDelta = velocityChange.divideScalar( s *s + (1-s) * (1-s));
                         //velocity.addVectors(velocityNormal.clone().multiplyScalar(-1 * this.elasticity)  , velocityTangent);
                         //newPoint.sub(normal.clone().multiplyScalar( 2 * newDistance ));
+
+
+                        //this.state.vertices[i].velocity.addVectors(vn.clone().multiplyScalar(-1 * this.elasticity)  , velocityTangent);
+                        //this.state.vertices[ (i + 1) % this.state.vertices.length ].velocity.addVectors(vn.clone().multiplyScalar(-1 * this.elasticity)  , velocityTangent);
+                        this.state.vertices[i].velocity.addVectors( point1.velocity ,  vDelta.clone().multiplyScalar(s));
+                        this.state.vertices[ (i + 1) % this.state.vertices.length ].velocity.addVectors ( point2.velocity , vDelta.clone().multiplyScalar(1-s));
+
+                        //this.state.vertices[i].position.subVectors( point1.position ,planeNormal.clone().multiplyScalar( 2 * newDistance ));
+                        //this.state.vertices[ (i + 1) % this.state.vertices.length ].position.subVectors( point2.position ,planeNormal.clone().multiplyScalar( 2 * newDistance ));
+                        this.state.vertices[i].position.sub(planeNormal.clone().multiplyScalar( 2 * newDistance ));
+                        this.state.vertices[ (i + 1) % this.state.vertices.length ].position.sub( planeNormal.clone().multiplyScalar( 2 * newDistance ));
                     }
 
                 }

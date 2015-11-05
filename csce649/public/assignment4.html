@@ -53,10 +53,10 @@
         <input class='slider' type='range' id="elasticitySlider"  min="0" max="5" step=".1" value="1"">
         <input class='sliderValue' type='number' id='elasticityValue'> <br>
         <br> DamperConstant <br>
-        <input class='slider' type='range' id="damperConstantSlider"  min="0" max="1" step=".1" value="1"">
+        <input class='slider' type='range' id="damperConstantSlider"  min="0" max="100" step=".1" value="1"">
         <input class='sliderValue' type='number' id='damperConstantValue'> <br>
         <br>Spring Constant <br>
-        <input class='slider' type='range' id="springConstantSlider"  min="0" max="100" step=".1" value ="1">
+        <input class='slider' type='range' id="springConstantSlider"  min="0" max="100" step=".1" value ="50">
         <input class='sliderValue' type='number' id='springConstantValue' > <br>
         <br>GravityX Constant <br>
         <input class='slider' type='range' id="gravityXSlider"  min="-10" max="10" step=".1" value="0">
@@ -67,6 +67,9 @@
         <br>GravityZ <br>
         <input class='slider' type='range' id="gravityZSlider"  min="-10" max="10" step=".1" value="0">
         <input class='sliderValue' type='number' id='gravityZValue' > <br>
+        <br>Integration <br>
+        <input class='slider' type='range' id="integrationSlider"  min="0" max="1" step="1" value="0">
+        <input class='sliderValue' type='number' id='integrationValue' > <br>
 
         <input id="restartButton" type="button" value="restart" onclick = 'restartApp()'></div>
     </div>
